@@ -108,6 +108,7 @@
     <ClCompile Include="..\Source\Common\Text2DUtils.cpp" />
     <ClCompile Include="..\Source\Common\TextureUtils.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\Shader.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -125,6 +126,7 @@
     <ClInclude Include="..\Source\Common\Text2DUtils.h" />
     <ClInclude Include="..\Source\Common\TextureUtils.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\Shader.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\EventManager.h" />
