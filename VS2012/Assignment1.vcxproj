@@ -58,13 +58,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110;..\ThirdParty\zlib\lib;..\ThirdParty\libcurl</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;zdll.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <BuildLog>
       <Path>
