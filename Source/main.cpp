@@ -11,6 +11,7 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "Generator.h"
 
 
 int main(int argc, char*argv[])
@@ -23,6 +24,9 @@ int main(int argc, char*argv[])
 	world.addModel(c);
 	SphereModel* sphere = new SphereModel(3,4,4); 
 	world.addModel(sphere);
+
+	// Generator
+	initLSystem();
 
 	// Main Loop
 	do

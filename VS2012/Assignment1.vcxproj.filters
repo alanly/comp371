@@ -18,6 +18,9 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{05095d5c-2fc5-4dfe-a464-e30c7f31bdb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Procedural Generation">
+      <UniqueIdentifier>{d9ea2d58-2bcf-44e6-af8f-5719bf0fcb33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
@@ -64,6 +67,9 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Generator.cpp">
+      <Filter>Source Files\Procedural Generation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -95,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Generator.h">
+      <Filter>Source Files\Procedural Generation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
