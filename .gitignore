@@ -24,7 +24,6 @@
 
 # Build results
 [Dd]ebug/
-[Rr]elease/
 x64/
 build/
 bld/
@@ -184,3 +183,6 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+
+# Don't ignore ThirdParty shit.
+!*/*.lib
