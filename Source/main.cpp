@@ -11,12 +11,18 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "IL/il.h"
+#include "IL/ilu.h"
+#include "IL/ilut.h"
 
 
 int main(int argc, char*argv[])
 {
 	EventManager::Initialize();
 	Renderer::Initialize();
+	ilInit();
+	iluInit();
+	ilutRenderer(ILUT_OPENGL);
 
 	World world;
 	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
@@ -36,6 +42,8 @@ int main(int argc, char*argv[])
 
 		// Draw World
 		world.Draw();
+
+		
 
 	}
 	while(EventManager::ExitRequested() == false);
