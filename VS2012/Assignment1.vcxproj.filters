@@ -70,18 +70,6 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Text2D.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Texture.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Shader.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Util.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -113,15 +101,6 @@
     </ClInclude>
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Text2D.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Texture.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Shader.h">
-      <Filter>Source Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
