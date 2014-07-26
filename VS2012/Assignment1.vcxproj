@@ -114,6 +114,7 @@
     <ClCompile Include="..\Source\Renderer.cpp" />
     <ClCompile Include="..\Source\Text2D.cpp" />
     <ClCompile Include="..\Source\Texture.cpp" />
+    <ClCompile Include="..\Source\Util.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +131,9 @@
     <ClInclude Include="..\Source\Text2D.h" />
     <ClInclude Include="..\Source\Texture.h" />
     <ClInclude Include="..\Source\World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\font_texture.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

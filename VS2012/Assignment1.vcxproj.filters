@@ -21,6 +21,9 @@
     <Filter Include="Source Files\Common">
       <UniqueIdentifier>{af2324f0-2ef4-40bc-bb43-f81984a45ae8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Assets">
+      <UniqueIdentifier>{dc21eb44-c8a5-49d1-80c8-291f20973b72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
@@ -76,6 +79,9 @@
     <ClCompile Include="..\Source\Shader.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Util.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -117,5 +123,10 @@
     <ClInclude Include="..\Source\Shader.h">
       <Filter>Source Files\Common</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\font_texture.bmp">
+      <Filter>Resource Files\Assets</Filter>
+    </Image>
   </ItemGroup>
 </Project>
