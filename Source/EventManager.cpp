@@ -30,7 +30,6 @@ float  EventManager::sMouseDeltaY = 0.0f;
 // Window
 GLFWwindow* EventManager::spWindow = NULL;
 
-
 void EventManager::Initialize()
 {
 	// Initialise GLFW
