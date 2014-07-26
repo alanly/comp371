@@ -9,9 +9,6 @@
 #include "Renderer.h"
 #include "World.h"
 #include "EventManager.h"
-#include "CubeModel.h"
-#include "SphereModel.h"
-
 
 int main(int argc, char*argv[])
 {
@@ -19,10 +16,6 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
-	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(c);
-	SphereModel* sphere = new SphereModel(3,4,4); 
-	world.addModel(sphere);
 
 	// Main Loop
 	do
