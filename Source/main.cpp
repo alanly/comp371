@@ -11,45 +11,40 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-#include "IL/il.h"
-#include "IL/ilu.h"
-#include "IL/ilut.h"
-
+#include "DevIL.h"
 
 int main(int argc, char*argv[])
 {
-	EventManager::Initialize();
-	Renderer::Initialize();
-	ilInit();
-	iluInit();
-	ilutRenderer(ILUT_OPENGL);
+	glutInit (&argc, argv);											//initializing glut	
+	glutInitDisplayMode (GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGBA);		//display mode
+	glutInitWindowSize (1024, 768);									//window size
+	glutInitWindowPosition (150, 100);								//window position on the screen	
+	glutCreateWindow ("Two Cubes and a Sphere");					//title of the window
+	size_t convertedChars = 0;
+	char * brick("images/BurlywoodBrickwork.jpg");
+	wchar_t * brickW = new wchar_t[strlen(brick) + 1];
+	mbstowcs_s(&convertedChars, brickW, strlen(brick)+1, brick, _TRUNCATE);
+	//wcout << brickW << " (wchar_t *)" << endl;
 
-	World world;
-	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(c);
-	SphereModel* sphere = new SphereModel(3,4,4); 
-	world.addModel(sphere);
+	char * globe("images/global_map2.jpg");
+	wchar_t * globeW = new wchar_t[strlen(globe) + 1];
+    mbstowcs_s(&convertedChars, globeW, strlen(globe) + 1, globe, _TRUNCATE);
+    // Display the result and indicate the type of string that it is.
+    //wcout << globeW << " (wchar_t *)" << endl;
 
-	// Main Loop
-	do
-	{
-		// Update Event Manager - Frame time / input / events processing 
-		EventManager::Update();
-
-		// Update World
-		float dt = EventManager::GetFrameTime();
-		world.Update(dt);
-
-		// Draw World
-		world.Draw();
-
-		
-
-	}
-	while(EventManager::ExitRequested() == false);
-
-	Renderer::Shutdown();
-	EventManager::Shutdown();
+	//wchar_t * mychar(L"images/BurlywoodBrickwork.jpg");
+	//ILstring *brickFile(&mychar);//l"images/BurlywoodBrickwork.jpg");
+	//ILstring *globeFile(L"images/global_map2.jpg");
+	DevIL imageLoader;
+	imageLoader.AddNewImage(brickW);
+	imageLoader.AddNewImage(globeW);
+	imageLoader.InitTextures();
+	glutDisplayFunc (Display );										//GL calling the display function to display images
+	glutIdleFunc (Display );											//GL calling the display function when idling
+	//glutReshapeFunc (Reshape);										//GL calling the reshape function
+	//glutKeyboardFunc (Keyboard);									//GL handling the regular keyboard
+	//glutSpecialFunc (KeyboardSpecial);								//GL handling special keys
+	glutMainLoop ();	
 
 	return 0;
 }

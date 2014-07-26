@@ -18,6 +18,12 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{05095d5c-2fc5-4dfe-a464-e30c7f31bdb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{1749f2d9-5844-4089-813a-04e45e707773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Image">
+      <UniqueIdentifier>{88f32207-ac58-4fcf-afd9-3d0461230b91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
@@ -64,6 +70,12 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\DevIL.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ImageLoader.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -96,5 +108,22 @@
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\DevIL.h">
+      <Filter>Source Files\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\ImageLoader.h">
+      <Filter>Source Files\Image</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\OpenGL &amp; DevIL Basics Tutorial\images\BurlywoodBrickwork.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\OpenGL &amp; DevIL Basics Tutorial\images\global_map_change.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\OpenGL &amp; DevIL Basics Tutorial\images\global_map2.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
