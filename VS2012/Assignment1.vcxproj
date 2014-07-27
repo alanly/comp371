@@ -136,7 +136,7 @@
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Assets\font_texture.bmp" />
+    <Image Include="..\Assets\Holstein.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
