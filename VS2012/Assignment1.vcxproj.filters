@@ -132,7 +132,7 @@
     <ClInclude Include="..\Source\Text2DModel.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Assets\font_texture.bmp">
+    <Image Include="..\Assets\Holstein.DDS">
       <Filter>Resource Files\Assets</Filter>
     </Image>
   </ItemGroup>
