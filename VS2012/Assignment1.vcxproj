@@ -116,10 +116,7 @@
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="..\Source\Text2DModel.cpp" />
-=======
->>>>>>> Remove Util.cpp because it's causing the project to not compile.
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,10 +132,7 @@
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\ModelGroup.h" />
     <ClInclude Include="..\Source\Renderer.h" />
-<<<<<<< HEAD
     <ClInclude Include="..\Source\Text2DModel.h" />
-=======
->>>>>>> Remove Util.cpp because it's causing the project to not compile.
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
