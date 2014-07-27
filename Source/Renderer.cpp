@@ -46,15 +46,20 @@ void Renderer::Initialize()
 	}
 
 	// Black background
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.0f, 1.0f, 1.0f, 0.0f);
 	
 	// Enable depth test
     glEnable(GL_DEPTH_TEST);
+    // Enable alpha blending
+    glEnable(GL_BLEND);
     
 	// Accept fragment if it closer to the camera than the former one
     glDepthFunc(GL_LESS); 
+    // Blends incoming pixel format to its destination format
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Loading Shaders
+    sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader" ));
 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
 	sCurrentShader = 0;

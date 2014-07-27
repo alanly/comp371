@@ -47,7 +47,7 @@ void EventManager::Initialize()
 
 	// Open a window and create its OpenGL context
 	glfwWindowHint(GLFW_RESIZABLE, 0);
-	spWindow = glfwCreateWindow( 1024, 768, "COMP371 - Assignment Framework", NULL, NULL);
+	spWindow = glfwCreateWindow( 1024, 768, "COMP371 - R3Ddit Project", NULL, NULL);
 
 	if( spWindow == NULL )
 	{

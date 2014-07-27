@@ -35,6 +35,12 @@
     <None Include="..\Source\Shaders\BlueColor.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Source\Shaders\Image.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Image.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\EventManager.cpp">
@@ -73,8 +79,8 @@
     <ClCompile Include="..\Source\DevIL.cpp">
       <Filter>Source Files\Image</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\ImageLoader.cpp">
-      <Filter>Source Files\Image</Filter>
+    <ClCompile Include="..\Source\PlaneModel.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,18 +117,15 @@
     <ClInclude Include="..\Source\DevIL.h">
       <Filter>Source Files\Image</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\ImageLoader.h">
-      <Filter>Source Files\Image</Filter>
+    <ClInclude Include="..\Source\PlaneModel.h">
+      <Filter>Source Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\OpenGL &amp; DevIL Basics Tutorial\images\BurlywoodBrickwork.jpg">
+    <Image Include="..\Source\Images\Scottish_Fold.jpg">
       <Filter>Resource Files\Images</Filter>
     </Image>
-    <Image Include="..\..\..\..\Desktop\OpenGL &amp; DevIL Basics Tutorial\images\global_map_change.jpg">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Desktop\OpenGL &amp; DevIL Basics Tutorial\images\global_map2.jpg">
+    <Image Include="..\Source\Images\alphalogo_a4arial.png">
       <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>

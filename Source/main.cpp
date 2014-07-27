@@ -11,40 +11,50 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-#include "DevIL.h"
+#include "PlaneModel.h"
+#include "SOIL.h"
 
 int main(int argc, char*argv[])
 {
-	glutInit (&argc, argv);											//initializing glut	
-	glutInitDisplayMode (GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGBA);		//display mode
-	glutInitWindowSize (1024, 768);									//window size
-	glutInitWindowPosition (150, 100);								//window position on the screen	
-	glutCreateWindow ("Two Cubes and a Sphere");					//title of the window
-	size_t convertedChars = 0;
-	char * brick("images/BurlywoodBrickwork.jpg");
-	wchar_t * brickW = new wchar_t[strlen(brick) + 1];
-	mbstowcs_s(&convertedChars, brickW, strlen(brick)+1, brick, _TRUNCATE);
-	//wcout << brickW << " (wchar_t *)" << endl;
+	EventManager::Initialize();
+	Renderer::Initialize();
 
-	char * globe("images/global_map2.jpg");
-	wchar_t * globeW = new wchar_t[strlen(globe) + 1];
-    mbstowcs_s(&convertedChars, globeW, strlen(globe) + 1, globe, _TRUNCATE);
-    // Display the result and indicate the type of string that it is.
-    //wcout << globeW << " (wchar_t *)" << endl;
+	World world;
+	PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+	world.addModel(p);
 
-	//wchar_t * mychar(L"images/BurlywoodBrickwork.jpg");
-	//ILstring *brickFile(&mychar);//l"images/BurlywoodBrickwork.jpg");
-	//ILstring *globeFile(L"images/global_map2.jpg");
-	DevIL imageLoader;
-	imageLoader.AddNewImage(brickW);
-	imageLoader.AddNewImage(globeW);
-	imageLoader.InitTextures();
-	glutDisplayFunc (Display );										//GL calling the display function to display images
-	glutIdleFunc (Display );											//GL calling the display function when idling
-	//glutReshapeFunc (Reshape);										//GL calling the reshape function
-	//glutKeyboardFunc (Keyboard);									//GL handling the regular keyboard
-	//glutSpecialFunc (KeyboardSpecial);								//GL handling special keys
-	glutMainLoop ();	
+    // Load texture
+    GLuint tex;
+    glGenTextures(1, &tex);
+
+    int width, height;
+    unsigned char* image = SOIL_load_image("C:\\Users\\Tiffany\\Google Drive\\COMP371\\Project\\Source\\Images\\alphalogo_a4arial.png", &width, &height, 0, SOIL_LOAD_RGBA);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+    SOIL_free_image_data(image);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Main Loop
+	do
+	{
+		// Update Event Manager - Frame time / input / events processing 
+		EventManager::Update();
+		
+	    // Update World
+		float dt = EventManager::GetFrameTime();
+		world.Update(dt);
+		
+		// Draw World
+		world.Draw();
+	}
+	while(EventManager::ExitRequested() == false);
+
+    glDeleteTextures(1, &tex); //remove texture from openGL
+	Renderer::Shutdown();
+	EventManager::Shutdown();
 
 	return 0;
 }
