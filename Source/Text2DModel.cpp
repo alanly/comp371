@@ -1,7 +1,7 @@
 #include "Text2DModel.h"
 #include "Common/Text2DUtils.h"
 
-const char* fontTexture = "../Assets/ComicNeueLight.dds";
+const char* fontTexture = "../Assets/Holstein.DDS";
 
 Text2DModel::Text2DModel(const char* message, unsigned int size, int x, int y, Model* parent)
 {
