@@ -29,6 +29,12 @@
     <None Include="..\Source\Shaders\BlueColor.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Source\Shaders\StandardShading.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\StandardShading.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\EventManager.cpp">

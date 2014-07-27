@@ -99,12 +99,21 @@ void World::Draw()
 {
 	Renderer::BeginFrame();
 	
+	GLfloat position[] = { 10., 10.0, 1.5, 1.0 };
+    glLightfv (GL_LIGHT0, GL_POSITION, position);
+
 	// Set Shader... In a more sofisticated application, each model could use a different shader
 	// In our case, all the models use a common shader
 	glUseProgram(Renderer::GetShaderProgramID());
 
+	GLuint LightID = glGetUniformLocation(Renderer::GetShaderProgramID(), "LightPosition_worldspace");
+
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectonTransform"); 
+
+
+	glm::vec3 lightPos = glm::vec3(4,4,4);
+	glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)

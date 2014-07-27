@@ -46,18 +46,26 @@ void Renderer::Initialize()
 	}
 
 	// Black background
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	
-	// Enable depth test
-    glEnable(GL_DEPTH_TEST);
-    
+   glEnable(GL_LIGHTING);
+   glEnable(GL_LIGHT0);
+   glEnable(GL_DEPTH_TEST);
+
+	//glEnable(GL_COLOR_MATERIAL);
+	//glEnable(GL_LIGHT1); //Enable light #1
+	//glEnable(GL_NORMALIZE); //Automatically normalize normals
+
 	// Accept fragment if it closer to the camera than the former one
     glDepthFunc(GL_LESS); 
+
+
 
 	// Loading Shaders
 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
-	sCurrentShader = 0;
+	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/StandardShading.vertexshader", "../Source/Shaders/StandardShading.fragmentshader" ));
+	sCurrentShader = 2;
 
 }
 

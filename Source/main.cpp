@@ -21,12 +21,23 @@ int main(int argc, char*argv[])
 	World world;
 	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
 	world.addModel(c);
-	SphereModel* sphere = new SphereModel(3,4,4); 
-	world.addModel(sphere);
+	//SphereModel* sphere = new SphereModel(3,4,4); 
+	//world.addModel(sphere);
+
+	//GLfloat lightpos[] = {10, 10, 10, 1.0}; 
+//	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
+
+	//glli
+
+	GLuint programID = Renderer::LoadShaders( "../Source/Shaders/StandardShading.vertexshader", "../Source/Shaders/StandardShading.fragmentshader" );
+
 
 	// Main Loop
 	do
 	{
+
+
+
 		// Update Event Manager - Frame time / input / events processing 
 		EventManager::Update();
 

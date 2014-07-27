@@ -14,6 +14,7 @@
     <ProjectGuid>{277EAE68-9EED-4EFF-BAD3-2A70787A3E8D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Assignment1</RootNamespace>
+    <ProjectName>r3ddit</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -99,6 +100,8 @@
     <None Include="..\Source\Shaders\BlueColor.fragmentshader" />
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
+    <None Include="..\Source\Shaders\StandardShading.fragmentshader" />
+    <None Include="..\Source\Shaders\StandardShading.vertexshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Camera.cpp" />
@@ -112,6 +115,7 @@
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
+    <ClCompile Include="..\Source\Portal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
@@ -124,6 +128,7 @@
     <ClInclude Include="..\Source\ModelGroup.h" />
     <ClInclude Include="..\Source\Renderer.h" />
     <ClInclude Include="..\Source\World.h" />
+    <ClInclude Include="..\Source\Portal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
