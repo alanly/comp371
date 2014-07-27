@@ -29,11 +29,10 @@ public:
 	static void EnableMouseCursor();
 	static void DisableMouseCursor();
 
-
 private:
 	// Time
 	static double sLastFrameTime;
-	static float sFrameTime;
+	static float  sFrameTime;
 
 	// Mouse
 	static double sLastMousePositionX;

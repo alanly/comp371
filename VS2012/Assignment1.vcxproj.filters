@@ -35,6 +35,12 @@
     <None Include="..\Source\Shaders\BlueColor.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\TextVertexShader.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\EventManager.cpp">
@@ -70,6 +76,18 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Common\Text2DUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\TextureUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Text2DModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -102,6 +120,16 @@
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Common\Text2DUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Common\ShaderUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Common\TextureUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Text2DModel.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\font_texture.bmp">
