@@ -27,7 +27,7 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position) : Camera()
 	// Initial Field of View
 	initialFoV = 45.0f;
  
-	speed = 3.0f; // 3 units / second
+	speed = 10.0f; // 3 units / second
 	mouseSpeed = 0.1f;
 	mPosition = position;
 	glm::vec3 direction();
