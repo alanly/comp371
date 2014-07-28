@@ -23,7 +23,8 @@ void ModelGroup::addModel(Model* m,
 	m->SetPosition(position);
 	m->SetRotation(rotationAxis, angle);
 	m->SetScaling(scale);
-	m->SetParent(parent);
+	if(parent!=NULL)
+		m->SetParent(parent);
 
 	container.push_back(m);
 }
