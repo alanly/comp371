@@ -116,7 +116,7 @@ glm::mat4 FirstPersonCameraT::GetViewMatrix() const
 {
 	glm::mat4 ViewMatrix = glm::lookAt(
 							avatar->GetPosition(),           // Camera is here
-							/*avatar->GetPosition()+*/direction, // and looks here : at the same position, plus "direction"
+							avatar->GetPosition()+direction, // and looks here : at the same position, plus "direction"
 							up                  // Head is up (set to 0,-1,0 to look upside-down)
 						   );
 

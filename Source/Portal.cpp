@@ -146,7 +146,12 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 
 			float decalRadius = radius*0.99f;
 			glm::vec3 currentPoint(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * decalRadius);
-			glm::vec3 nextPoint(inputPoints[j + 1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * decalRadius);
+			glm::vec3 nextPoint;
+			if (j == 0){
+				nextPoint = glm::vec3(inputPoints[j + 1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * decalRadius);
+			}
+			else
+				nextPoint = glm::vec3(inputPoints[j + 1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * decalRadius);
 
 			glm::vec3 stretchNormal = currentPoint-inputPoints[j];
 //			glm::vec3 p1 =  inputPoints[j]-currentPoint;

@@ -28,7 +28,7 @@ World::World()
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
 	mCamera.push_back( new FirstPersonCamera( vec3(0.5f, 0.5f, 5.0f) ) );
 	CubeModel * myc = new CubeModel(vec3(1.0f, 1.0f, 1.0f));
-	addModel(myc);
+//	addModel(myc);
 	FirstPersonCameraT * myt = new FirstPersonCameraT(vec3(0.5f, 0.5f, 5.0f),myc);
 	
 
@@ -70,7 +70,7 @@ World::World()
 	myt->FollowPath(path);
 
 	mCamera.push_back(myt);
-	mCurrentCamera = 2;
+	mCurrentCamera = 1;
 }
 
 World::~World()
