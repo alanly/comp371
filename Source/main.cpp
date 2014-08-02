@@ -11,6 +11,7 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "ArcModel.h"
 #include "Portal.h"
 
 
@@ -20,7 +21,7 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
-
+	
 	std::vector<glm::vec3> path;
 
 	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
@@ -52,12 +53,39 @@ int main(int argc, char*argv[])
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
 
-
+	
 
 	Portal* p = new Portal(path, 1.0f, 24);
 
 	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(p);
+	/*
+	ArcModel* am = new ArcModel(glm::vec4(1.0f, 0.0f, 0.0f,0.5f),
+		glm::vec4(0.0f, 1.0f, 0.0f, 1.0f),
+		glm::vec3(0.0f, 0.0f, 0.0f),
+		1.5f,
+		2.0f,
+		90.0f,
+		20);
+
+	ArcModel* am2 = new ArcModel(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f),
+		glm::vec4(0.0f, 1.0f, 1.0f , 0.0f),
+		glm::vec3(5.0f, 0.0f, 0.0f),
+		0.0f,
+		2.0f,
+		360.0f,
+		30);
+
+	ArcModel* am3 = new ArcModel(glm::vec4(-3.0f, 0.0f, 0.0f, 0.8f),
+		glm::vec4(0.0f, 1.0f, 0.0f,0.8f),
+		glm::vec3(-5.0f, 0.0f, 0.0f),
+		1.0f,
+		2.0f,
+		270.0f,
+		20);`
+		world.addModel(am);
+	world.addModel(am2);
+	world.addModel(am3);*/
+	//world.addModel(p);// portal!
 	//world.addModel(c);
 	
 

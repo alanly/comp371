@@ -101,6 +101,7 @@
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\ArcModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
     <ClCompile Include="..\Source\Portal.cpp" />
@@ -115,6 +116,7 @@
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\ArcModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
     <ClInclude Include="..\Source\Portal.h" />
