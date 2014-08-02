@@ -11,6 +11,7 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "RectangleModel.h"
 #include "ArcModel.h"
 #include "Portal.h"
 
@@ -58,6 +59,15 @@ int main(int argc, char*argv[])
 	Portal* p = new Portal(path, 1.0f, 24);
 
 	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
+	c->SetPosition(glm::vec3(-1.0f, -1.0f, -1.0f));
+
+	RectangleModel* rm = new RectangleModel(glm::vec3(0.0f,0.0f,0.0f),
+											glm::vec3(1.0f,1.0f,1.0f), 
+											glm::vec3(1.0f,0.0f,0.0f),
+											2.0f, glm::vec3(1.0f,0.0f,0.0f));
+	
+	//world.addModel(c);
+	//world.addModel(rm);
 	/*
 	ArcModel* am = new ArcModel(glm::vec4(1.0f, 0.0f, 0.0f,0.5f),
 		glm::vec4(0.0f, 1.0f, 0.0f, 1.0f),
@@ -85,7 +95,7 @@ int main(int argc, char*argv[])
 		world.addModel(am);
 	world.addModel(am2);
 	world.addModel(am3);*/
-	//world.addModel(p);// portal!
+	world.addModel(p);// portal!
 	//world.addModel(c);
 	
 
