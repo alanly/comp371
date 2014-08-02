@@ -11,6 +11,7 @@
 #include "World.h"
 #include "EventManager.h"
 #include "CubeModel.h"
+#include "LSystemModel.h"
 #include "Text2DModel.h"
 
 int main(int argc, char*argv[])
@@ -20,8 +21,8 @@ int main(int argc, char*argv[])
 
 	World world;
 
-    //lsys  = initLSystem(world);
-    //lsmodel(lsys);
+    std::string lsys  = getLSystemString();
+    LSystemModel lsModel = new LSystemModel(lsys);
 
     //world.addModel(lsysmodel);
 

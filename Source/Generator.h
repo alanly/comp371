@@ -30,5 +30,6 @@ public:
 };
 std::string DownloadJSON(std::string URL);
 void initLSystem();
+std::string getLSystemString();
 static int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in);
 #endif
