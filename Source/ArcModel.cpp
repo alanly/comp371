@@ -13,6 +13,7 @@ using namespace glm;
 ArcModel::ArcModel(glm::vec4 color1,
 	glm::vec4 color2,
 	glm::vec3 position,
+	glm::vec3 normal,
 	float radius1,
 	float radius2,
 	float arcAngle,
@@ -20,7 +21,7 @@ ArcModel::ArcModel(glm::vec4 color1,
 {
 	float angle;// = arcAngle / numberOfEdges;
 	nEdges = numberOfEdges;
-	glm::vec3 normal = glm::vec3(1.0f,0.0f,0.0f);
+	//glm::vec3 normal = glm::vec3(1.0f,0.0f,0.0f);
 	glm::vec3 binormal = glm::vec3(0.0f,1.0f,0.0f);
 
 	std::vector<Vertex> mesh;
@@ -100,7 +101,7 @@ void ArcModel::Draw()
 		GL_FLOAT,
 		GL_FALSE,
 		sizeof(Vertex),
-		(void*)(2 * sizeof(vec3)) // Color is Offseted by 2 vec3 (see class Vertex)
+		(void*)(2 * sizeof(vec3)) // Color is Offsetted by 2 vec3 (see class Vertex)
 		);
 
 	// Draw the triangles !  GL_TRIANGLE_STRIP		GL_LINE_STRIP

@@ -7,6 +7,7 @@ public:
 	ArcModel(glm::vec4 color1,
 		     glm::vec4 color2,
 			 glm::vec3 position,
+			 glm::vec3 normal,
 			 float radius1,
 			 float radius2,
 			 float arcAngle,

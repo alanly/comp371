@@ -66,7 +66,7 @@ int main(int argc, char*argv[])
 											glm::vec3(1.0f,0.0f,0.0f),
 											2.0f, glm::vec3(1.0f,0.0f,0.0f));
 	
-	//world.addModel(c);
+	world.addModel(c);
 	//world.addModel(rm);
 	/*
 	ArcModel* am = new ArcModel(glm::vec4(1.0f, 0.0f, 0.0f,0.5f),

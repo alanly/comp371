@@ -11,6 +11,7 @@
 
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
+#include "FirstPersonCameraT.h"
 
 #include "CubeModel.h"
 #include "ModelGroup.h"
@@ -26,8 +27,50 @@ World::World()
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
 	mCamera.push_back( new FirstPersonCamera( vec3(0.5f, 0.5f, 5.0f) ) );
-	mCurrentCamera = 1;
+	CubeModel * myc = new CubeModel(vec3(1.0f, 1.0f, 1.0f));
+	addModel(myc);
+	FirstPersonCameraT * myt = new FirstPersonCameraT(vec3(0.5f, 0.5f, 5.0f),myc);
+	
 
+	//Camera * myCam = mCamera[2];
+
+
+	std::vector<glm::vec3> path;
+
+	path.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+	path.push_back(glm::vec3(5.0f, 2.0f, 0.0f));
+	path.push_back(glm::vec3(7.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(12.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(15.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(20.0f, 1.0f, 0.0f));
+	path.push_back(glm::vec3(24.0f, 1.0f, 0.0f));
+	path.push_back(glm::vec3(28.0f, 1.0f, 0.0f));
+	path.push_back(glm::vec3(30.0f, 2.0f, 0.0f));
+	path.push_back(glm::vec3(35.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(36.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(37.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(38.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(39.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(43.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(50.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(60.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(61.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(62.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(63.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(64.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(65.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(66.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(67.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(68.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
+
+
+	myt->FollowPath(path);
+
+	mCamera.push_back(myt);
+	mCurrentCamera = 2;
 }
 
 World::~World()
