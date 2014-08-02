@@ -129,7 +129,9 @@
     <ClInclude Include="..\Source\Common\TextureUtils.h">
       <Filter>Source Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Text2DModel.h" />
+    <ClInclude Include="..\Source\Text2DModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Holstein.DDS">
