@@ -138,9 +138,4 @@
       <Filter>Resource Files\Assets</Filter>
     </Image>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Assets\font_texture.bmp">
-      <Filter>Resource Files\Assets</Filter>
-    </Image>
-  </ItemGroup>
 </Project>
