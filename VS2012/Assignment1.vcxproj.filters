@@ -82,9 +82,6 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Common\Text2DUtils.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
@@ -125,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Common\Text2DUtils.h">
-      <Filter>Source Files\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Common\ShaderUtils.h">
       <Filter>Source Files\Common</Filter>

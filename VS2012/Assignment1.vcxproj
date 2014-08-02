@@ -107,7 +107,6 @@
   <ItemGroup>
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\Common\ShaderUtils.cpp" />
-    <ClCompile Include="..\Source\Common\Text2DUtils.cpp" />
     <ClCompile Include="..\Source\Common\TextureUtils.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
@@ -124,7 +123,6 @@
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\Common\ShaderUtils.h" />
-    <ClInclude Include="..\Source\Common\Text2DUtils.h" />
     <ClInclude Include="..\Source\Common\TextureUtils.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
