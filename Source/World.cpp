@@ -103,10 +103,11 @@ void World::Draw()
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
 		// Set our shader
-		glUseProgram(Renderer::GetShaderProgramID());
+		/*glUseProgram(Renderer::GetShaderProgramID());*/
+		glUseProgram((*it)->GetShaderProgramID());
 
 		// This looks for the MVP Uniform variable in the Vertex Program
-		GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectonTransform"); 
+		GLuint VPMatrixLocation = glGetUniformLocation((*it)->GetShaderProgramID(), "ViewProjectonTransform"); 
 
 		// Send the view projection constants to the shader
 		mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
