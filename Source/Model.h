@@ -18,8 +18,7 @@ class Model
 {
 public:
 	// @TODO 4 - It could be a good idea to allow passing a parent model in the constructor
-	Model();
-	Model(Model &m);
+	Model(Model* m = NULL);
 	virtual ~Model();
 
 	virtual void Update(float dt) = 0;

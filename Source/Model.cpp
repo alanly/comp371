@@ -12,11 +12,7 @@
 
 using namespace std;
 
-Model::Model() : mName("UNNAMED"), mPosition(0.0f, 0.0f, 0.0f), mScaling(1.0f, 1.0f, 1.0f), mRotationAxis(0.0f, 1.0f, 0.0f), mRotationAngleInDegrees(0.0f),mParent(NULL)
-{
-}
-
-Model::Model( Model &m) : mName("UNNAMED"), mPosition(0.0f,0.0f,0.0f), mScaling(1.0f,1.0f,1.0f),mRotationAxis(0.0f,1.0f,0.0f),mRotationAngleInDegrees(0.0f),mParent( &m)
+Model::Model(Model* m) : mName("UNNAMED"), mPosition(0.0f,0.0f,0.0f), mScaling(1.0f,1.0f,1.0f),mRotationAxis(0.0f,1.0f,0.0f),mRotationAngleInDegrees(0.0f),mParent(m)
 {
 }
 
