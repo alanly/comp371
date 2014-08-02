@@ -13,6 +13,8 @@
 #include "SphereModel.h"
 #include "PlaneModel.h"
 #include "SOIL.h"
+#include "UTFConvert.h"
+
 
 int main(int argc, char*argv[])
 {

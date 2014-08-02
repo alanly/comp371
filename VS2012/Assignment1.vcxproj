@@ -115,11 +115,13 @@
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
+    <ClCompile Include="..\Source\UTFConvert.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\UTFConvert.h" />
     <ClInclude Include="..\Source\PlaneModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
@@ -132,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Source\Images\alphalogo_a4arial.png" />
+    <Image Include="..\Source\Images\dealwithit.gif" />
     <Image Include="..\Source\Images\Scottish_Fold.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

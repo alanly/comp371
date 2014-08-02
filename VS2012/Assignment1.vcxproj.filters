@@ -76,6 +76,9 @@
     <ClCompile Include="..\Source\PlaneModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\UTFConvert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -111,12 +114,18 @@
     <ClInclude Include="..\Source\PlaneModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\UTFConvert.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Source\Images\Scottish_Fold.jpg">
       <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Source\Images\alphalogo_a4arial.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Source\Images\dealwithit.gif">
       <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>
