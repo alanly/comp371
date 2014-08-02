@@ -14,5 +14,14 @@ public:
 private:
 	const char*  tMessage;
 	unsigned int fSize;
+
+	unsigned int Text2DTextureID;
+	unsigned int Text2DVertexBufferID;
+	unsigned int Text2DUVBufferID;
+	unsigned int Text2DUniformID;
+
+	void initText2D(const char * texturePath);
+	void printText2D(const char * text, int x, int y, int size);
+	void cleanupText2D();
 };
 
