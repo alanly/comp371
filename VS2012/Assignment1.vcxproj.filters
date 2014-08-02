@@ -21,9 +21,6 @@
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{1749f2d9-5844-4089-813a-04e45e707773}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Image">
-      <UniqueIdentifier>{88f32207-ac58-4fcf-afd9-3d0461230b91}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
@@ -76,9 +73,6 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\DevIL.cpp">
-      <Filter>Source Files\Image</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\PlaneModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -113,9 +107,6 @@
     </ClInclude>
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\DevIL.h">
-      <Filter>Source Files\Image</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\PlaneModel.h">
       <Filter>Source Files\Model</Filter>
