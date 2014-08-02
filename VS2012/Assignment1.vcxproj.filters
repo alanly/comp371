@@ -24,6 +24,9 @@
     <Filter Include="Resource Files\Assets">
       <UniqueIdentifier>{dc21eb44-c8a5-49d1-80c8-291f20973b72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Procedural Generation">
+      <UniqueIdentifier>{95aabef6-1c87-4b2c-bc1f-58c95fe6a839}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
@@ -82,14 +85,20 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\Common\TextureUtils.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Text2DModel.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Desktop\Generator.cpp">
+      <Filter>Source Files\Procedural Generation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\StringUtils.cpp">
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,14 +132,20 @@
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Common\ShaderUtils.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\Common\TextureUtils.h">
       <Filter>Source Files\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Text2DModel.h">
       <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Generator.h">
+      <Filter>Source Files\Procedural Generation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Common\ShaderUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Common\StringUtils.h">
+      <Filter>Source Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

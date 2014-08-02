@@ -7,6 +7,7 @@
 //
 
 #include "Renderer.h"
+#include "Generator.h"
 #include "World.h"
 #include "EventManager.h"
 #include "CubeModel.h"
@@ -18,6 +19,11 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
+
+    //lsys  = initLSystem(world);
+    //lsmodel(lsys);
+
+    //world.addModel(lsysmodel);
 
 	// Add a cube model
 	CubeModel* cM = new CubeModel();

@@ -58,7 +58,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\rapidjson\include;..\ThirdParty\zlib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\rapidjson\include;..\ThirdParty\zlib\include;C:\Users\Louis\Documents\comp371\Source\Common</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,11 +105,12 @@
     <None Include="..\Source\Shaders\TextVertexShader.vertexshader" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Desktop\Generator.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\Common\ShaderUtils.cpp" />
+    <ClCompile Include="..\Source\Common\StringUtils.cpp" />
     <ClCompile Include="..\Source\Common\TextureUtils.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
-    <ClCompile Include="..\Source\Generator.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -124,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\Common\ShaderUtils.h" />
+    <ClInclude Include="..\Source\Common\StringUtils.h" />
     <ClInclude Include="..\Source\Common\TextureUtils.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
     <ClInclude Include="..\Source\Generator.h" />
