@@ -30,20 +30,20 @@ float  EventManager::sMouseDeltaY = 0.0f;
 // Window
 GLFWwindow* EventManager::spWindow = NULL;
 
-
 void EventManager::Initialize()
 {
 	// Initialise GLFW
 	if( !glfwInit() )
 	{
 		fprintf( stderr, "Failed to initialize GLFW\n" );
+		system("pause");
 		exit(-1);
 	}
 		
 	glfwWindowHint(GLFW_SAMPLES, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
 	glfwWindowHint(GLFW_RESIZABLE, 0);
@@ -61,8 +61,15 @@ void EventManager::Initialize()
 
 	// Initial mouse position
 	glfwPollEvents();
-	double x, y;	glfwGetCursorPos(spWindow, &x, &y);
-	sLastMousePositionX = x;	sLastMousePositionY = y;	// Initial time	sLastFrameTime = glfwGetTime();
+	double x, y;
+	glfwGetCursorPos(spWindow, &x, &y);
+
+	sLastMousePositionX = x;
+	sLastMousePositionY = y;
+
+	// Initial time
+	sLastFrameTime = glfwGetTime();
+
 }
 
 void EventManager::Shutdown()
@@ -78,7 +85,14 @@ void EventManager::Update()
 	glfwPollEvents();
 
 	// Update mouse position
-	double x, y;	glfwGetCursorPos(spWindow, &x, &y);	sMouseDeltaX = static_cast<float>( x - sLastMousePositionX );	sMouseDeltaY = static_cast<float>( y - sLastMousePositionY );	sLastMousePositionX = x;	sLastMousePositionY = y;	// Update frame time
+	double x, y;
+	glfwGetCursorPos(spWindow, &x, &y);
+	sMouseDeltaX = static_cast<float>( x - sLastMousePositionX );
+	sMouseDeltaY = static_cast<float>( y - sLastMousePositionY );
+	sLastMousePositionX = x;
+	sLastMousePositionY = y;
+
+	// Update frame time
 	double currentTime = glfwGetTime();
 	sFrameTime = static_cast<float>(currentTime - sLastFrameTime);
 	sLastFrameTime = currentTime;

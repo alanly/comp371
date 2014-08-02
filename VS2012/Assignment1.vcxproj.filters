@@ -18,8 +18,11 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{05095d5c-2fc5-4dfe-a464-e30c7f31bdb5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Procedural Generation">
-      <UniqueIdentifier>{d9ea2d58-2bcf-44e6-af8f-5719bf0fcb33}</UniqueIdentifier>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{af2324f0-2ef4-40bc-bb43-f81984a45ae8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets">
+      <UniqueIdentifier>{dc21eb44-c8a5-49d1-80c8-291f20973b72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +33,18 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="..\Source\Shaders\BlueColor.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\TextVertexShader.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Billboard.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Billboard.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
@@ -67,8 +82,14 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Generator.cpp">
-      <Filter>Source Files\Procedural Generation</Filter>
+    <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\TextureUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Text2DModel.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,8 +123,19 @@
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Generator.h">
-      <Filter>Source Files\Procedural Generation</Filter>
+    <ClInclude Include="..\Source\Common\ShaderUtils.h">
+      <Filter>Source Files\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Common\TextureUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Text2DModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Holstein.DDS">
+      <Filter>Resource Files\Assets</Filter>
+    </Image>
   </ItemGroup>
 </Project>

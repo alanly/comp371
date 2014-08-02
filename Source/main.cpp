@@ -10,9 +10,7 @@
 #include "World.h"
 #include "EventManager.h"
 #include "CubeModel.h"
-#include "SphereModel.h"
-#include "Generator.h"
-
+#include "Text2DModel.h"
 
 int main(int argc, char*argv[])
 {
@@ -20,13 +18,16 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
-	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(c);
-	SphereModel* sphere = new SphereModel(3,4,4); 
-	world.addModel(sphere);
 
-	// Generator
-	initLSystem();
+	// Add a cube model
+	CubeModel* cM = new CubeModel();
+	cM->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+	cM->SetScaling(glm::vec3(10.0f, 10.0f, 0.01f));
+	world.addModel(cM);
+
+	// Add our text.
+	Text2DModel* tM = new Text2DModel("Hello, world!", 48, 100, 100);
+	world.addModel(tM);
 
 	// Main Loop
 	do

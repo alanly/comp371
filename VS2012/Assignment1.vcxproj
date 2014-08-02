@@ -96,12 +96,18 @@
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\Source\Shaders\Billboard.fragmentshader" />
+    <None Include="..\Source\Shaders\Billboard.vertexshader" />
     <None Include="..\Source\Shaders\BlueColor.fragmentshader" />
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
+    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader" />
+    <None Include="..\Source\Shaders\TextVertexShader.vertexshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\Common\ShaderUtils.cpp" />
+    <ClCompile Include="..\Source\Common\TextureUtils.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
     <ClCompile Include="..\Source\Generator.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
@@ -112,10 +118,13 @@
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
+    <ClCompile Include="..\Source\Text2DModel.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\Common\ShaderUtils.h" />
+    <ClInclude Include="..\Source\Common\TextureUtils.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
     <ClInclude Include="..\Source\Generator.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
@@ -125,7 +134,11 @@
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\ModelGroup.h" />
     <ClInclude Include="..\Source\Renderer.h" />
+    <ClInclude Include="..\Source\Text2DModel.h" />
     <ClInclude Include="..\Source\World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Holstein.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
