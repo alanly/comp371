@@ -41,6 +41,12 @@
     <None Include="..\Source\Shaders\TextVertexShader.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Source\Shaders\Billboard.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Billboard.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\EventManager.cpp">
@@ -86,7 +92,7 @@
       <Filter>Source Files\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Text2DModel.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,7 +136,7 @@
       <Filter>Source Files\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Text2DModel.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
