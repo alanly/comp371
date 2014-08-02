@@ -91,6 +91,12 @@
     <ClCompile Include="..\Source\Text2DModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\RectangleModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\BillboardModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -132,6 +138,10 @@
     <ClInclude Include="..\Source\Text2DModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\RectangleModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\BillboardModel.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Holstein.DDS">

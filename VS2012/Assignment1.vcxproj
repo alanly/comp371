@@ -105,10 +105,12 @@
     <None Include="..\Source\Shaders\TextVertexShader.vertexshader" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\BillboardModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\Common\ShaderUtils.cpp" />
     <ClCompile Include="..\Source\Common\TextureUtils.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\RectangleModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -121,10 +123,12 @@
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\BillboardModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\Common\ShaderUtils.h" />
     <ClInclude Include="..\Source\Common\TextureUtils.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\RectangleModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\EventManager.h" />
