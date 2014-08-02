@@ -7,13 +7,15 @@
 //
 
 #include "Model.h"
+#include "Renderer.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/common.hpp>
 
 using namespace std;
 
-Model::Model(Model* m) : mName("UNNAMED"), mPosition(0.0f,0.0f,0.0f), mScaling(1.0f,1.0f,1.0f),mRotationAxis(0.0f,1.0f,0.0f),mRotationAngleInDegrees(0.0f),mParent(m)
+Model::Model(Model* m, unsigned int shaderProgramID) : mName("UNNAMED"), mPosition(0.0f,0.0f,0.0f), mScaling(1.0f,1.0f,1.0f),mRotationAxis(0.0f,1.0f,0.0f),mRotationAngleInDegrees(0.0f),mParent(m)
 {
+	mShaderProgramID = (shaderProgramID == 0) ? Renderer::GetShaderProgramID() : shaderProgramID;
 }
 
 Model::~Model()
