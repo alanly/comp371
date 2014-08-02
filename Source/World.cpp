@@ -102,16 +102,29 @@ void World::Draw()
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
+		// Get the model's shader program
+		unsigned int ShaderProgramID = (*it)->GetShaderProgramID();
+
+		// Get the current camera
+		Camera* CurrentCamera = mCamera[mCurrentCamera];
+
 		// Set our shader
-		/*glUseProgram(Renderer::GetShaderProgramID());*/
-		glUseProgram((*it)->GetShaderProgramID());
+		glUseProgram(ShaderProgramID);
 
 		// This looks for the MVP Uniform variable in the Vertex Program
-		GLuint VPMatrixLocation = glGetUniformLocation((*it)->GetShaderProgramID(), "ViewProjectonTransform"); 
+		GLuint VPMatrixLocation = glGetUniformLocation(ShaderProgramID, "ViewProjectonTransform");
 
 		// Send the view projection constants to the shader
-		mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
+		mat4 VP = CurrentCamera->GetViewProjectionMatrix();
 		glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
+
+		GLuint CameraRight_worldspace_ID = glGetUniformLocation(ShaderProgramID, "CameraRight_worldspace");
+		GLuint CameraUp_worldspace_ID = glGetUniformLocation(ShaderProgramID, "CameraUp_worldspace");
+
+		mat4 ViewMatrix = CurrentCamera->GetViewMatrix();
+		
+		glUniform3f(CameraRight_worldspace_ID, ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
+		glUniform3f(CameraUp_worldspace_ID, ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
 		
 		// Draw model
 		(*it)->Draw();
