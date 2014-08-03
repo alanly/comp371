@@ -21,7 +21,7 @@ public:
 	virtual void Update(float dt);
 
 	virtual glm::mat4 GetViewMatrix() const;
-	virtual void FollowPath(std::vector<glm::vec3> points);
+	void FollowPath(std::vector<glm::vec3> points);
 
 	virtual void displayVector(glm::vec3 v);
 private:

@@ -32,7 +32,7 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	mouseSpeed = 0.1f;
 	mPosition = position;
 	prevDistance = -1;
-	std::vector<glm::vec3> points;
+	/*std::vector<glm::vec3> points;
 	points.push_back(glm::vec3(0.0f,0.0f,0.0f));
 	points.push_back(glm::vec3(5.0f,2.0f,0.0f));
 	points.push_back(glm::vec3(7.0f,3.0f,0.0f));
@@ -43,7 +43,7 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	points.push_back(glm::vec3(28.0f,1.0f,0.0f));
 	points.push_back(glm::vec3(30.0f,2.0f,0.0f));
 	points.push_back(glm::vec3(35.0f,3.0f,0.0f));
-	FollowPath(points);
+	FollowPath(points);*/
 }
 
 FirstPersonCamera::~FirstPersonCamera()
@@ -57,21 +57,24 @@ void FirstPersonCamera::Update(float dt)
 	if(followPath) {
 		mPosition += direction * dt * speed;
 		distanceToTravel = length(direction - mPosition);
-		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_Y ) == GLFW_PRESS){
-			followPath = false;
-		}
-		if(prevDistance > distanceToTravel) {
+
+		std::cout << "Prev: " << prevDistance << " Distance: " << distanceToTravel << std::endl;
+		if(prevDistance < distanceToTravel) {
 			if(increment == path.size()-1) {
 				followPath = false;
+				path.clear();
 			}else {
 				increment++;
 				direction = path[increment];
 				distanceToTravel = length(direction - mPosition);
 			}
 		}
+
 		look = direction;
+		up = glm::vec3(0,1,0);
+		prevDistance = distanceToTravel;
 	}else {
-	
+		speed = 1;
 		// Get mouse position
 		float xpos, ypos;
 		xpos = -1 * EventManager::GetMouseMotionX();
@@ -127,7 +130,7 @@ glm::mat4 FirstPersonCamera::GetViewMatrix() const
 	glm::mat4 ViewMatrix = glm::lookAt(
 							avatar->GetPosition(),           // Camera is here
 							look, // and looks here : at the same position, plus "direction"
-							glm::vec3(0,1,0)                  // Head is up (set to 0,-1,0 to look upside-down)
+							up                  // Head is up (set to 0,-1,0 to look upside-down)
 						   );
 
 	return ViewMatrix;

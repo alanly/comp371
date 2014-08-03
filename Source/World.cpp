@@ -63,6 +63,8 @@ World::World()
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
 
+	myt->FollowPath(path);
+
 	mCurrentCamera = 1;
 }
 
