@@ -8,6 +8,8 @@
 #include "Renderer.h"
 #include "ModelGroup.h"
 #include "CubeModel.h"
+#include "RectangleModel.h"
+#include "ArcModel.h"
 // Include GLEW - OpenGL Extension Wrangler
 #ifndef GLEW_STATIC
 #define GLEW_STATIC
@@ -88,6 +90,22 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 		dirnormal = glm::cross(upVector,glm::normalize(direction));
 		dirbinormal = glm::cross(glm::normalize(direction),dirnormal);
 
+
+
+		if (j != 0){
+		ArcModel * am = new ArcModel(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f),
+			glm::vec4(0.0f, 1.0f, 1.0f, 1.0f),
+			inputPoints[j],
+			binormal,
+			radius*1.1,
+			radius*0.89f,
+			360.0f,
+			edgeCount);
+		decals.push_back(am);
+		}
+
+
+
 		for (int k = 0; k < edgeCount; k++) {// on each point, generate the ring
 			angle = 2 * PI * k / edgeCount;
 			tunnelPoint.push_back( inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * radius );
@@ -102,57 +120,47 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 			//decals//
 			/////////
 
-			//begin hinge section
-			CubeModel * c = new CubeModel(glm::vec3(0.05f,0.05f,0.05f));
-			c->SetScaling(glm::vec3(8.0f,3.0f,10.0f));
-			
-			CubeModel * m = new CubeModel(glm::vec3(0.05f,0.05f,0.05f));
-			m->SetRotation(binormal, degrees(atan(tangent.y/tangent.x ))); 
-			m->SetPosition(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * radius * 0.9f);
-			c->SetParent(m);
-			c->SetRotation(glm::vec3(tangent.x, 0.0f,0.0f),degrees(angle));
-			//end hinge section
-
-			//begin stretch segment
-			CubeModel * c2 = new CubeModel(glm::vec3(0.05f,0.05f,0.05f));
-			c2->SetPosition(inputPoints[j]+direction/2.0f + (dirnormal * cos(angle) + dirbinormal * sin(angle)) * radius * 0.9f);
-			
+			//new stretch
 			glm::vec3 nextTangent;
-			if(j==0){
-				nextTangent = glm::vec3(inputPoints[j+2].x - inputPoints[j+1].x,
-								inputPoints[j+2].y - inputPoints[j+1].y,
-								inputPoints[j+2].z - inputPoints[j+1].z);
+			if (j == 0){
+				nextTangent = glm::vec3(inputPoints[j + 2].x - inputPoints[j + 1].x,
+					inputPoints[j + 2].y - inputPoints[j + 1].y,
+					inputPoints[j + 2].z - inputPoints[j + 1].z);
 			}
-			else if(j== inputPoints.size()-2)
+			else if (j == inputPoints.size() - 2)
 			{
-				nextTangent = glm::vec3(inputPoints[j+1].x - inputPoints[j].x, 
-									inputPoints[j+1].y - inputPoints[j].y, 
-									inputPoints[j+1].z - inputPoints[j].z);
+				nextTangent = glm::vec3(inputPoints[j + 1].x - inputPoints[j].x,
+					inputPoints[j + 1].y - inputPoints[j].y,
+					inputPoints[j + 1].z - inputPoints[j].z);
 			}
 			else
 			{
-				nextTangent = glm::vec3(inputPoints[j+2].x - inputPoints[j].x, 
-									inputPoints[j+2].y - inputPoints[j].y, 
-									inputPoints[j+2].z - inputPoints[j].z);
+				nextTangent = glm::vec3(inputPoints[j + 2].x - inputPoints[j].x,
+					inputPoints[j + 2].y - inputPoints[j].y,
+					inputPoints[j + 2].z - inputPoints[j].z);
 			}
 
-			
 			nextTangent = glm::normalize(nextTangent);
-			glm::vec3 nextNormal = glm::cross(upVector,nextTangent);
+			glm::vec3 nextNormal = glm::cross(upVector, nextTangent);
 			glm::vec3 nextBinormal = glm::cross(nextTangent, nextNormal);
 
-			glm::vec3 currentPoint(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * radius);
-			glm::vec3 nextPoint(inputPoints[j+1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * radius);
+			float decalRadius = radius*0.99f;
+			glm::vec3 currentPoint(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * decalRadius);
+			glm::vec3 nextPoint(inputPoints[j + 1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * decalRadius);
 
-			float distance = glm::length(nextPoint-currentPoint);
+			glm::vec3 stretchNormal = currentPoint-inputPoints[j];
+//			glm::vec3 p1 =  inputPoints[j]-currentPoint;
+		//	p1 *= 0.9f;
+		//	glm::vec3 p2 = inputPoints[j + 1]-nextPoint;
+			//p2 *= 0.9f;
+			RectangleModel * r = new RectangleModel(currentPoint, nextPoint, stretchNormal*0.09f, 0.1f, glm::vec3(1.0f, 0.0f, 0.0f));
+			//end new stretch
 
-			c2->SetScaling(glm::vec3(distance*19.0f,1.0f,1.0f));
-			c2->SetRotation(dirbinormal, degrees(atan(direction.y/direction.x )));
-			//end stretch segment
+		//	RectangleModel(glm::vec3 p1, glm::vec3 p2, glm::vec3 normal, float width, glm::vec3 color);
 
-
-			decals.push_back(c);
-			decals.push_back(c2);
+		//	decals.push_back(c);
+		//	decals.push_back(c2);
+			decals.push_back(r);
 			}
 			///endDecals///
 			vertexVector.push_back(Vertex(tunnelPoint.back(), binormal* cos(angle), color)); ///TODO fix the normal!
