@@ -23,9 +23,12 @@ using namespace glm;
 
 World::World()
 {
+
+	CubeModel* avatar = new CubeModel(glm::vec3(0.1f,0.1f,0.1f));
+	avatar->SetPosition(vec3(2,2,2));
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
-	mCamera.push_back( new FirstPersonCamera( vec3(0.5f, 0.5f, 5.0f) ) );
+	mCamera.push_back( new FirstPersonCamera( vec3(0.5f, 0.5f, 5.0f),avatar ) );
 	mCurrentCamera = 1;
 
 }
