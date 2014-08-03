@@ -24,16 +24,12 @@ using namespace glm;
 
 World::World()
 {
-	CubeModel * myc = new CubeModel(vec3(1.0f, 1.0f, 1.0f));
+	CubeModel * myc = new CubeModel(vec3(0.1f, 0.1f, 0.1f));
 	addModel(myc);
-	FirstPersonCameraT * myt = new FirstPersonCameraT(vec3(0.5f, 0.5f, 5.0f),myc);
+	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),myc);
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
-	mCamera.push_back(myt );
-
-	
-
-	//Camera * myCam = mCamera[2];
+	mCamera.push_back(myt);
 
 
 	std::vector<glm::vec3> path;
@@ -67,11 +63,7 @@ World::World()
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
 
-
-	myt->FollowPath(path);
-
-	mCamera.push_back(myt);
-	mCurrentCamera = 2;
+	mCurrentCamera = 1;
 }
 
 World::~World()
