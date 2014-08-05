@@ -20,6 +20,7 @@ Model::Model(Model* m, unsigned int shaderProgramID) : mName("UNNAMED"), mPositi
 
 Model::~Model()
 {
+	glDeleteProgram(mShaderProgramID);
 }
 
 void Model::Update(float dt)

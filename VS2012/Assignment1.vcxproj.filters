@@ -95,7 +95,7 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\BillboardModel.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +141,9 @@
     <ClInclude Include="..\Source\RectangleModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\BillboardModel.h" />
+    <ClInclude Include="..\Source\BillboardModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Assets\Holstein.DDS">
