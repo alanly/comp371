@@ -28,7 +28,7 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	// vertical angle : 0, look at the horizon
 	verticalAngle = 0.0f;
  
-	speed = 0.1f; // 3 units / second
+	speed = 3.0f; // 3 units / second
 	mouseSpeed = 0.1f;
 	mPosition = position;
 	prevDistance = -1;
@@ -55,11 +55,17 @@ void FirstPersonCamera::Update(float dt)
 	// Prevent from having the camera move only when the cursor is within the windows
 	EventManager::DisableMouseCursor();
 	if(followPath) {
-		mPosition += direction * dt * speed;
+		mPosition += (direction-mPosition) * dt * speed;
 		distanceToTravel = length(direction - mPosition);
 
+		if(distanceToTravel < 1.0f && increment < path.size()-1){
+			float x = path[increment].x + ((path[increment+1].x - path[increment].x) * ((1-distanceToTravel)));
+			float y = path[increment].y + ((path[increment+1].y - path[increment].y) * ((1-distanceToTravel)));
+			float z = path[increment].z + ((path[increment+1].z - path[increment].z) * ((1-distanceToTravel)));
+			direction = glm::vec3(x,y,z);
+		}
 		std::cout << "Prev: " << prevDistance << " Distance: " << distanceToTravel << std::endl;
-		if(prevDistance < distanceToTravel) {
+		if(prevDistance < distanceToTravel || distanceToTravel < 0.1f) {
 			if(increment == path.size()-1) {
 				followPath = false;
 				path.clear();
@@ -70,11 +76,11 @@ void FirstPersonCamera::Update(float dt)
 			}
 		}
 
-		look = direction;
+		look = mPosition + direction;
 		up = glm::vec3(0,1,0);
 		prevDistance = distanceToTravel;
 	}else {
-		speed = 1;
+		speed = 3.0f;
 		// Get mouse position
 		float xpos, ypos;
 		xpos = -1 * EventManager::GetMouseMotionX();
