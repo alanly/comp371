@@ -11,6 +11,7 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "Portal.h"
 
 
 int main(int argc, char*argv[])
@@ -19,25 +20,28 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
-	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(c);
-	//SphereModel* sphere = new SphereModel(3,4,4); 
-	//world.addModel(sphere);
 
-	//GLfloat lightpos[] = {10, 10, 10, 1.0}; 
-//	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
+	std::vector<glm::vec3> path;
 
-	//glli
+	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
+	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
+	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
+	path.push_back(glm::vec3(12.0f,4.0f,0.0f));
+	path.push_back(glm::vec3(15.0f,3.0f,0.0f));
+	path.push_back(glm::vec3(20.0f,0.0f,0.0f));
+	path.push_back(glm::vec3(24.0f,1.0f,0.0f));
 
-	GLuint programID = Renderer::LoadShaders( "../Source/Shaders/StandardShading.vertexshader", "../Source/Shaders/StandardShading.fragmentshader" );
 
+	Portal* p = new Portal(path, 30.5f, 18);
+
+	//CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
+	world.addModel(p);
+	//world.addModel(c);
+	
 
 	// Main Loop
 	do
 	{
-
-
-
 		// Update Event Manager - Frame time / input / events processing 
 		EventManager::Update();
 
