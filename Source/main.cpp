@@ -56,7 +56,7 @@ int main(int argc, char*argv[])
 
 	
 
-	Portal* p = new Portal(path, 1.0f, 24);
+	Portal* p = new Portal(path, 1.0f, 8);
 
 	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
 	c->SetPosition(glm::vec3(-1.0f, -1.0f, -1.0f));
