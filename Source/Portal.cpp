@@ -10,6 +10,7 @@
 #include "CubeModel.h"
 #include "RectangleModel.h"
 #include "ArcModel.h"
+#include "ModelArray.h"
 // Include GLEW - OpenGL Extension Wrangler
 #ifndef GLEW_STATIC
 #define GLEW_STATIC
@@ -97,6 +98,7 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 			glm::vec4(0.0f, 1.0f, 1.0f, 1.0f),
 			inputPoints[j],
 			binormal,
+			normal,
 			radius*1.1,
 			radius*0.89f,
 			360.0f,
@@ -146,20 +148,50 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 
 			float decalRadius = radius*0.99f;
 			glm::vec3 currentPoint(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * decalRadius);
-			glm::vec3 nextPoint(inputPoints[j + 1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * decalRadius);
+
+			glm::vec3 dotPoint(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * decalRadius*0.99f);
+			glm::vec3 nextPoint;
+			if (j == 0){
+				nextPoint = glm::vec3(inputPoints[j + 1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * decalRadius);
+			}
+			else
+				nextPoint = glm::vec3(inputPoints[j + 1] + (nextNormal * cos(angle) + nextBinormal * sin(angle)) * decalRadius);
 
 			glm::vec3 stretchNormal = currentPoint-inputPoints[j];
-//			glm::vec3 p1 =  inputPoints[j]-currentPoint;
-		//	p1 *= 0.9f;
-		//	glm::vec3 p2 = inputPoints[j + 1]-nextPoint;
-			//p2 *= 0.9f;
+
 			RectangleModel * r = new RectangleModel(currentPoint, nextPoint, stretchNormal*0.09f, 0.1f, glm::vec3(1.0f, 0.0f, 0.0f));
-			//end new stretch
+			
+			glm::vec3 edgeNormal = normalize(inputPoints[j] - dotPoint);
+// 				currentPoint.y - inputPoints[j].y,
+// 				currentPoint.z - inputPoints[j].z);
+			
+			//	edgeNormal = glm::vec3(0.0f, 1.0f, 0.0f);
+				ArcModel * arc = new ArcModel(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+					glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+					dotPoint,
+					tangent,
+					glm::cross(edgeNormal, tangent),
+					0.0f, 0.04f, 360, 4);
 
-		//	RectangleModel(glm::vec3 p1, glm::vec3 p2, glm::vec3 normal, float width, glm::vec3 color);
+				std::vector<Model*> arcVector;
 
-		//	decals.push_back(c);
-		//	decals.push_back(c2);
+				int total = length(nextPoint - currentPoint) / 0.4f;
+				total++;
+			//	total = 1;//for debug
+				for (int number = 0; number < total; number++){
+					ArcModel * tmp = new ArcModel(*arc);
+					arcVector.push_back(tmp);
+				}
+
+				ModelArray * mArr = new ModelArray();
+				mArr->addModel(arcVector, normalize(direction)*0.38f);
+
+				decals.push_back(mArr);
+
+				//end new stretch
+		//		decals.push_back(arc);
+			
+
 			decals.push_back(r);
 			}
 			///endDecals///

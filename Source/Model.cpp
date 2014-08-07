@@ -34,10 +34,7 @@ void Model::Draw()
 
 glm::mat4 Model::GetWorldMatrix() const
 {
-	// @TODO 2, you must build the world matrix from the position, scaling and rotation informations
-
-	// @TODO 4 - Maybe you should use the parent world transform when you do hierarchical modeling
-
+	
 
 	glm::mat4 worldMatrix(1.0f);
 

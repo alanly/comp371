@@ -34,20 +34,21 @@ World::World()
 
 	std::vector<glm::vec3> path;
 
-	path.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
-	path.push_back(glm::vec3(5.0f, 2.0f, 0.0f));
-	path.push_back(glm::vec3(7.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(12.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(15.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(20.0f, 1.0f, 0.0f));
-	path.push_back(glm::vec3(24.0f, 1.0f, 0.0f));
-	path.push_back(glm::vec3(28.0f, 1.0f, 0.0f));
+
+	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
+	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
+	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
+	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
+	path.push_back(glm::vec3(15.0f,3.0f,2.0f));
+	path.push_back(glm::vec3(20.0f,1.0f,0.0f));
+	path.push_back(glm::vec3(24.0f,1.0f,2.0f));
+	path.push_back(glm::vec3(28.0f,1.0f,0.0f));
 	path.push_back(glm::vec3(30.0f, 2.0f, 0.0f));
 	path.push_back(glm::vec3(35.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(36.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(37.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(36.0f, 3.0f, -1.0f));
+	path.push_back(glm::vec3(37.0f, 3.0f, -2.0f));
 	path.push_back(glm::vec3(38.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(39.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(39.0f, 3.0f, 1.0f));
 	path.push_back(glm::vec3(43.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(50.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(60.0f, 3.0f, 0.0f));

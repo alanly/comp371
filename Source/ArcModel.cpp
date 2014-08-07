@@ -14,6 +14,7 @@ ArcModel::ArcModel(glm::vec4 color1,
 	glm::vec4 color2,
 	glm::vec3 position,
 	glm::vec3 normal,
+	glm::vec3 binormal,
 	float radius1,
 	float radius2,
 	float arcAngle,
@@ -22,7 +23,13 @@ ArcModel::ArcModel(glm::vec4 color1,
 	float angle;// = arcAngle / numberOfEdges;
 	nEdges = numberOfEdges;
 	//glm::vec3 normal = glm::vec3(1.0f,0.0f,0.0f);
-	glm::vec3 binormal = glm::vec3(0.0f,1.0f,0.0f);
+//	glm::vec3 arbitrary =normalize(glm::vec3(0.0f, 1.0f, 0.0f));
+	//glm::vec3 binormal = glm::cross(normal, arbitrary);//glm::vec3(0.0f,1.0f,0.0f);
+
+	//glm::vec3 tangent = glm::vec3(0.0f, 1.0f, 0.0f);
+	//glm::vec3 binormal = glm::vec3(0.0f, 0.0f, 0.0f);
+	
+
 
 	std::vector<Vertex> mesh;
 	for (int k = 0; k <= numberOfEdges; k++){
