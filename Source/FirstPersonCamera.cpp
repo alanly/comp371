@@ -11,11 +11,15 @@
 #include <GLM/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <glm/common.hpp>
+#include <GLM/glm.hpp>
 #include <GLFW/glfw3.h>
+
 #include <algorithm>
 #include <iostream>
 
 #include <windows.h>
+
 using namespace glm;
 
 FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPosition(position), avatar(avatar)
@@ -23,27 +27,13 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	distanceToTravel = 0;
 	totalDistance = 0;
 	increment = 1;
-	// horizontal angle : toward -Z
 	horizontalAngle = 3.14f;
-	// vertical angle : 0, look at the horizon
 	verticalAngle = 0.0f;
  
-	speed = 3.0f; // 3 units / second
+	speed = 1.0f; // 3 units / second
 	mouseSpeed = 0.1f;
 	mPosition = position;
 	prevDistance = -1;
-	/*std::vector<glm::vec3> points;
-	points.push_back(glm::vec3(0.0f,0.0f,0.0f));
-	points.push_back(glm::vec3(5.0f,2.0f,0.0f));
-	points.push_back(glm::vec3(7.0f,3.0f,0.0f));
-	points.push_back(glm::vec3(12.0f,4.0f,0.0f));
-	points.push_back(glm::vec3(15.0f,3.0f,0.0f));
-	points.push_back(glm::vec3(20.0f,1.0f,0.0f));
-	points.push_back(glm::vec3(24.0f,3.0f,0.0f));
-	points.push_back(glm::vec3(28.0f,1.0f,0.0f));
-	points.push_back(glm::vec3(30.0f,2.0f,0.0f));
-	points.push_back(glm::vec3(35.0f,3.0f,0.0f));
-	FollowPath(points);*/
 }
 
 FirstPersonCamera::~FirstPersonCamera()
@@ -56,15 +46,16 @@ void FirstPersonCamera::Update(float dt)
 	EventManager::DisableMouseCursor();
 	if(followPath) {
 		mPosition += (direction-mPosition) * dt * speed;
-		distanceToTravel = length(direction - mPosition);
+		distanceToTravel = length(path[increment] - mPosition);
 
-		if(distanceToTravel < 1.0f && increment < path.size()-1){
-			float x = path[increment].x + ((path[increment+1].x - path[increment].x) * ((1-distanceToTravel)));
-			float y = path[increment].y + ((path[increment+1].y - path[increment].y) * ((1-distanceToTravel)));
-			float z = path[increment].z + ((path[increment+1].z - path[increment].z) * ((1-distanceToTravel)));
+		if(distanceToTravel < 3.0f && increment < path.size()-1) {
+			float percentage = 1-(distanceToTravel/3.0f);
+			std::cout << percentage << std::endl;
+			float x = path[increment].x + ((path[increment+1].x - path[increment].x) * percentage);
+			float y = path[increment].y + ((path[increment+1].y - path[increment].y) * percentage);
+			float z = path[increment].z + ((path[increment+1].z - path[increment].z) * percentage);
 			direction = glm::vec3(x,y,z);
 		}
-		std::cout << "Prev: " << prevDistance << " Distance: " << distanceToTravel << std::endl;
 		if(prevDistance < distanceToTravel || distanceToTravel < 0.1f) {
 			if(increment == path.size()-1) {
 				followPath = false;
@@ -76,8 +67,11 @@ void FirstPersonCamera::Update(float dt)
 			}
 		}
 
+		glm::vec3 lookAtVector = normalize(direction - mPosition);
+
+		up = glm::vec3(glm::rotate(glm::mat4(1.0f),90.0f, glm::vec3(0,0,1)) * glm::vec4(lookAtVector,0));
+		
 		look = mPosition + direction;
-		up = glm::vec3(0,1,0);
 		prevDistance = distanceToTravel;
 	}else {
 		speed = 3.0f;
@@ -90,23 +84,20 @@ void FirstPersonCamera::Update(float dt)
 		verticalAngle   += mouseSpeed * dt * ypos;
 
 		direction = glm::vec3(
-		cos(verticalAngle) * sin(horizontalAngle),
-		sin(verticalAngle),
-		cos(verticalAngle) * cos(horizontalAngle)
+			cos(verticalAngle) * sin(horizontalAngle),
+			sin(verticalAngle),
+			cos(verticalAngle) * cos(horizontalAngle)
 		);
 
 		right = glm::vec3(
-		sin(horizontalAngle - 3.14f/2.0f),
-		0,
-		cos(horizontalAngle - 3.14f/2.0f)
+			sin(horizontalAngle - 3.14f/2.0f),
+			0,
+			cos(horizontalAngle - 3.14f/2.0f)
 		);
 
 		look = mPosition + direction;
 		// Up vector : perpendicular to both direction and right
 		up = glm::cross( right, direction );
-		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_T ) == GLFW_PRESS){
-			followPath = true;
-		}
 		// Move forward
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W ) == GLFW_PRESS){
 			mPosition += direction * dt * speed;
@@ -124,10 +115,6 @@ void FirstPersonCamera::Update(float dt)
 			mPosition -= right * dt * speed;
 		}
 	}
-	std::cout << "Dir: ";
-	displayVector(direction);
-	std::cout << "POS: ";
-	displayVector(mPosition);
 	avatar->SetPosition(mPosition);
 }
 
@@ -143,12 +130,10 @@ glm::mat4 FirstPersonCamera::GetViewMatrix() const
 }
 void FirstPersonCamera::FollowPath(std::vector<glm::vec3> points) {
 	path = points;
+	up = glm::vec3(0,1,0); //inital up vector
 	followPath = true;
-	mPosition = path[0];
-	for(int i = 1; i < path.size()-1; i++) {
-		totalDistance += length(path[i+1] - path[i]);
-	}
-	direction = path[increment] - path[increment-1];
+	mPosition = path[0]; // set position to the first point of the tube
+	direction = path[increment];
 	distanceToTravel = length(direction - mPosition);
 	prevDistance = distanceToTravel;
 }
