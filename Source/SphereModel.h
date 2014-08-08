@@ -15,11 +15,19 @@ class SphereModel : public Model
 {
 public:
 	// @TODO 4 - It could be a good idea to allow passing a parent model in the constructor
+	SphereModel();
 	SphereModel(float radius, unsigned int rings, unsigned int sectors);
 	virtual ~SphereModel();
 
+
+
+
 	virtual void Update(float dt);
 	virtual void Draw();
+
+	void Draw(GLfloat x, GLfloat y, GLfloat z);
+	void SphereModel::Display();
+
 
 protected:
 

@@ -14,10 +14,19 @@
 #include <GL/glew.h>
 #include <cmath>
 
-#define M_PI 3.1459
+//include GLFW
+#include <GLFW/glfw3.h>
+
+#define M_PI 3.14159265359
+#define M_PI_2 (3.14159265359/2.0f)
+
 
 using namespace glm;
 using namespace std;
+
+SphereModel::SphereModel()
+{
+}
 
 SphereModel::SphereModel(float radius, unsigned int rings, unsigned int sectors)
 {
@@ -143,19 +152,7 @@ void SphereModel::Update(float dt)
 
 void SphereModel::Draw()
 {
-	    glMatrixMode(GL_MODELVIEW);
-        glPushMatrix();
-		glTranslatef(mPosition.x,mPosition.y,mPosition.z);
 
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glEnableClientState(GL_NORMAL_ARRAY);
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-        glVertexPointer(3, GL_FLOAT, 0, &vertices[0]);
-        glNormalPointer(GL_FLOAT, 0, &normals[0]);
-        glTexCoordPointer(2, GL_FLOAT, 0, &texcoords[0]);
-        glDrawElements(GL_QUADS, indices.size(), GL_UNSIGNED_SHORT, &indices[0]);
-        glPopMatrix();
 	/*
 	// Draw the Vertex Buffer
 	// Note this draws a unit Cube
@@ -205,4 +202,49 @@ void SphereModel::Draw()
 	glDisableVertexAttribArray(2);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(0);*/
+}
+void SphereModel::Draw(GLfloat x, GLfloat y, GLfloat z)
+{
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glTranslatef(mPosition.x,mPosition.y,mPosition.z);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glVertexPointer(3, GL_FLOAT, 0, &vertices[0]);
+	glNormalPointer(GL_FLOAT, 0, &normals[0]);
+	glTexCoordPointer(2, GL_FLOAT, 0, &texcoords[0]);
+	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, &indices[0]);
+	glPopMatrix();
+}
+
+void SphereModel::Display()
+{
+	GLFWvidmode return_struct;
+	
+
+	int const win_width = 1920; // retrieve window dimensions from
+    int const win_height = 1280; // framework of choice here
+
+    float const win_aspect = (float)win_width / (float)win_height;
+
+    glViewport(0, 0, win_width, win_height);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45, win_aspect, 1, 10);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+	SphereModel s;
+
+#ifdef DRAW_WIREFRAME
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+#endif
+   // s.Draw(0, 0, -5);
+
 }
