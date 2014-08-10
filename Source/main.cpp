@@ -29,7 +29,7 @@ int main(int argc, char*argv[])
     glGenTextures(1, &tex);
 
     int width, height;
-    unsigned char* image = SOIL_load_image(UTFConvert::GetImagePath("\\ohhellno.gif").c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
+    unsigned char* image = SOIL_load_image(UTFConvert::GetImagePath("Scottish_Fold.jpg").c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
     SOIL_free_image_data(image);
 

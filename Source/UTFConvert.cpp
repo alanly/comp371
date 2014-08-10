@@ -148,7 +148,7 @@ string UTFConvert::GetImagePath(const char * imgName)
     std::string fileName(imgName);
 
     // Replace the latter folders to Source\Images to get to the image file
-    Replace(fullStringPath, "Bin", "Source\\Images"+fileName);
+    Replace(fullStringPath, "Bin", "Source\\Images\\"+fileName);
 
     return fullStringPath;
 }
