@@ -48,8 +48,8 @@ void FirstPersonCamera::Update(float dt)
 		mPosition += (direction-mPosition) * dt * speed;
 		distanceToTravel = length(path[increment] - mPosition);
 
-		if(distanceToTravel < 3.0f && increment < path.size()-1) {
-			float percentage = 1-(distanceToTravel/3.0f);
+		if(distanceToTravel < 2.0f && increment < path.size()-1) {
+			float percentage = 1-(distanceToTravel/2.0f);
 			float x = path[increment].x + ((path[increment+1].x - path[increment].x) * percentage);
 			float y = path[increment].y + ((path[increment+1].y - path[increment].y) * percentage);
 			float z = path[increment].z + ((path[increment+1].z - path[increment].z) * percentage);
@@ -69,10 +69,8 @@ void FirstPersonCamera::Update(float dt)
 		glm::vec3 lookAtVector = normalize(direction - mPosition);
 
 		right = glm::vec3(glm::rotate(glm::mat4(1.0f),90.0f, glm::vec3(0,1,0)) * glm::vec4(lookAtVector,0));
-		up = glm::cross(right,lookAtVector);
-		look = mPosition + direction;
-
-		displayVector(look);
+		up = glm::cross(lookAtVector,right);
+		look = direction;
 		prevDistance = distanceToTravel;
 	}else {
 		speed = 3.0f;
