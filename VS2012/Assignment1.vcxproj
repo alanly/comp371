@@ -135,6 +135,7 @@
   <ItemGroup>
     <Image Include="..\Source\Images\alphalogo_a4arial.png" />
     <Image Include="..\Source\Images\dealwithit.gif" />
+    <Image Include="..\Source\Images\ohhellno.gif" />
     <Image Include="..\Source\Images\Scottish_Fold.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
