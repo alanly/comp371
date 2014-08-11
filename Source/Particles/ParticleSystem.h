@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Model.h"
+#include "Renderer.h"
 using namespace std;
 
-class ParticleSystem : Model
+class ParticleSystem : public Model
 {
 public:
         ParticleSystem();
@@ -18,6 +19,4 @@ private:
 
     glm::vec3 pMagnitude;
     glm::vec3 pParticles;
-
-    unsigned char * textureImage;
 };
