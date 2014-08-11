@@ -13,7 +13,8 @@ public:
 	virtual void Update(float dt);
 
 	virtual glm::mat4 GetViewMatrix() const;
-
+	
+	virtual void displayVector(glm::vec3 v);
 
 private:
 	Model* avatar;

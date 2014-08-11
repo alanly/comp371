@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ArcModel.cpp" />
+    <ClCompile Include="..\Source\Avatar.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
     <ClCompile Include="..\Source\ModelArray.cpp" />
@@ -120,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\ArcModel.h" />
+    <ClInclude Include="..\Source\Avatar.h" />
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
     <ClInclude Include="..\Source\ModelArray.h" />

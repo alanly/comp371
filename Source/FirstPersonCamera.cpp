@@ -94,7 +94,7 @@ void FirstPersonCamera::Update(float dt)
 			cos(horizontalAngle - 3.14f/2.0f)
 		);
 
-		look = mPosition + direction;
+		
 		// Up vector : perpendicular to both direction and right
 		up = glm::cross( right, direction );
 		// Move forward
@@ -114,6 +114,7 @@ void FirstPersonCamera::Update(float dt)
 			mPosition -= right * dt * speed;
 		}
 	}
+	look = mPosition + direction;
 	avatar->SetPosition(mPosition);
 }
 

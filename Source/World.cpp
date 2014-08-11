@@ -8,7 +8,7 @@
 
 #include "World.h"
 #include "Renderer.h"
-
+#include "Avatar.h"
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
 #include "FirstPersonCameraT.h"
@@ -24,14 +24,14 @@ using namespace glm;
 
 World::World()
 {
-	CubeModel * myc = new CubeModel(vec3(0.1f, 0.1f, 0.1f));
-	addModel(myc);
-	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),myc);
+	Avatar * avatar = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
+	addModel(avatar);
+
+	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),avatar);
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
 	mCamera.push_back(myt);
-
-	mCamera.push_back(new ThirdPersonCamera(vec3(3.0f,4.0f,5.0f),myc));
+	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),avatar ) );
 
 	std::vector<glm::vec3> path;
 

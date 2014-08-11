@@ -18,8 +18,6 @@ ThirdPersonCamera::ThirdPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	mPosition = position;
 	mLookAt = glm::vec3(0,0,0);
 	up = glm::vec3(0.0f, 1.0f, 0.0f);
-	// Initial Field of View
-	initialFoV = 45.0f;
 	change = glm::vec3(0,0,0);
 }
 
@@ -42,16 +40,17 @@ void ThirdPersonCamera::Update(float dt){
 	std::cout << "H: " << horizontalAngle << " V:" << verticalAngle << std::endl;
 
 	glm::vec3 direction = glm::vec3(
-    cos(verticalAngle) * sin(horizontalAngle),
-    sin(verticalAngle),
-    cos(verticalAngle) * cos(horizontalAngle)
+		cos(verticalAngle) * sin(horizontalAngle),
+		sin(verticalAngle),
+		cos(verticalAngle) * cos(horizontalAngle)
 	);
 
 	glm::vec3 right = glm::vec3(
-    sin(horizontalAngle - 3.14f/2.0f),
-    0,
-    cos(horizontalAngle - 3.14f/2.0f)
+	   sin(horizontalAngle - 3.14f/2.0f),
+	   0,
+	   cos(horizontalAngle - 3.14f/2.0f)
 	);
+
 
 	// Up vector : perpendicular to both direction and right
 	up = glm::cross( right, direction );
@@ -77,19 +76,21 @@ void ThirdPersonCamera::Update(float dt){
 		avatarPos -= right * dt * speed;
 		change -= right * dt * speed;
 	}
-	avatar->SetPosition(avatarPos);
-
-	
+	avatar->SetPosition(avatarPos);	
 }
 
 glm::mat4 ThirdPersonCamera::GetViewMatrix() const
 {
 	
 	glm::mat4 ViewMatrix = glm::lookAt(
-							mPosition + change,           // Camera is here
+							avatar->GetPosition() + glm::vec3(0,0.0f,5.0f),           // Camera is here
 							avatar->GetPosition(), // and looks here : at the same position, plus "direction"
 							up                  // Head is up (set to 0,-1,0 to look upside-down)
 						   );
 
 	return ViewMatrix;
+}
+
+void ThirdPersonCamera::displayVector(glm::vec3 v){ //DEBUG TOOL
+	std::cout << "x: " << v.x << " y: " << v.y << " z: " << v.z <<std::endl;
 }

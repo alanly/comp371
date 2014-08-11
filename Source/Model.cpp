@@ -46,12 +46,6 @@ glm::mat4 Model::GetWorldMatrix() const
 		worldMatrix = mParent->GetWorldMatrix()*worldMatrix;
 	}
 
-
-
-
-
-
-
 	return worldMatrix;
 }
 
