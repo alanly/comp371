@@ -106,6 +106,7 @@
   <ItemGroup>
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
     <ClCompile Include="..\Source\PlaneModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\Particles\ParticleSystem.h" />
     <ClInclude Include="..\Source\UTFConvert.h" />
     <ClInclude Include="..\Source\PlaneModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
