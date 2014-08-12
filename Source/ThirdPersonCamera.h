@@ -15,19 +15,18 @@ public:
 	virtual glm::mat4 GetViewMatrix() const;
 	
 	virtual void displayVector(glm::vec3 v);
-
+	virtual glm::mat4 getMatrixTransformation(float alpha, float beta);
 private:
 	Model* avatar;
-	glm::vec3 mPosition;	
-	glm::vec3 change;	
-	float horizontalAngle;
-	float verticalAngle;
-	float initialFoV;
-	float speed; // 3 units / second
-	float mouseSpeed;
-
+	glm::vec3 mPosition;
+	glm::vec3 direction;
 	glm::vec3 mLookAt;
 	glm::vec3 up;
+	float horizontalAngle;
+	float verticalAngle;
+	float speed;
+	float mouseSpeed;
+	
 
 
 

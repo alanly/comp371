@@ -42,6 +42,8 @@ Avatar::~Avatar(void)
 void Avatar::Update(float dt)
 {
 	models[0]->SetPosition(mPosition);
+	models[0]->SetRotation(mRotationAxis,mRotationAngleInDegrees);
+	//mRotationAngleInDegrees += 90 * dt;
 }
 
 void Avatar::Draw()
