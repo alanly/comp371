@@ -40,8 +40,6 @@ void ThirdPersonCamera::Update(float dt){
 	horizontalAngle += beta;
 	verticalAngle   += alpha;
 
-	
-
 	direction = glm::vec3(
 		cos(verticalAngle) * sin(horizontalAngle),
 		sin(verticalAngle),
@@ -98,14 +96,13 @@ glm::mat4 ThirdPersonCamera::GetViewMatrix() const
 
 glm::mat4 ThirdPersonCamera::getMatrixTransformation(float alpha, float beta)
 {
-	
-	glm::vec3 rotateAboutThisPoint = avatar->GetPosition(); // The origin of rotation
 	glm::vec3 betaRotationAxis = glm::vec3(1, 0, 0); // The axis of rotation
 	glm::vec3 alphaRotationAxis = glm::vec3(0, 1, 0); // The axis of rotation
-	glm::mat4 translateToPoint = glm::translate(glm::mat4(1.0f), rotateAboutThisPoint);
+
+	glm::mat4 translateToPoint = glm::translate(glm::mat4(1.0f), avatar->GetPosition());
 	glm::mat4 rotateAroundBetaAxis = glm::rotate(glm::mat4(1.0f), beta, betaRotationAxis);
 	glm::mat4 rotateAroundAlphaAxis = glm::rotate(glm::mat4(1.0f), alpha, alphaRotationAxis);
-	glm::mat4 reverseTranslation = glm::translate(glm::mat4(1.0f), -rotateAboutThisPoint);
+	glm::mat4 reverseTranslation = glm::translate(glm::mat4(1.0f), -avatar->GetPosition());
 	
 	return  translateToPoint * rotateAroundBetaAxis * rotateAroundAlphaAxis * reverseTranslation;
 }
