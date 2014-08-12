@@ -20,6 +20,7 @@
 #include "ModelGroup.h"
 
 #include "Light.h"
+#include "PointLight.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -158,24 +159,58 @@ void World::Draw()
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
-		// Set our shader
-		glUseProgram((*it)->GetShaderProgramID());
+		// Get a convenient handler to our model pointer
+		Model* model = *it;
 
-		// This looks for the MVP Uniform variable in the Vertex Program
-		GLuint VPMatrixLocation = glGetUniformLocation((*it)->GetShaderProgramID(), "ViewProjectonTransform"); 
+		// Get the model's program ID
+		unsigned int program = model->GetShaderProgramID();
+
+		// Use the appropriate model shader program.
+		glUseProgram(program);
+
+		// Create the uniforms containing our transformation matrices
+		GLuint VPMatrixLocation       = glGetUniformLocation(program, "ViewProjectonTransform");
+		GLuint ViewTransformUniformID = glGetUniformLocation(program, "ViewTransform");
+		GLuint ProjTransformUniformID = glGetUniformLocation(program, "ProjectonTransform");
+
+		// Create the uniform IDs for a material attribute and our light attributes
+		GLuint sMaterialUniformID		   = glGetUniformLocation(program, "materialCoefficients");
+		GLuint sNumLightsUniformID		   = glGetUniformLocation(program, "NumLights");
+		GLuint sLightPositionsUniformID	   = glGetUniformLocation(program, "LightPositions");
+		GLuint sLightColorsUniformID	   = glGetUniformLocation(program, "LightColors");
+		GLuint sLightCoefficientsUniformID = glGetUniformLocation(program, "LightAttenuations");
 
 		// Send the view projection constants to the shader
 		mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
 		glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
+		glUniformMatrix4fv(ViewTransformUniformID, 1, GL_FALSE, &mCamera[mCurrentCamera]->GetViewMatrix()[0][0]);
+		glUniformMatrix4fv(ProjTransformUniformID, 1, GL_FALSE, &mCamera[mCurrentCamera]->GetProjectionMatrix()[0][0]);
+
+		// Send the model material coefficients to the shader,
+		glUniform4f(
+			sMaterialUniformID,
+			model->GetMaterialCoefficients().x,
+			model->GetMaterialCoefficients().y,
+			model->GetMaterialCoefficients().z,
+			model->GetMaterialCoefficients().w
+		);
+
+		// Send the number of lights we have to the shader,
+		glUniform1i(sNumLightsUniformID, mLightSize);
+
+		// Send our arrays of light properties to the shader,
+		glUniform4fv(sLightPositionsUniformID, mLightSize, lightPositions);
+		glUniform3fv(sLightColorsUniformID, mLightSize, lightColors);
+		glUniform3fv(sLightCoefficientsUniformID, mLightSize, lightCoefficients);
 		
 		// Draw model
-		(*it)->Draw();
+		model->Draw();
 	}
+
+	Renderer::EndFrame();
 
 	// Deallocate our arrays
 	delete lightPositions;
 	delete lightColors;
 	delete lightCoefficients;
-
-	Renderer::EndFrame();
 }
