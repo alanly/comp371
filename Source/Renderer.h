@@ -6,6 +6,10 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 
+/**
+ * @author Alan Ly (light and material uniforms)
+ */
+
 #pragma once
 
 struct GLFWwindow;
@@ -38,14 +42,15 @@ public:
 	static GLuint LoadShaders(const char * vertex_shader_path, const char * fragment_shader_path);
 	static bool   LoadOBJ(const char * path, std::vector<glm::vec3> & out_vertices, std::vector<glm::vec2> & out_uvs, std::vector<glm::vec3> & out_normals );
 
-	static unsigned int GetShaderProgramID() { return sShaderProgramID[sCurrentShader]; }
+	static unsigned int GetShaderProgramID()            { return sShaderProgramID[sCurrentShader]; }
+
 	static void SetShader(ShaderType type);
 
 private:
-	static GLFWwindow* spWindow;
+	static GLFWwindow*               spWindow;
 
 	static std::vector<unsigned int> sShaderProgramID;
+	
 	static unsigned int sCurrentShader;
-
 };
 

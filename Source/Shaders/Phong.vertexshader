@@ -1,0 +1,59 @@
+#version 330 core
+
+// Input vertex data, different for all executions of this shader.
+layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 1) in vec3 vertexNormal_modelspace;  // You will need this when you do lighting
+layout(location = 2) in vec3 vertexColor; 
+
+// output to Fragment Shader
+out vec3 v_color;
+
+out vec3 normal;          // Transformed normal in View Space
+out vec3 eyeVector;       // Vector from the vertex to the Camera in View Space
+out vec4 lightVector[13];     // Vector from the vertex to the Light in View Space
+						  // Length of lightVector is the distance between light and vertex
+
+// Uniform
+// Values that stay constant for the whole mesh.
+uniform mat4 WorldTransform;
+uniform mat4 ViewTransform;
+uniform mat4 ProjectonTransform;
+
+// Lights
+uniform int  NumLights;
+uniform vec4 LightPositions[50];
+uniform vec3 LightColors[50];
+uniform vec3 LightAttenuations[50];
+
+
+void main()
+{
+	mat4 MV = ViewTransform * WorldTransform;
+	mat4 MVP = ProjectonTransform * MV;
+
+	// Output position of the vertex, in clip space : MVP * position
+	gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
+	v_color = vertexColor;
+
+	// Prepare Data for Fragment Shader
+	// Should the normal be transformed?
+	//normal = vertexNormal_modelspace;
+
+	// http://www.lighthouse3d.com/tutorials/glsl-tutorial/the-normal-matrix/
+	normal = vec3(transpose(inverse(MV)) * vec4(vertexNormal_modelspace, 0.f));
+
+	// Transform our vertex positions from modelspace,
+	vec3 vertexPosition_viewspace = vec3(MV * vec4(vertexPosition_modelspace, 1));
+	
+	// eyeVector = ...
+	eyeVector = normalize( -(vertexPosition_viewspace) );
+
+	// lightVector = ...
+	for (int i = 0; i < NumLights; i++) {
+		if (LightPositions[i].w > 0) {
+			lightVector[i] = (ViewTransform * LightPositions[i]) - vec4(vertexPosition_viewspace, 0);
+		} else {
+			lightVector[i] = -(ViewTransform * LightPositions[i]);
+		}
+	}
+}
