@@ -15,6 +15,8 @@
 #include "CubeModel.h"
 #include "ModelGroup.h"
 
+#include "Light.h"
+
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 
@@ -27,7 +29,6 @@ World::World()
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
 	mCamera.push_back( new FirstPersonCamera( vec3(0.5f, 0.5f, 5.0f) ) );
 	mCurrentCamera = 0;
-
 }
 
 World::~World()
@@ -46,6 +47,13 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
+
+	// Light
+	for (vector<Light*>::iterator it = mLight.begin(); it < mLight.end(); ++it)
+	{
+		delete *it;
+	}
+	mLight.clear();
 }
 	
 void World::Update(float dt)
@@ -94,6 +102,11 @@ void World::Update(float dt)
 void World::addModel(Model* nModel)
 {
 	mModel.push_back(nModel);
+}
+
+void World::addLight(Light* nLight)
+{
+	mLight.push_back(nLight);
 }
 
 void World::Draw()

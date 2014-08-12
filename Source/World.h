@@ -12,6 +12,7 @@
 
 class Camera;
 class Model;
+class Light;
 
 class World
 {
@@ -23,10 +24,13 @@ public:
 	void Draw();
 
 	void addModel(Model* nModel);
+	void addLight(Light* nLight);
 
 private:
 	std::vector<Model*> mModel;
 
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
+
+	std::vector<Light*> mLight;
 };
