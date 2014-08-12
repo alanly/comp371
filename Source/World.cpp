@@ -91,7 +91,8 @@ void World::Update(float dt)
 	}
 }
 
-void World::addModel(Model* nModel){
+void World::addModel(Model* nModel)
+{
 	mModel.push_back(nModel);
 }
 
