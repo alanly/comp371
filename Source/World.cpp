@@ -104,7 +104,6 @@ void World::Draw()
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
 		// Set our shader
-		/*glUseProgram(Renderer::GetShaderProgramID());*/
 		glUseProgram((*it)->GetShaderProgramID());
 
 		// This looks for the MVP Uniform variable in the Vertex Program
