@@ -11,6 +11,7 @@
 #include "EventManager.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "PointLight.h"
 
 
 int main(int argc, char*argv[])
@@ -19,10 +20,17 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
-	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(c);
-	SphereModel* sphere = new SphereModel(3,4,4); 
-	world.addModel(sphere);
+
+	// Create and add our lighting to the world
+	PointLight* light1 = new PointLight(glm::vec3(5.f, 0.f, 0.f));
+	world.addLight(light1);
+
+	PointLight* light2 = new PointLight(glm::vec3(5.f, -10.f, 0.f));
+	world.addLight(light2);
+
+	// Create and add our models to the world
+	CubeModel* cube = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
+	world.addModel(cube);
 
 	// Main Loop
 	do
