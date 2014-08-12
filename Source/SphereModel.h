@@ -15,18 +15,15 @@ class SphereModel : public Model
 {
 public:
 	// @TODO 4 - It could be a good idea to allow passing a parent model in the constructor
-	SphereModel();
-	SphereModel(float radius, unsigned int rings, unsigned int sectors);
+	
+	SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, unsigned int nSectors, glm::vec4 color);
 	virtual ~SphereModel();
 
+	void Display();
 
-
-
-	virtual void Update(float dt);
-	virtual void Draw();
-
-	void Draw(GLfloat x, GLfloat y, GLfloat z);
-	void SphereModel::Display();
+	 void Update(float dt);
+	 //void OverloadedDraw(GLfloat x=0, GLfloat y=0, GLfloat z=0);
+	 virtual void Draw();
 
 
 protected:
@@ -37,15 +34,19 @@ private:
 	{
 		glm::vec3 position;
 		glm::vec3 normal;
-		glm::vec3 color;
+		glm::vec4 color;
+
+		Vertex(glm::vec3 p, glm::vec3 n, glm::vec4 c) :position(p), normal(n), color(c){}
+		Vertex() : position(glm::vec3(0.0f)), 
+                         normal(glm::vec3(0.0f)), 
+						 color(glm::vec4(1.0f)){}
 	};
 
-
-	std::vector<GLfloat> vertices;
-    std::vector<GLfloat> normals;
-    std::vector<GLfloat> texcoords;
-    std::vector<GLushort> indices;
-
+	glm::vec3 tempVec;
+	std::vector<Vertex> m_vertices;
+ 
+	int numVertex;
+	
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
 };
