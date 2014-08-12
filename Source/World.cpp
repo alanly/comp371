@@ -6,6 +6,10 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 
+/**
+ * @author Alan Ly (multiple scene-lighting, per-model shaders)
+ */
+
 #include "World.h"
 #include "Renderer.h"
 
@@ -113,6 +117,44 @@ void World::Draw()
 {
 	Renderer::BeginFrame();
 
+	/**
+	 * Lights remain consistent for entirety of world-draw, therefore,
+	 * no need to redeclare this stuff under each model-loop iteration.
+	 */
+
+	int mLightSize = mLight.size();
+
+	// Declare the pointers referencing the arrays holding each light property.
+	GLfloat* lightPositions    = new GLfloat[mLightSize * 4]; // vec4 lightPosition
+	GLfloat* lightColors       = new GLfloat[mLightSize * 3]; // vec3 lightColor
+	GLfloat* lightCoefficients = new GLfloat[mLightSize * 3]; // vec3 lightCoefficient
+
+	// Populate our arrays with the appropriate values.
+	for (int i = 0; i < mLightSize; ++i)
+	{
+		/** 
+		 * Using a linear list of assignment operations rather than multiple
+		 * loops; should result in slightly better performance considering this
+		 * gets called for every frame and we have fixed sizes anyways.
+		 */
+
+		// Fill up `lightPositions` (vec4 per light)
+		lightPositions[(i*4)]   = mLight[i]->GetLightPosition().x;
+		lightPositions[(i*4)+1] = mLight[i]->GetLightPosition().y;
+		lightPositions[(i*4)+2] = mLight[i]->GetLightPosition().z;
+		lightPositions[(i*4)+3] = mLight[i]->GetLightPosition().w;
+
+		// Fill up `lightColors` (vec3 per light)
+		lightColors[(i*3)]   = mLight[i]->GetLightColor().r;
+		lightColors[(i*3)+1] = mLight[i]->GetLightColor().g;
+		lightColors[(i*3)+2] = mLight[i]->GetLightColor().b;
+
+		// Fill up `lightCoefficients` (vec3 per light)
+		lightCoefficients[(i*3)]   = mLight[i]->GetLightCoefficients().x;
+		lightCoefficients[(i*3)+1] = mLight[i]->GetLightCoefficients().y;
+		lightCoefficients[(i*3)+2] = mLight[i]->GetLightCoefficients().z;
+	}
+
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
@@ -129,6 +171,11 @@ void World::Draw()
 		// Draw model
 		(*it)->Draw();
 	}
+
+	// Deallocate our arrays
+	delete lightPositions;
+	delete lightColors;
+	delete lightCoefficients;
 
 	Renderer::EndFrame();
 }
