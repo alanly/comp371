@@ -6,6 +6,10 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 
+/**
+ * @author Alan Ly (per-model shaders, material coefficients)
+ */
+
 #pragma once
 
 
@@ -31,12 +35,16 @@ public:
 	void SetScaling(glm::vec3 scaling);
 	void SetRotation(glm::vec3 axis, float angleDegrees);
 	void SetParent(Model* par);
+	void SetMaterialCoefficients(glm::vec4 coefficients);
 
 	glm::vec3    GetPosition()        const	{ return mPosition; }
 	glm::vec3    GetScaling()         const	{ return mScaling; }
 	glm::vec3    GetRotationAxis()    const	{ return mRotationAxis; }
 	float        GetRotationAngle()   const	{ return mRotationAngleInDegrees; }
 	unsigned int GetShaderProgramID() const { return mShaderProgramID; }
+
+	// Expressed as (ka, kd, ks, n)
+	glm::vec4    GetMaterialCoefficients() const { return mMaterialCoefficients; }
 
 protected:
 	std::string mName;
@@ -50,4 +58,6 @@ protected:
 	Model*	  mParent;
 
 	unsigned int mShaderProgramID;
+
+	glm::vec4 mMaterialCoefficients;
 };

@@ -6,6 +6,10 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 
+/**
+ * @author Alan Ly (per-model shaders, material coefficients)
+ */
+
 #include "Model.h"
 #include "Renderer.h"
 #include <glm/gtc/matrix_transform.hpp>
@@ -13,7 +17,7 @@
 
 using namespace std;
 
-Model::Model(Model* m, unsigned int shaderProgramID) : mName("UNNAMED"), mPosition(0.0f,0.0f,0.0f), mScaling(1.0f,1.0f,1.0f),mRotationAxis(0.0f,1.0f,0.0f),mRotationAngleInDegrees(0.0f),mParent(m)
+Model::Model(Model* m, unsigned int shaderProgramID) : mName("UNNAMED"), mPosition(0.0f,0.0f,0.0f), mScaling(1.0f,1.0f,1.0f),mRotationAxis(0.0f,1.0f,0.0f),mRotationAngleInDegrees(0.0f),mParent(m),mMaterialCoefficients(0.2f,0.8f,0.2f,50.f)
 {
 	mShaderProgramID = (shaderProgramID == 0) ? Renderer::GetShaderProgramID() : shaderProgramID;
 }
@@ -79,4 +83,9 @@ void Model::SetRotation(glm::vec3 axis, float angleDegrees)
 {
 	mRotationAxis = axis;
 	mRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetMaterialCoefficients(glm::vec4 coefficients)
+{
+	mMaterialCoefficients = coefficients;
 }
