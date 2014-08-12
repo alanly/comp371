@@ -6,6 +6,10 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 
+/**
+ * @author Alan Ly (multiple scene-lighting, per-model shaders)
+ */
+
 #pragma once
 
 #include <vector>
