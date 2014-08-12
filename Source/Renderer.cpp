@@ -6,6 +6,10 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 
+/**
+ * @author Alan Ly (multiple-lighting)
+ */
+
 #include "Renderer.h"
 
 
@@ -26,6 +30,7 @@ using namespace std;
 
 
 std::vector<unsigned int> Renderer::sShaderProgramID;
+
 unsigned int Renderer::sCurrentShader;
 
 GLFWwindow* Renderer::spWindow = NULL;
@@ -55,10 +60,10 @@ void Renderer::Initialize()
     glDepthFunc(GL_LESS); 
 
 	// Loading Shaders
-	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
-	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
+// 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
+// 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
+	sShaderProgramID.push_back(LoadShaders("../Source/Shaders/Phong.vertexshader", "../Source/Shaders/Phong.fragmentshader"));
 	sCurrentShader = 0;
-
 }
 
 void Renderer::Shutdown()

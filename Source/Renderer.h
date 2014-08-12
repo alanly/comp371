@@ -39,13 +39,14 @@ public:
 	static bool   LoadOBJ(const char * path, std::vector<glm::vec3> & out_vertices, std::vector<glm::vec2> & out_uvs, std::vector<glm::vec3> & out_normals );
 
 	static unsigned int GetShaderProgramID() { return sShaderProgramID[sCurrentShader]; }
+
 	static void SetShader(ShaderType type);
 
 private:
 	static GLFWwindow* spWindow;
 
 	static std::vector<unsigned int> sShaderProgramID;
+	
 	static unsigned int sCurrentShader;
-
 };
 
