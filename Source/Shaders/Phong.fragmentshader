@@ -1,5 +1,8 @@
 #version 330 core
 
+/**
+ * @author Alan Ly (multiple-lighting)
+ */
 
 // Light and Material Uniform Variables
 uniform vec4 materialCoefficients; // x: ambient   y: diffuse   z: specular   w: specular exponent
