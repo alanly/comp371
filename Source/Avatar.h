@@ -1,3 +1,5 @@
+//Written by Thomas Rahn
+
 #pragma once
 #include "model.h"
 #include <vector>

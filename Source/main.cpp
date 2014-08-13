@@ -9,11 +9,6 @@
 #include "Renderer.h"
 #include "World.h"
 #include "EventManager.h"
-#include "CubeModel.h"
-#include "SphereModel.h"
-#include "RectangleModel.h"
-#include "ArcModel.h"
-#include "Portal.h"
 
 
 int main(int argc, char*argv[])

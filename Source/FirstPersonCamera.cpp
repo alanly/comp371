@@ -5,7 +5,7 @@
 //
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
-
+//Written by Thomas Rahn
 #include "FirstPersonCamera.h"
 #include "EventManager.h"
 #include <GLM/glm.hpp>
