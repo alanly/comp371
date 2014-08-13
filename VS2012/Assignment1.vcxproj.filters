@@ -21,6 +21,9 @@
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{1749f2d9-5844-4089-813a-04e45e707773}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Particles">
+      <UniqueIdentifier>{237ed539-4ef3-4827-a99a-be2cdd645e8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
