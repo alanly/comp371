@@ -53,10 +53,14 @@ void ThirdPersonCamera::Update(float dt){
 	);
 	
 	up = glm::cross( right, direction );
+
 	glm::vec3 avatarPos = avatar->GetPosition();
 
-	mPosition = glm::vec3(getMatrixTransformation(alpha,beta) * glm::vec4(mPosition,1));
-	avatarPos = glm::vec3(getMatrixTransformation(alpha,beta) * glm::vec4(avatarPos,1));
+	mPosition = performTransformation(mPosition, alpha, up);
+	mPosition = performTransformation(mPosition, beta, direction);
+	
+	avatarPos = performTransformation(avatarPos, alpha, up);
+	avatarPos = performTransformation(avatarPos, beta, direction);
 
 	// Move forward
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W ) == GLFW_PRESS){
@@ -94,17 +98,18 @@ glm::mat4 ThirdPersonCamera::GetViewMatrix() const
 }
 
 
-glm::mat4 ThirdPersonCamera::getMatrixTransformation(float alpha, float beta)
+glm::vec3 ThirdPersonCamera::performTransformation(glm::vec3 position, float angle,  glm::vec3 axis)
 {
-	glm::vec3 betaRotationAxis = glm::vec3(1, 0, 0); // The axis of rotation
-	glm::vec3 alphaRotationAxis = glm::vec3(0, 1, 0); // The axis of rotation
+
+	glm::vec3 alignVector = glm::cross(glm::normalize(position), glm::normalize(axis));
+	float alignAngle = glm::acos(glm::dot(glm::normalize(axis),glm::normalize(position)));
 
 	glm::mat4 translateToPoint = glm::translate(glm::mat4(1.0f), avatar->GetPosition());
-	glm::mat4 rotateAroundBetaAxis = glm::rotate(glm::mat4(1.0f), beta, betaRotationAxis);
-	glm::mat4 rotateAroundAlphaAxis = glm::rotate(glm::mat4(1.0f), alpha, alphaRotationAxis);
+	glm::mat4 rotateToAlign = glm::rotate(glm::mat4(1.0f), alignAngle, alignVector);
+	glm::mat4 rotateAroundAxis = glm::rotate(glm::mat4(1.0f), angle, axis);
 	glm::mat4 reverseTranslation = glm::translate(glm::mat4(1.0f), -avatar->GetPosition());
 	
-	return  translateToPoint * rotateAroundBetaAxis * rotateAroundAlphaAxis * reverseTranslation;
+	return  glm::vec3((translateToPoint * rotateToAlign * rotateAroundAxis * -rotateToAlign * reverseTranslation) * glm::vec4(position,1));
 }
 
 void ThirdPersonCamera::displayVector(glm::vec3 v){ //DEBUG TOOL

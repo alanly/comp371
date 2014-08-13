@@ -15,7 +15,7 @@ public:
 	virtual glm::mat4 GetViewMatrix() const;
 	
 	virtual void displayVector(glm::vec3 v);
-	virtual glm::mat4 getMatrixTransformation(float alpha, float beta);
+	virtual glm::vec3 performTransformation(glm::vec3 position,float angle, glm::vec3 axis);
 private:
 	Model* avatar;
 	glm::vec3 mPosition;
