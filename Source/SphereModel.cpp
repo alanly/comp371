@@ -12,6 +12,12 @@
 #include <GL/glu.h>
 #include <vector>
 #include <cmath>
+#include "EventManager.h"
+#include <GLM/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+
+#include <algorithm>
 
 //include GLFW
 #include <GLFW/glfw3.h>
@@ -41,12 +47,24 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 
 	float sectorAngle = (360)/nSectors;
 
-	std::vector<Vertex> sphereMesh;
-
-	
-	
+	std::vector<Vertex> sphereMesh;	
 
 	float ringIncrement = (radius*2)/nRings;
+
+
+	xMax = (Origin + glm::vec3(radius, 0.f, 0.f));
+	xMin = (Origin - glm::vec3(radius, 0.f, 0.f));
+	yMax = (Origin + glm::vec3(0.f, radius, 0.f));
+	yMin = (Origin - glm::vec3(0.f, radius, 0.f));
+	zMax = (Origin + glm::vec3(0.f, 0.f, radius));
+	zMin = (Origin - glm::vec3(0.f, 0.f, radius));
+
+	corner1 = (xMin, yMin, zMin);
+	corner2 = (xMax, yMax, zMax);
+	center = Origin;
+
+	sphereRadius = radius;
+
 
 	sphereMesh.push_back(Vertex((Origin-glm::vec3(0.f,radius,0.f)),
 											normalize(Origin-glm::vec3(0.f,radius,0.f)),
@@ -154,12 +172,14 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 	int back = sphereMesh.size()-1;
 	for(int i=sphereMesh.size()-nSectors; i<sphereMesh.size()-1; i++) //loop for top fan
 	{
-		if(i==sphereMesh.size()-nSectors)
+		/*if(i==back)
 		{
 
 			finalLoop.push_back(&sphereMesh[i-1]);
+			finalLoop.push_back(&sphereMesh[back]);
+			finalLoop.push_back(&sphereMesh[i]);
 		
-		}
+		}*/
 
 			//finalLoop.push_back(&sphereMesh[i]);
 			finalLoop.push_back(&sphereMesh[i]);
@@ -170,15 +190,6 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 			
 			//finalLoop.push_back(&sphereMesh[i-nSectors]);
 				
-			
-			
-			
-		
-
-
-			
-
-
 
 	}
 
@@ -211,9 +222,9 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 	glGenBuffers(1, &mVertexBufferID); 
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID); 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(sphereMesh[0])*finalLoop.size(), vertexBuffer, GL_STATIC_DRAW);//(sphereMesh[0])*sphereMesh.size(), vertexBuffer, GL_STATIC_DRAW);
-	//^THIS COCKSUCKER FUCKIGN HIDDEN FUNCTION, MADE ME AND TIM SPEND 3 HOURS TRYING TO FIGURE OUT WHY ONLY A BOWL WASNT DRAWING
+	//^THIS  FUCKIGN FUNCTION, MADE ME AND TIM SPEND 3 HOURS TRYING TO FIGURE OUT WHY ONLY A BOWL WASNT DRAWING
 
-
+	
 } 
 
 SphereModel::~SphereModel()
@@ -228,6 +239,7 @@ void SphereModel::Update(float dt)
 	// If you are curious, uncomment this line to have spinning cubes!
 	// That will only work if your world transform is correct...
 	// mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
+
 }
 void SphereModel::Draw()
 {
@@ -282,3 +294,4 @@ void SphereModel::Draw()
 	glDisableVertexAttribArray(0);
 
 }
+

@@ -64,8 +64,8 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="IcoSphereCreator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +99,8 @@
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="IcoSphereCreator.h" />
+    <ClInclude Include="BoundingBox.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

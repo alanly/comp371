@@ -9,10 +9,11 @@
 #pragma once
 
 #include "Model.h"
+//#include "BoundingBox.h"
 #include <vector>
 #include <gl\glew.h>
 #include <cstdlib>
-class SphereModel : public Model
+class SphereModel : public Model //, public BoundingBox
 {
 public:
 	// @TODO 4 - It could be a good idea to allow passing a parent model in the constructor
@@ -51,8 +52,23 @@ private:
  
 	int numVertex;
 	
+	glm::vec3 xMax;
+	glm::vec3 xMin;
+	glm::vec3 yMax;
+	glm::vec3 yMin;
+	glm::vec3 zMax;
+	glm::vec3 zMin;
+	
+	GLfloat sphereRadius;
+	glm::vec4 sphereColor;
+	glm::vec3 corner1;
+	glm::vec3 corner2;
+	glm::vec3 center;
+	
 
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
+
+
 
 };

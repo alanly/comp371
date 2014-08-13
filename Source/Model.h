@@ -21,8 +21,11 @@ public:
 	Model(Model* m = NULL, unsigned int shaderProgramID = 0);
 	virtual ~Model();
 
+	
+
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
+
 
 
 	virtual glm::mat4 GetWorldMatrix() const;
@@ -31,6 +34,8 @@ public:
 	void SetScaling(glm::vec3 scaling);
 	void SetRotation(glm::vec3 axis, float angleDegrees);
 	void SetParent(Model* par);
+
+
 
 	glm::vec3    GetPosition()        const	{ return mPosition; }
 	glm::vec3    GetScaling()         const	{ return mScaling; }
@@ -50,4 +55,6 @@ protected:
 	Model*	  mParent;
 
 	unsigned int mShaderProgramID;
+
+
 };

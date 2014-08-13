@@ -23,6 +23,11 @@ int main(int argc, char*argv[])
 	//world.addModel(c);
 	SphereModel* sphere = new SphereModel(glm::vec3(0.f,0.f,0.f), 1.0f, 8, 8, glm::vec4(1.f,0.f,0.f,1.f));
 	world.addModel(sphere);
+	//SphereModel* sphere2 = new SphereModel(glm::vec3 (5.f, 0.f, 0.f), 3.f, 30, 16, glm::vec4(1.f, 0.f, 0.f, 1.f));
+	//world.addModel(sphere2);
+	
+
+
 
 	// Main Loop
 	do
