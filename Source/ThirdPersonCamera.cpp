@@ -60,8 +60,8 @@ void ThirdPersonCamera::Update(float dt){
 	mPosition = performTransformation(mPosition, alpha, glm::vec3(1,0,0));
 		
 
-	avatar->rotaterX->SetRotation(glm::vec3(1,0,0), verticalAngle);
-	avatar->rotaterY->SetRotation(glm::vec3(0,1,0), horizontalAngle);
+	avatar->SetRotation(glm::vec3(1,0,0), verticalAngle);
+	avatar->SetRotation(glm::vec3(0,1,0), horizontalAngle);
 
 	glm::vec3 forward = (avatar->GetPosition() - mPosition);
 	glm::vec3 right = glm::vec3(glm::rotate(glm::mat4(1.0f),-90.0f,glm::vec3(0,1,0)) * glm::vec4(forward,0));
