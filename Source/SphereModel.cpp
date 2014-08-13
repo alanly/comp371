@@ -21,6 +21,7 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <cmath>
+#include <ctime>
 
 
 
@@ -42,16 +43,20 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 
 	std::vector<Vertex> sphereMesh;
 
+	
+	
+
 	float ringIncrement = (radius*2)/nRings;
 
-	sphereMesh.push_back(Vertex((Origin-(0.f,radius,0.f)),
-											normalize(Origin-(0.f,radius,0.f)),
+	sphereMesh.push_back(Vertex((Origin-glm::vec3(0.f,radius,0.f)),
+											normalize(Origin-glm::vec3(0.f,radius,0.f)),
 											color));
 	
 
-	for(int n=0; n < nRings; n++)
+	for(int n=1; n < nRings; n++)
 	{
 
+		
 			//ring is height of current ring
 			glm::vec3 ring = (Origin - radius*vecDown + (-ringIncrement * vecDown *n));
 			float height = Origin.y - radius + (ringIncrement*n);
@@ -60,7 +65,7 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 			float newRadius = radius*(cos(theta));
 
 			//this is where the loop goes to find the points (x points/ circle, each of which will correlate together to make a sector)
-			for(float j=0; j<nSectors; j++)
+			for(int j=0; j<nSectors; j++)
 			{
 				float x = (float)((newRadius * glm::cos(j*sectorAngle*degToRad)) + (ring.x));
 				float z = (float)(newRadius * glm::sin(j*sectorAngle*degToRad) + (ring.z));
@@ -69,15 +74,23 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 
 				Vertex* v;
 
+				float r = static_cast <float> (rand())/static_cast <float> (RAND_MAX);
+	
+				float r2 = static_cast <float> (rand())/static_cast <float> (RAND_MAX);
+	
+				float r3 = static_cast <float> (rand())/static_cast <float> (RAND_MAX);
+
+
+
+				color = glm::vec4(r, r2, r3, 1);
+
 				sphereMesh.push_back(Vertex(tempVec,
 											glm::vec3(normalize(tempVec-Origin)),
 											color));
 
 			}
-			//everything stops being seen between here
 
 	}
-	//and here
 
 	sphereMesh.push_back(Vertex((Origin+glm::vec3(0.f,radius,0.f)),
 											normalize(Origin+(0.f,radius,0.f)),
@@ -86,26 +99,87 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 
 	std::vector<Vertex*> finalLoop;
 
+	
 
-	for(int i=0; i<nSectors;i++) //loop first fan
+
+	//bottom fan = 0,1,2,2,0,3
+	//0,1,2,2,3,4,0
+
+	for(int i=1; i<=nSectors;i++) //loop first fan
 	{
+		if(i==1)
+		{
+			finalLoop.push_back(&sphereMesh[i-1]);
+			finalLoop.push_back(&sphereMesh[i]);
+			finalLoop.push_back(&sphereMesh[i+1]);
+		}
 		
-		finalLoop.push_back(&sphereMesh[i]);
+		else
+		{
+			finalLoop.push_back(&sphereMesh[i]);
+			finalLoop.push_back(&sphereMesh[0]);
+			finalLoop.push_back(&sphereMesh[(i % nSectors)+1]);
 
-
-		//finalLoop.push_back(&sphereMesh[i]);
+		}
 
 		//read from spheremesh, push back to final loop
 	}
 
-	for(int i=0; i< nRings ;i++) //loop for body
+	for(int i=1; i<nRings-1 ;i++) //loop for body 
 	{
+		
+
+		for(int j=1; j<=nSectors+1;j++)
+		{
+			if(j==nSectors+1)
+			{
+			finalLoop.push_back(&sphereMesh[1 + ((i-1)*nSectors)]);
+			finalLoop.push_back(&sphereMesh[1 + ((i)*nSectors)]);
+
+			//finalLoop.push_back(&sphereMesh[1 + ((i+1)*nSectors)]);
+			//finalLoop.push_back(&sphereMesh[1 + (i*nSectors)]);
+			}
+
+			else
+			{
+			finalLoop.push_back(&sphereMesh[j + ((i-1)*nSectors)]);
+			finalLoop.push_back(&sphereMesh[j + ((i)*nSectors)]);
+			}
+		
+		}
+
 
 	}
 
-	for(int i=0; i<nSectors; i++) //loop for top fan
+	int back = sphereMesh.size()-1;
+	for(int i=sphereMesh.size()-nSectors; i<sphereMesh.size()-1; i++) //loop for top fan
 	{
+		if(i==sphereMesh.size()-nSectors)
+		{
+
+			finalLoop.push_back(&sphereMesh[i-1]);
 		
+		}
+
+			//finalLoop.push_back(&sphereMesh[i]);
+			finalLoop.push_back(&sphereMesh[i]);
+			finalLoop.push_back(&sphereMesh[back]);
+			finalLoop.push_back(&sphereMesh[i+1]);
+			//finalLoop.push_back(&sphereMesh[i+1]);
+
+			
+			//finalLoop.push_back(&sphereMesh[i-nSectors]);
+				
+			
+			
+			
+		
+
+
+			
+
+
+
 	}
 
 
@@ -114,19 +188,19 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 
 
 
-	const int size = sphereMesh.size();
+	const int size = finalLoop.size(); //sphereMesh.size();
 	Vertex *vertexBuffer = new Vertex[size];
 			
 	for(int i=0; i<size;i++)
 	{
 		//spheremesh must be put in to show the sphere without the outer filling
-		vertexBuffer[i] = sphereMesh[i]; //*finalLoop[i];
+		vertexBuffer[i] = *finalLoop[i]; //sphereMesh[i];
 	}
 
 	//finalLoop.size() should be the value to put in for the drawing
 	//sphereMesh.size() placed here shows the sphere without outer filling
 
-	numVertex = sphereMesh.size(); //2*nSectors*nRings + nSectors*2; //finalLoop.size();
+	numVertex = finalLoop.size()*2;  //sphereMesh.size(); //2*nSectors*nRings + nSectors*2;
 			
 			
 
@@ -136,7 +210,8 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 	// Upload Vertex Buffer to the GPU, keep a reference to it (mVertexBufferID) 
 	glGenBuffers(1, &mVertexBufferID); 
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID); 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(sphereMesh[0])*sphereMesh.size(), vertexBuffer, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(sphereMesh[0])*finalLoop.size(), vertexBuffer, GL_STATIC_DRAW);//(sphereMesh[0])*sphereMesh.size(), vertexBuffer, GL_STATIC_DRAW);
+	//^THIS COCKSUCKER FUCKIGN HIDDEN FUNCTION, MADE ME AND TIM SPEND 3 HOURS TRYING TO FIGURE OUT WHY ONLY A BOWL WASNT DRAWING
 
 
 } 

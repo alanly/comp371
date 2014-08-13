@@ -11,6 +11,7 @@
 #include "Model.h"
 #include <vector>
 #include <gl\glew.h>
+#include <cstdlib>
 class SphereModel : public Model
 {
 public:
@@ -26,6 +27,8 @@ public:
 	 virtual void Draw();
 
 
+
+
 protected:
 
 private:
@@ -36,10 +39,11 @@ private:
 		glm::vec3 normal;
 		glm::vec4 color;
 
+
 		Vertex(glm::vec3 p, glm::vec3 n, glm::vec4 c) :position(p), normal(n), color(c){}
 		Vertex() : position(glm::vec3(0.0f)), 
                          normal(glm::vec3(0.0f)), 
-						 color(glm::vec4(1.0f)){}
+						 color(glm::vec4(rand()/1, rand()/1, rand()/1, 1.f)/*color(glm::vec4(1.0f)*/){}
 	};
 
 	glm::vec3 tempVec;
@@ -47,6 +51,8 @@ private:
  
 	int numVertex;
 	
+
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
+
 };
