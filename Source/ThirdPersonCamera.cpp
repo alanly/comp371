@@ -40,20 +40,6 @@ void ThirdPersonCamera::Update(float dt){
 	horizontalAngle += beta;
 	verticalAngle   += alpha;
 
-	/*direction = glm::vec3(
-		cos(verticalAngle) * sin(horizontalAngle),
-		sin(verticalAngle),
-		cos(verticalAngle) * cos(horizontalAngle)
-	);
-
-	glm::vec3 right = glm::vec3(
-	   sin(horizontalAngle - 3.14f/2.0f),
-	   0,
-	   cos(horizontalAngle - 3.14f/2.0f)
-	);
-	
-	up = glm::cross( right, direction );*/
-
 	glm::vec3 avatarPos = avatar->GetPosition();
 
 	mPosition = performTransformation(mPosition, beta, glm::vec3(0,1,0));

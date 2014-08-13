@@ -19,6 +19,7 @@
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "ThirdPersonCamera.h"
+#include "Portal.h"
 using namespace std;
 using namespace glm;
 
@@ -46,8 +47,8 @@ World::World()
 	path.push_back(glm::vec3(28.0f,1.0f,0.0f));
 	path.push_back(glm::vec3(30.0f, 2.0f, 0.0f));
 	path.push_back(glm::vec3(35.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(36.0f, 3.0f, -1.0f));
-	path.push_back(glm::vec3(37.0f, 3.0f, -2.0f));
+	path.push_back(glm::vec3(36.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(37.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(38.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(39.0f, 3.0f, 1.0f));
 	path.push_back(glm::vec3(43.0f, 3.0f, 0.0f));
@@ -65,6 +66,8 @@ World::World()
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
 
+	Portal* p = new Portal(path, 1.0f, 8);
+	addModel(p);
 	myt->FollowPath(path);
 
 	mCurrentCamera = 1;

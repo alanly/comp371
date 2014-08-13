@@ -93,7 +93,8 @@ void FirstPersonCamera::Update(float dt)
 			0,
 			cos(horizontalAngle - 3.14f/2.0f)
 		);
-
+		avatar->SetRotation(glm::vec3(1,0,0), verticalAngle);
+		avatar->SetRotation(glm::vec3(0,1,0), horizontalAngle);
 		
 		// Up vector : perpendicular to both direction and right
 		up = glm::cross( right, direction );
@@ -112,6 +113,13 @@ void FirstPersonCamera::Update(float dt)
 		// Strafe left
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A ) == GLFW_PRESS){
 			mPosition -= right * dt * speed;
+		}
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_SPACE ) == GLFW_PRESS){
+			mPosition += glm::vec3(0,1,0) * dt * speed;
+		}
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS){
+		
+			mPosition -= glm::vec3(0,1,0) * dt * speed;
 		}
 	}
 	look = mPosition + direction;
