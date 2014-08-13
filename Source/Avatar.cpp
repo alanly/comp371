@@ -3,8 +3,19 @@
 
 Avatar::Avatar(glm::vec3 position)
 {
+
+	rotaterX= new CubeModel(glm::vec3(0,0,0));
+	rotaterX->SetPosition(position);
+	models.push_back(rotaterX);
+
+	rotaterY = new CubeModel(glm::vec3(0,0,0));
+	rotaterY->SetPosition(glm::vec3(0,0,0));
+	rotaterY->SetParent(rotaterX);
+	models.push_back(rotaterY);
+
+
 	head = new CubeModel(glm::vec3(0.1f,0.1f,0.1f));
-	head->SetPosition(position);
+	head->SetPosition(glm::vec3(0,0,0));
 	models.push_back(head);
 
 	CubeModel* body = new CubeModel(glm::vec3(0.5f,0.5f,0.1f));
@@ -41,8 +52,8 @@ Avatar::~Avatar(void)
 
 void Avatar::Update(float dt)
 {
-	models[0]->SetPosition(mPosition);
-	models[0]->SetRotation(mRotationAxis,mRotationAngleInDegrees);
+	head->SetPosition(mPosition);
+	head->SetRotation(mRotationAxis,mRotationAngleInDegrees);
 	//mRotationAngleInDegrees += 90 * dt;
 }
 

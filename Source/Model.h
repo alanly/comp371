@@ -39,7 +39,9 @@ public:
 	glm::vec3 GetScaling() const		{ return mScaling; }
 	glm::vec3 GetRotationAxis() const	{ return mRotationAxis; }
 	float     GetRotationAngle() const	{ return mRotationAngleInDegrees; }
-
+	
+	Model* rotaterX;
+	Model* rotaterY;
 protected:
 	std::string mName;
 	glm::vec3 mPosition;
