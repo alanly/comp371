@@ -1,0 +1,19 @@
+#version 330 core
+
+layout(location = 0) in vec3 position;
+layout(location = 2) in vec3 color;
+layout(location = 3) in vec2 texcoord;
+
+out vec3 Color;
+out vec2 Texcoord;
+
+uniform mat4 ViewProjectonTransform;
+uniform mat4 WorldTransform;
+
+void main()
+{
+	Color = color;
+	Texcoord = texcoord;
+	gl_Position = ViewProjectonTransform * WorldTransform *vec4(position, 1.0);
+}
+

@@ -18,6 +18,7 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{05095d5c-2fc5-4dfe-a464-e30c7f31bdb5}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
     <Filter Include="Source Files\Common">
       <UniqueIdentifier>{af2324f0-2ef4-40bc-bb43-f81984a45ae8}</UniqueIdentifier>
     </Filter>
@@ -26,6 +27,13 @@
     </Filter>
     <Filter Include="Source Files\Procedural Generation">
       <UniqueIdentifier>{95aabef6-1c87-4b2c-bc1f-58c95fe6a839}</UniqueIdentifier>
+=======
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{1749f2d9-5844-4089-813a-04e45e707773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Particles">
+      <UniqueIdentifier>{237ed539-4ef3-4827-a99a-be2cdd645e8e}</UniqueIdentifier>
+>>>>>>> origin/Image
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -38,16 +46,17 @@
     <None Include="..\Source\Shaders\BlueColor.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="..\Source\Shaders\TextVertexShader.vertexshader">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
+<<<<<<< HEAD
     <None Include="..\Source\Shaders\Billboard.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="..\Source\Shaders\Billboard.fragmentshader">
+=======
+    <None Include="..\Source\Shaders\Image.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Image.fragmentshader">
+>>>>>>> origin/Image
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
@@ -86,21 +95,6 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
 <<<<<<< HEAD
-    <ClCompile Include="..\Source\Common\TextureUtils.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Text2DModel.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Desktop\Generator.cpp">
-      <Filter>Source Files\Procedural Generation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Common\StringUtils.cpp">
-      <Filter>Source Files\Common</Filter>
-=======
     <ClCompile Include="..\Source\Portal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -118,7 +112,28 @@
     </ClCompile>
     <ClCompile Include="..\Source\Avatar.cpp">
       <Filter>Source Files\Model</Filter>
->>>>>>> portale
+    </ClCompile>
+    <ClCompile Include="..\Source\LSystemModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Generator.cpp">
+      <Filter>Source Files\Procedural Generation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SpiralModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\OGFirstPersonCamera.cpp">
+      <Filter>Source Files\Camera</Filter>
+=======
+    <ClCompile Include="..\Source\PlaneModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\UTFConvert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp">
+      <Filter>Source Files\Particles</Filter>
+>>>>>>> origin/Image
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,27 +168,6 @@
       <Filter>Source Files\Model</Filter>
     </ClInclude>
 <<<<<<< HEAD
-    <ClInclude Include="..\Source\Common\TextureUtils.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Text2DModel.h">
-      <Filter>Source Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Generator.h">
-      <Filter>Source Files\Procedural Generation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Common\ShaderUtils.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Common\StringUtils.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Assets\Holstein.DDS">
-      <Filter>Resource Files\Assets</Filter>
-    </Image>
-=======
     <ClInclude Include="..\Source\Portal.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -192,6 +186,42 @@
     <ClInclude Include="..\Source\Avatar.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
->>>>>>> portale
+    <ClInclude Include="..\Source\LSystemModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Generator.h">
+      <Filter>Source Files\Procedural Generation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\SpiralModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\OGFirstPersonCamera.h">
+      <Filter>Source Files\Camera</Filter>
+    </ClInclude>
+=======
+    <ClInclude Include="..\Source\PlaneModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\UTFConvert.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\ParticleSystem.h">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Source\Images\Scottish_Fold.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Source\Images\alphalogo_a4arial.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Source\Images\dealwithit.gif">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Source\Images\ohhellno.gif">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+>>>>>>> origin/Image
   </ItemGroup>
 </Project>

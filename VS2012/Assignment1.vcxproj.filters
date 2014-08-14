@@ -27,6 +27,12 @@
     <Filter Include="Source Files\Procedural Generation">
       <UniqueIdentifier>{95aabef6-1c87-4b2c-bc1f-58c95fe6a839}</UniqueIdentifier>
     </Filter>
+    
+     <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{1749f2d9-5844-4089-813a-04e45e707773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Particles">
+      <UniqueIdentifier>{237ed539-4ef3-4827-a99a-be2cdd645e8e}</UniqueIdentifier>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
@@ -42,6 +48,12 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="..\Source\Shaders\Billboard.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Image.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Image.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
@@ -85,7 +97,9 @@
     <ClCompile Include="..\Source\ArcModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\RectangleModel.cpp">
+     <ClCompile Include="..\Source\PlaneModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\ModelArray.cpp">
@@ -108,6 +122,12 @@
     </ClCompile>
     <ClCompile Include="..\Source\OGFirstPersonCamera.cpp">
       <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\UTFConvert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp">
+      <Filter>Source Files\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +170,9 @@
     <ClInclude Include="..\Source\RectangleModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
+        <ClInclude Include="..\Source\PlaneModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\ModelArray.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
@@ -162,14 +185,30 @@
     <ClInclude Include="..\Source\LSystemModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Generator.h">
       <Filter>Source Files\Procedural Generation</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\SpiralModel.h">
-      <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\OGFirstPersonCamera.h">
-      <Filter>Source Files\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\UTFConvert.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+     <ClInclude Include="..\Source\Particles\ParticleSystem.h">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Source\Images\Scottish_Fold.jpg">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Source\Images\alphalogo_a4arial.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Source\Images\dealwithit.gif">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Source\Images\ohhellno.gif">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
