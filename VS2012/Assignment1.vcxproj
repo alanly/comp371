@@ -97,12 +97,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\BlueColor.fragmentshader" />
+    <None Include="..\Source\Shaders\Phong.fragmentshader" />
+    <None Include="..\Source\Shaders\Phong.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\DirectionalLight.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\Light.cpp" />
+    <ClCompile Include="..\Source\PointLight.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -115,7 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\DirectionalLight.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\Light.h" />
+    <ClInclude Include="..\Source\ParsingHelper.h" />
+    <ClInclude Include="..\Source\PointLight.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\EventManager.h" />
