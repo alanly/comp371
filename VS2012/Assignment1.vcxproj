@@ -58,7 +58,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\rapidjson\include;..\ThirdParty\zlib\include;C:\Users\Louis\Documents\comp371\Source\Common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,16 +101,15 @@
     <None Include="..\Source\Shaders\BlueColor.fragmentshader" />
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
-    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader" />
-    <None Include="..\Source\Shaders\TextVertexShader.vertexshader" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Desktop\Generator.cpp" />
+    <ClCompile Include="..\Source\ArcModel.cpp" />
+    <ClCompile Include="..\Source\Avatar.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
-    <ClCompile Include="..\Source\Common\ShaderUtils.cpp" />
-    <ClCompile Include="..\Source\Common\StringUtils.cpp" />
-    <ClCompile Include="..\Source\Common\TextureUtils.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\ModelArray.cpp" />
+    <ClCompile Include="..\Source\Portal.cpp" />
+    <ClCompile Include="..\Source\RectangleModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -119,16 +118,17 @@
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
-    <ClCompile Include="..\Source\Text2DModel.cpp" />
+    <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\ArcModel.h" />
+    <ClInclude Include="..\Source\Avatar.h" />
     <ClInclude Include="..\Source\Camera.h" />
-    <ClInclude Include="..\Source\Common\ShaderUtils.h" />
-    <ClInclude Include="..\Source\Common\StringUtils.h" />
-    <ClInclude Include="..\Source\Common\TextureUtils.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
-    <ClInclude Include="..\Source\Generator.h" />
+    <ClInclude Include="..\Source\ModelArray.h" />
+    <ClInclude Include="..\Source\Portal.h" />
+    <ClInclude Include="..\Source\RectangleModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\EventManager.h" />
@@ -136,11 +136,8 @@
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\ModelGroup.h" />
     <ClInclude Include="..\Source\Renderer.h" />
-    <ClInclude Include="..\Source\Text2DModel.h" />
+    <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\World.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Assets\Holstein.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

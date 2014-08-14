@@ -12,16 +12,16 @@
 #include "Model.h"
 #include "vector"
 
-class FirstPersonCamera : public Camera
+class FirstPersonCameraT : public Camera
 {
 public:
-	FirstPersonCamera(glm::vec3 position, Model* avatar);
-	virtual ~FirstPersonCamera();
+	FirstPersonCameraT(glm::vec3 position, Model* avatar);
+	virtual ~FirstPersonCameraT();
 
 	virtual void Update(float dt);
 
 	virtual glm::mat4 GetViewMatrix() const;
-	void FollowPath(std::vector<glm::vec3> points);
+	virtual void FollowPath(std::vector<glm::vec3> points);
 
 	virtual void displayVector(glm::vec3 v);
 private:
@@ -38,11 +38,9 @@ private:
 	float mouseSpeed;
 	std::vector<glm::vec3> path;
 	glm::vec3 direction;
-	glm::vec3 look;
 	glm::vec3 right;
 	glm::vec3 up;
 	glm::bvec3 lt;
-	float prevDistance;
 
 
 };

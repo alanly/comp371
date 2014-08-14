@@ -8,6 +8,7 @@ public:
 		     glm::vec4 color2,
 			 glm::vec3 position,
 			 glm::vec3 normal,
+			 glm::vec3 binormal,
 			 float radius1,
 			 float radius2,
 			 float arcAngle,

@@ -85,20 +85,23 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Common\TextureUtils.cpp">
-      <Filter>Source Files\Common</Filter>
+    <ClCompile Include="..\Source\Portal.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Text2DModel.cpp">
+    <ClCompile Include="..\Source\ArcModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Desktop\Generator.cpp">
-      <Filter>Source Files\Procedural Generation</Filter>
+    <ClCompile Include="..\Source\RectangleModel.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
-      <Filter>Source Files\Common</Filter>
+    <ClCompile Include="..\Source\ModelArray.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Common\StringUtils.cpp">
-      <Filter>Source Files\Common</Filter>
+    <ClCompile Include="..\Source\ThirdPersonCamera.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Avatar.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,25 +135,23 @@
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Common\TextureUtils.h">
-      <Filter>Source Files\Common</Filter>
+    <ClInclude Include="..\Source\Portal.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Text2DModel.h">
+    <ClInclude Include="..\Source\ArcModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Generator.h">
-      <Filter>Source Files\Procedural Generation</Filter>
+    <ClInclude Include="..\Source\RectangleModel.h">
+      <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Common\ShaderUtils.h">
-      <Filter>Source Files\Common</Filter>
+    <ClInclude Include="..\Source\ModelArray.h">
+      <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Common\StringUtils.h">
-      <Filter>Source Files\Common</Filter>
+    <ClInclude Include="..\Source\ThirdPersonCamera.h">
+      <Filter>Source Files\Camera</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Assets\Holstein.DDS">
-      <Filter>Resource Files\Assets</Filter>
-    </Image>
+    <ClInclude Include="..\Source\Avatar.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
