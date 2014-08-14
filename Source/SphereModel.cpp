@@ -170,23 +170,34 @@ SphereModel::SphereModel(glm::vec3 Origin, float radius, unsigned int nRings, un
 	}
 
 	int back = sphereMesh.size()-1;
-	for(int i=sphereMesh.size()-nSectors; i<sphereMesh.size()-1; i++) //loop for top fan
+	for(int i=sphereMesh.size()-nSectors -1; i<sphereMesh.size() - 1; i++) //loop for top fan
 	{
-		/*if(i==back)
-		{
-
-			finalLoop.push_back(&sphereMesh[i-1]);
-			finalLoop.push_back(&sphereMesh[back]);
-			finalLoop.push_back(&sphereMesh[i]);
 		
-		}*/
-
+			
 			//finalLoop.push_back(&sphereMesh[i]);
 			finalLoop.push_back(&sphereMesh[i]);
 			finalLoop.push_back(&sphereMesh[back]);
-			finalLoop.push_back(&sphereMesh[i+1]);
+
+			if (i < sphereMesh.size()-2)
+				finalLoop.push_back(&sphereMesh[i+1]);
+			else
+			{
+				finalLoop.push_back(&sphereMesh[sphereMesh.size()-nSectors - 1]);
+				//finalLoop.push_back(&sphereMesh[back]);
+
+	
+			}
+
 			//finalLoop.push_back(&sphereMesh[i+1]);
 
+			/*if(i==back-1)
+			{
+
+				//finalLoop.push_back(&sphereMesh[i]);
+				finalLoop.push_back(&sphereMesh[back]);
+				finalLoop.push_back(&sphereMesh[sphereMesh.size()-nSectors]);
+
+			}*/
 			
 			//finalLoop.push_back(&sphereMesh[i-nSectors]);
 				
