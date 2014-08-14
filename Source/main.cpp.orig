@@ -11,13 +11,16 @@
 #include "World.h"
 #include "EventManager.h"
 #include "CubeModel.h"
-#include "SphereModel.h"
+<<<<<<< HEAD
 #include "LSystemModel.h"
+#include "Text2DModel.h"
+=======
+#include "SphereModel.h"
 #include "RectangleModel.h"
 #include "ArcModel.h"
 #include "Portal.h"
-#include "Text2DModel.h"
-#include "SpiralModel.h"
+
+>>>>>>> portale
 
 int main(int argc, char*argv[])
 {
@@ -25,10 +28,24 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
+<<<<<<< HEAD
+
     std::string lsys  = getLSystemString();
-    //LSystemModel lsModel = new LSystemModel(lsys);
+    LSystemModel lsModel = new LSystemModel(lsys);
 
+    //world.addModel(lsysmodel);
 
+	// Add a cube model
+	CubeModel* cM = new CubeModel();
+	cM->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+	cM->SetScaling(glm::vec3(10.0f, 10.0f, 0.01f));
+	world.addModel(cM);
+
+	// Add our text.
+	Text2DModel* tM = new Text2DModel("Hello, world!", 48, 100, 100);
+	world.addModel(tM);
+=======
+	
 	std::vector<glm::vec3> path;
 
 	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
@@ -64,24 +81,47 @@ int main(int argc, char*argv[])
 
 	Portal* p = new Portal(path, 1.0f, 8);
 
+	CubeModel* c = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
+	c->SetPosition(glm::vec3(-1.0f, -1.0f, -1.0f));
 
-	SpiralModel* spiral = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
-		     glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
-			 glm::vec3(0.0f,0.0f,0.0f), //Position
-			 glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
-			 glm::vec3(0.0f,0.0f,1.0f), //Binormal
-			 2.0f, //Radius 1
-			 4.0f, //Radius 2
-			 360.0f * 7.5f, //Arc Angle
-			 500,		//arbitrary # edges
-			 15.0f);	//arbitrary height
-
-	//world.addModel(p);// portal!
-	//world.addModel(c);
-
-	world.addModel(spiral);
+	RectangleModel* rm = new RectangleModel(glm::vec3(0.0f,0.0f,0.0f),
+											glm::vec3(1.0f,1.0f,1.0f), 
+											glm::vec3(1.0f,0.0f,0.0f),
+											2.0f, glm::vec3(1.0f,0.0f,0.0f));
 	
+	//world.addModel(c);
+	//world.addModel(rm);
+	/*
+	ArcModel* am = new ArcModel(glm::vec4(1.0f, 0.0f, 0.0f,0.5f),
+		glm::vec4(0.0f, 1.0f, 0.0f, 1.0f),
+		glm::vec3(0.0f, 0.0f, 0.0f),
+		1.5f,
+		2.0f,
+		90.0f,
+		20);
 
+	ArcModel* am2 = new ArcModel(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f),
+		glm::vec4(0.0f, 1.0f, 1.0f , 0.0f),
+		glm::vec3(5.0f, 0.0f, 0.0f),
+		0.0f,
+		2.0f,
+		360.0f,
+		30);
+
+	ArcModel* am3 = new ArcModel(glm::vec4(-3.0f, 0.0f, 0.0f, 0.8f),
+		glm::vec4(0.0f, 1.0f, 0.0f,0.8f),
+		glm::vec3(-5.0f, 0.0f, 0.0f),
+		1.0f,
+		2.0f,
+		270.0f,
+		20);`
+		world.addModel(am);
+	world.addModel(am2);
+	world.addModel(am3);*/
+	world.addModel(p);// portal!
+	//world.addModel(c);
+	
+>>>>>>> portale
 
 	// Main Loop
 	do

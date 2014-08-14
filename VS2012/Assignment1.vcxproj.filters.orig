@@ -38,6 +38,12 @@
     <None Include="..\Source\Shaders\BlueColor.fragmentshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\TextVertexShader.vertexshader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
     <None Include="..\Source\Shaders\Billboard.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
@@ -79,6 +85,22 @@
     <ClCompile Include="..\Source\SphereModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\Source\Common\TextureUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Text2DModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Desktop\Generator.cpp">
+      <Filter>Source Files\Procedural Generation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\ShaderUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\StringUtils.cpp">
+      <Filter>Source Files\Common</Filter>
+=======
     <ClCompile Include="..\Source\Portal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,18 +118,7 @@
     </ClCompile>
     <ClCompile Include="..\Source\Avatar.cpp">
       <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\LSystemModel.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Generator.cpp">
-      <Filter>Source Files\Procedural Generation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\SpiralModel.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\OGFirstPersonCamera.cpp">
-      <Filter>Source Files\Camera</Filter>
+>>>>>>> portale
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +152,28 @@
     <ClInclude Include="..\Source\SphereModel.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\Source\Common\TextureUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Text2DModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Generator.h">
+      <Filter>Source Files\Procedural Generation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Common\ShaderUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Common\StringUtils.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Holstein.DDS">
+      <Filter>Resource Files\Assets</Filter>
+    </Image>
+=======
     <ClInclude Include="..\Source\Portal.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -159,17 +192,6 @@
     <ClInclude Include="..\Source\Avatar.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\LSystemModel.h">
-      <Filter>Source Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Generator.h">
-      <Filter>Source Files\Procedural Generation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\SpiralModel.h">
-      <Filter>Source Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\OGFirstPersonCamera.h">
-      <Filter>Source Files\Camera</Filter>
-    </ClInclude>
+>>>>>>> portale
   </ItemGroup>
 </Project>

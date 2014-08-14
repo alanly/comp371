@@ -13,16 +13,16 @@ using namespace glm;
 LSystemModel::LSystemModel(std::string lSystemInput)
 {
 	float angle;// = arcAngle / numberOfEdges;
-	nEdges = numberOfEdges;
+	//nEdges = numberOfEdges;
 	//glm::vec3 normal = glm::vec3(1.0f,0.0f,0.0f);
 	glm::vec3 binormal = glm::vec3(0.0f,1.0f,0.0f);
 
 	std::vector<Vertex> mesh;
-	for (int k = 0; k <= numberOfEdges; k++){
-		angle = (radians(arcAngle) *k/ numberOfEdges) ;
-		mesh.push_back(Vertex(position + (normal * cos(angle) + binormal * sin(angle)) * radius1, glm::vec3(0.0f, 1.0f, 0.0f), color1));
-		mesh.push_back(Vertex(position + (normal * cos(angle) + binormal * sin(angle)) * radius2, glm::vec3(0.0f, 1.0f, 0.0f), color2));
-	}
+	//for (int k = 0; k <= numberOfEdges; k++){
+		//angle = (radians(arcAngle) *k/ numberOfEdges) ;
+		//mesh.push_back(Vertex(position + (normal * cos(angle) + binormal * sin(angle)) * radius1, glm::vec3(0.0f, 1.0f, 0.0f), color1));
+		//mesh.push_back(Vertex(position + (normal * cos(angle) + binormal * sin(angle)) * radius2, glm::vec3(0.0f, 1.0f, 0.0f), color2));
+	//}
 
 	const int size = mesh.size();
 	Vertex * vertexBuffer = new Vertex[size];

@@ -189,3 +189,6 @@ static int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in)
 
 }   
 
+std::string getLSystemString(){
+	return("aba");
+}

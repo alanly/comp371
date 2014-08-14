@@ -12,6 +12,7 @@
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
 #include "FirstPersonCameraT.h"
+#include "OGFirstPersonCamera.h"
 
 #include "CubeModel.h"
 #include "ModelGroup.h"
@@ -24,20 +25,22 @@ using namespace glm;
 
 World::World()
 {
-	Avatar * avatar = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
-	addModel(avatar);
+	//Avatar * avatar = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
+	CubeModel * cubeycube = new CubeModel();
+	//addModel(cubeycube);
 
-	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),avatar);
+	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),cubeycube);
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
-	mCamera.push_back(myt);
-	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),avatar ) );
+	mCamera.push_back( new OGFirstPersonCamera(vec3(0.5f, 0.5f, 5.0f)));
+	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),cubeycube ) );
 
 	std::vector<glm::vec3> path;
 
 
 	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
 	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
+	/*
 	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
 	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
 	path.push_back(glm::vec3(15.0f,3.0f,2.0f));
@@ -64,6 +67,7 @@ World::World()
 	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
+	*/
 
 	myt->FollowPath(path);
 

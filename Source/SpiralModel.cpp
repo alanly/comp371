@@ -1,3 +1,7 @@
+#pragma once
+
+#include "SpiralModel.h"
+#include "RectangleModel.h"
 #include "ArcModel.h"
 #include "Renderer.h"
 
@@ -5,31 +9,61 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <vector>
+#include <math.h>
 
 using namespace glm;
 
-#define PI (3.141592653589793)
-
-ArcModel::ArcModel(glm::vec4 color1,
-	glm::vec4 color2,
-	glm::vec3 position,
-	glm::vec3 normal,
-	glm::vec3 binormal,
-	float radius1,
-	float radius2,
-	float arcAngle,
-	int numberOfEdges)
+SpiralModel::SpiralModel(glm::vec4 color1,
+		     glm::vec4 color2,
+			 glm::vec3 position,
+			 glm::vec3 upVector,
+			 glm::vec3 binormal,
+			 float radius1,
+			 float radius2,
+			 float arcAngle,
+			 int numberOfEdges,
+			 float height)
 {
 	float angle;// = arcAngle / numberOfEdges;
 	nEdges = numberOfEdges;
-	//glm::vec3 normal = glm::vec3(1.0f,0.0f,0.0f);
-	//glm::vec3 binormal = glm::vec3(0.0f,1.0f,0.0f);
-
+	
+	float heightIncrement = (float)height/numberOfEdges; // yo this is the height
+	glm::vec3 yComponent;
 	std::vector<Vertex> mesh;
+	float bridgeLength = 2.0f; // ARBITRARY YAY
+	float bridgeWidth = 1.0f; // bridge is pencil dick
 	for (int k = 0; k <= numberOfEdges; k++){
 		angle = (radians(arcAngle) *k/ numberOfEdges) ;
-		mesh.push_back(Vertex(position + (normal * cos(angle) + binormal * sin(angle)) * radius1, glm::vec3(0.0f, 1.0f, 0.0f), color1));
-		mesh.push_back(Vertex(position + (normal * cos(angle) + binormal * sin(angle)) * radius2, glm::vec3(0.0f, 1.0f, 0.0f), color2));
+		yComponent = glm::vec3(0.f,heightIncrement*k,0.f);
+		Vertex innerPoint(position + (upVector * cos(angle) + binormal * sin(angle)) * radius1 + yComponent, glm::vec3(0.0f, 1.0f, 0.0f), color1);
+		mesh.push_back(innerPoint);
+		Vertex outerPoint(position + (upVector * cos(angle) + binormal * sin(angle)) * radius2 + yComponent, glm::vec3(0.0f, 1.0f, 0.0f), color2); 
+		mesh.push_back(outerPoint);
+
+		//We will assume always having 25 stories, and as such, more than 25 edges to our spiral (25 reddit/stories per page)
+		if(0==k%(numberOfEdges/25)){//ex. if numb. edges ==75, every 3 edges should have a bridge expanding out
+			//RectangleModel * r = new RectangleModel()//this goes from the outer radius of the point we just made, along the (i think) binormal to a range of wtv length you want the bridge to be.
+													//If that doesnt work, try the normal.
+			//rectangle bridges and any other decals we add can be put into a vector of decals that on the spiral classes' draw function iterates through the vector calling their respective draw()
+		//At the end of the bridge, we'll construct an image from the CURL thing.
+		glm::vec3 p1 = outerPoint.position;
+		glm::vec3 bridgeDirection = outerPoint.position - innerPoint.position;
+		glm::vec3 p2 = p1 + (bridgeDirection * bridgeLength);
+
+		m_vDoodads.push_back(new RectangleModel(p1, p2, glm::vec3(0.0f,1.0f,0.0f), bridgeWidth,glm::vec3(0.0f,1.0f,0.0f)));
+
+		//Portal entrance placeholder
+		m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
+
+
+		}
+
+		//Make a bridge
+
+		
+
+
+
 	}
 
 	const int size = mesh.size();
@@ -47,12 +81,11 @@ ArcModel::ArcModel(glm::vec4 color1,
 	glBufferData(GL_ARRAY_BUFFER, sizeof(mesh[0])*mesh.size(), vertexBuffer, GL_STATIC_DRAW);
 }
 
-
-ArcModel::~ArcModel()
+SpiralModel::~SpiralModel(void)
 {
 }
 
-void ArcModel::Update(float dt)
+void SpiralModel::Update(float dt)
 {
 	// If you are curious, un-comment this line to have spinning cubes!
 	// That will only work if your world transform is correct...
@@ -61,7 +94,7 @@ void ArcModel::Update(float dt)
 	//mRotationAngleInDegrees += 5.0f*dt;
 }
 
-void ArcModel::Draw()
+void SpiralModel::Draw()
 {
 	// Draw the Vertex Buffer
 	// Note this draws a unit Cube
@@ -111,4 +144,11 @@ void ArcModel::Draw()
 	glDisableVertexAttribArray(2);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(0);
+
+	for(int i = 0; i<m_vDoodads.size(); i++)
+	{
+		m_vDoodads[i]->Draw();
+	}
 }
+
+
