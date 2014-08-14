@@ -5,11 +5,10 @@
 //
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
-
 /**
  * @author Alan Ly (multiple scene-lighting, per-model shaders)
+ * Written by Thomas Rahn, Tim Smith 
  */
-
 #pragma once
 
 #include <vector>

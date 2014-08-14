@@ -44,18 +44,12 @@ void Model::Draw()
 glm::mat4 Model::GetWorldMatrix() const
 {
 	glm::mat4 worldMatrix(1.0f);
+	worldMatrix = glm::translate(worldMatrix, mPosition);
+	worldMatrix = glm::rotate(worldMatrix,mRotationAngleInDegrees, mRotationAxis);
+	worldMatrix = glm::scale(worldMatrix, mScaling);
 
-	if (mParent!=NULL) 
-	{
-		worldMatrix = glm::translate(worldMatrix, mPosition+(mParent->mPosition));
-		worldMatrix = glm::rotate(worldMatrix,mRotationAngleInDegrees+(mParent->mRotationAngleInDegrees), mRotationAxis+(mParent->mRotationAxis));
-		worldMatrix = glm::scale(worldMatrix, mScaling*(mParent->mScaling));
-	}
-	else
-	{
-		worldMatrix = glm::translate(worldMatrix, mPosition);
-		worldMatrix = glm::rotate(worldMatrix,mRotationAngleInDegrees, mRotationAxis);
-		worldMatrix = glm::scale(worldMatrix, mScaling);
+	if(mParent!=NULL){
+		worldMatrix = mParent->GetWorldMatrix()*worldMatrix;
 	}
 
 	return worldMatrix;

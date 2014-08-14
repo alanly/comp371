@@ -30,6 +30,7 @@ public:
 
 	virtual glm::mat4 GetWorldMatrix() const;
 
+	void SetYAxis(glm::vec3 yAxis);
 	void SetPosition(glm::vec3 position);
 	void SetScaling(glm::vec3 scaling);
 	void SetRotation(glm::vec3 axis, float angleDegrees);
@@ -41,7 +42,9 @@ public:
 	glm::vec3    GetRotationAxis()    const	{ return mRotationAxis; }
 	float        GetRotationAngle()   const	{ return mRotationAngleInDegrees; }
 	unsigned int GetShaderProgramID() const { return mShaderProgramID; }
-
+	
+	Model* rotaterX;
+	Model* rotaterY;
 	// Expressed as (ka, kd, ks, n)
 	glm::vec4 GetMaterialCoefficients() const { return mMaterialCoefficients; }
 
@@ -55,5 +58,4 @@ protected:
 	Model*	     mParent;
 	std::string  mName;
 	unsigned int mShaderProgramID;
-
 };

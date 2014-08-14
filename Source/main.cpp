@@ -5,7 +5,6 @@
 //
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
-
 #include "Renderer.h"
 #include "World.h"
 #include "EventManager.h"
@@ -27,10 +26,6 @@ int main(int argc, char*argv[])
 
 	PointLight* light2 = new PointLight(glm::vec3(5.f, -10.f, 0.f));
 	world.addLight(light2);
-
-	// Create and add our models to the world
-	CubeModel* cube = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(cube);
 
 	// Main Loop
 	do

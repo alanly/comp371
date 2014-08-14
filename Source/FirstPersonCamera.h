@@ -5,41 +5,42 @@
 //
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
-
+//Written by Thomas Rahn
 #pragma once
 
 #include "Camera.h"
+#include "Model.h"
+#include "vector"
 
 class FirstPersonCamera : public Camera
 {
 public:
-	FirstPersonCamera(glm::vec3 position);
+	FirstPersonCamera(glm::vec3 position, Model* avatar);
 	virtual ~FirstPersonCamera();
 
 	virtual void Update(float dt);
 
 	virtual glm::mat4 GetViewMatrix() const;
+	void FollowPath(std::vector<glm::vec3> points);
 
-
-
+	virtual void displayVector(glm::vec3 v);
 private:
-	// @TODO 3 - Add every parameter you need for a first person camera
-	//           including the speed of the camera
-
+	bool followPath;
+	Model* avatar;
 	glm::vec3 mPosition;	
 	float horizontalAngle;
-	// vertical angle : 0, look at the horizon
 	float verticalAngle;
-	// Initial Field of View
-	float initialFoV;
- 
-	float speed; // 3 units / second
+	float distanceToTravel;
+	float totalDistance;
+	int increment;
+	float speed; 
 	float mouseSpeed;
-
+	std::vector<glm::vec3> path;
 	glm::vec3 direction;
+	glm::vec3 look;
 	glm::vec3 right;
 	glm::vec3 up;
-
+	float prevDistance;
 
 
 };
