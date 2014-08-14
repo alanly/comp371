@@ -31,7 +31,7 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	verticalAngle = 0.0f;
  
 	speed = 1.0f; // 3 units / second
-	mouseSpeed = 0.1f;
+	mouseSpeed = 0.05f;
 	mPosition = position;
 	prevDistance = -1;
 }
@@ -79,8 +79,11 @@ void FirstPersonCamera::Update(float dt)
 		xpos = -1 * EventManager::GetMouseMotionX();
 		ypos = -1 * EventManager::GetMouseMotionY();
 
-		horizontalAngle += mouseSpeed * dt * xpos;
-		verticalAngle   += mouseSpeed * dt * ypos;
+		float beta = mouseSpeed * dt * xpos;
+		float alpha = mouseSpeed * dt * ypos;
+
+		horizontalAngle += beta;
+		verticalAngle   += alpha;
 
 		direction = glm::vec3(
 			cos(verticalAngle) * sin(horizontalAngle),
@@ -93,9 +96,7 @@ void FirstPersonCamera::Update(float dt)
 			0,
 			cos(horizontalAngle - 3.14f/2.0f)
 		);
-		avatar->SetRotation(glm::vec3(1,0,0), verticalAngle);
-		avatar->SetRotation(glm::vec3(0,1,0), horizontalAngle);
-		
+
 		// Up vector : perpendicular to both direction and right
 		up = glm::cross( right, direction );
 		// Move forward

@@ -13,7 +13,12 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw();
 private:
+	float leftAngle;
+	float rightAngle;
+	int flipper;
 	std::vector<Model*> models; 
 	Model* head;
+	Model* rLeg;
+	Model* lLeg;
 };
 

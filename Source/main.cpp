@@ -5,7 +5,6 @@
 //
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
-
 #include "Renderer.h"
 #include "World.h"
 #include "EventManager.h"

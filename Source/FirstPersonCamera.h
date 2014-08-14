@@ -29,7 +29,6 @@ private:
 	Model* avatar;
 	glm::vec3 mPosition;	
 	float horizontalAngle;
-	// vertical angle : 0, look at the horizon
 	float verticalAngle;
 	float distanceToTravel;
 	float totalDistance;
@@ -41,21 +40,7 @@ private:
 	glm::vec3 look;
 	glm::vec3 right;
 	glm::vec3 up;
-	glm::bvec3 lt;
 	float prevDistance;
 
 
 };
-/*
-for(int i = 0; i<number of points -1; i++)
-	distanceToTravel = length(vec[i]-vec[i+1]
-	distanceForThisIT = normalize(distanceToTravel)*speed
-
-	for(int j = 0; j<distanceToTravel; j+distanceForThisIT)
-		camera.position+=distanceForThisIT;
-
-		if( more than turnRange through this vector
-			OR
-		    less than turnRange through this vector) //first segment or last segment of a path
-			increment angle()
-			*/

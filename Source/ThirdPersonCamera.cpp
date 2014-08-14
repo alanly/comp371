@@ -1,3 +1,7 @@
+//Written by Thomas Rahn
+
+
+
 #include "ThirdPersonCamera.h"
 
 #include "EventManager.h"
