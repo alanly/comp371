@@ -2,6 +2,7 @@
 
 #include "SpiralModel.h"
 #include "RectangleModel.h"
+#include "PlaneModel.h"
 #include "ArcModel.h"
 #include "Renderer.h"
 
@@ -53,7 +54,16 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 		m_vDoodads.push_back(new RectangleModel(p1, p2, glm::vec3(0.0f,1.0f,0.0f), bridgeWidth,glm::vec3(0.0f,1.0f,0.0f)));
 
 		//Portal entrance placeholder
-		m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
+		//m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
+
+		PlaneModel* pPlaneModel = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+		pPlaneModel->SetPosition(p2);
+		glm::vec3 oldNormal(0.0f,0.0f,1.0f);
+		glm::vec3 newNormal = normalize(-bridgeDirection);
+		glm::vec3 rotationAxis = cross(oldNormal,newNormal);
+		float rotationAngle = acos(dot(oldNormal, newNormal) / (length(oldNormal) * length(newNormal)));
+		pPlaneModel->SetRotation(rotationAxis,degrees(rotationAngle));
+		m_vDoodads.push_back(pPlaneModel);
 
 
 		}

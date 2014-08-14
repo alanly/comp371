@@ -60,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdParty\SOIL\src;../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdParty\SOIL\src;../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include;..\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,7 +120,7 @@
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\SpiralModel.cpp" />
     <ClCompile Include="..\Source\PlaneModel.cpp" />
-        <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
+    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
     <ClCompile Include="..\Source\main.cpp" />

@@ -64,7 +64,8 @@ void Renderer::Initialize()
     sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader" ));
 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
-	sCurrentShader = 0;
+	//sCurrentShader = 0;
+	sCurrentShader = 1;
 
 }
 

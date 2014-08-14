@@ -84,8 +84,8 @@ int main(int argc, char*argv[])
 
 	world.addModel(spiral);
 	
-	PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(p);
+	PlaneModel* pPlaneModel = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+	world.addModel(pPlaneModel);
 
 
    //====== Load texture
