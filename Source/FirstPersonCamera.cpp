@@ -10,14 +10,11 @@
 #include "EventManager.h"
 #include <GLM/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
 #include <glm/common.hpp>
 #include <GLM/glm.hpp>
 #include <GLFW/glfw3.h>
-
 #include <algorithm>
 #include <iostream>
-
 #include <windows.h>
 
 using namespace glm;
@@ -25,11 +22,9 @@ using namespace glm;
 FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPosition(position), avatar(avatar)
 {
 	distanceToTravel = 0;
-	totalDistance = 0;
 	increment = 1;
 	horizontalAngle = 3.14f;
 	verticalAngle = 0.0f;
- 
 	speed = 1.0f; // 3 units / second
 	mouseSpeed = 0.05f;
 	mPosition = position;
@@ -119,7 +114,6 @@ void FirstPersonCamera::Update(float dt)
 			mPosition += glm::vec3(0,1,0) * dt * speed;
 		}
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS){
-		
 			mPosition -= glm::vec3(0,1,0) * dt * speed;
 		}
 	}

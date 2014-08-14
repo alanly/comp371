@@ -3,6 +3,8 @@
 #include "Avatar.h"
 #include "CubeModel.h"
 #include <iostream>
+
+
 Avatar::Avatar(glm::vec3 position)
 {
 	leftAngle = 0.0f;

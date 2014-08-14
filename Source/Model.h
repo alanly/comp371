@@ -28,13 +28,11 @@ public:
 
 	virtual glm::mat4 GetWorldMatrix() const;
 
-	void SetYAxis(glm::vec3 yAxis);
 	void SetPosition(glm::vec3 position);
 	void SetScaling(glm::vec3 scaling);
 	void SetRotation(glm::vec3 axis, float angleDegrees);
 	void SetParent(Model* par);
 
-	glm::vec3 GetYAxis() const		{ return mYAxis; }
 	glm::vec3 GetPosition() const		{ return mPosition; }
 	glm::vec3 GetScaling() const		{ return mScaling; }
 	glm::vec3 GetRotationAxis() const	{ return mRotationAxis; }
@@ -48,6 +46,5 @@ protected:
 	glm::vec3 mScaling;
 	glm::vec3 mRotationAxis;
 	float     mRotationAngleInDegrees;
-	glm::vec3 mYAxis;
 	Model*	  mParent;
 };

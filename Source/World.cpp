@@ -20,6 +20,7 @@
 #include "EventManager.h"
 #include "ThirdPersonCamera.h"
 #include "Portal.h"
+#include "SphereModel.h"
 using namespace std;
 using namespace glm;
 

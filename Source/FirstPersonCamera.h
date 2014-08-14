@@ -31,7 +31,6 @@ private:
 	float horizontalAngle;
 	float verticalAngle;
 	float distanceToTravel;
-	float totalDistance;
 	int increment;
 	float speed; 
 	float mouseSpeed;
@@ -41,6 +40,4 @@ private:
 	glm::vec3 right;
 	glm::vec3 up;
 	float prevDistance;
-
-
 };
