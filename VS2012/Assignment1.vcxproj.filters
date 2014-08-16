@@ -81,7 +81,7 @@
     </ClCompile>
     <ClCompile Include="..\Source\PointLight.cpp">
       <Filter>Source Files\Light</Filter>
-      </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Source\Portal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -98,6 +98,9 @@
       <Filter>Source Files\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Avatar.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Collidable.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -160,6 +163,9 @@
       <Filter>Source Files\Camera</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Avatar.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Collidable.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
   </ItemGroup>

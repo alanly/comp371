@@ -80,3 +80,21 @@ void Model::SetMaterialCoefficients(glm::vec4 coefficients)
 {
 	mMaterialCoefficients = coefficients;
 }
+
+bool Model::collides(Model* other){
+	glm::vec3 thisMax = mPosition+mCollisionBoxSize;
+	glm::vec3 thisMin = mPosition-mCollisionBoxSize;
+	glm::vec3 otherMax = other->mPosition+other->mCollisionBoxSize;
+	glm::vec3 otherMin = other->mPosition-other->mCollisionBoxSize;
+
+	return !(thisMax.x < otherMin.x ||
+		   thisMax.y < otherMin.y ||
+		   thisMax.z < otherMin.z ||
+		   thisMin.x > otherMax.x ||
+		   thisMin.y > otherMax.y ||
+		   thisMin.z > otherMax.z);
+}
+
+void Model::setCollisionBoxSize(glm::vec3 dimensions){
+	mCollisionBoxSize = dimensions/2.0f;
+}

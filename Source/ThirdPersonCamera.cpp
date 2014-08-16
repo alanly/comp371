@@ -1,5 +1,5 @@
 //Written by Thomas Rahn
-
+//Modified by Tim Smith (mouse control)
 
 
 #include "ThirdPersonCamera.h"
@@ -19,7 +19,7 @@ ThirdPersonCamera::ThirdPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	verticalAngle = 0.0f;
  
 	speed = 3.0f; // 3 units / second
-	mouseSpeed = 1.0f;
+	mouseSpeed = 5.0f;
 	mPosition = position;
 	mLookAt = glm::vec3(0,0,0);
 	up = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -43,18 +43,20 @@ void ThirdPersonCamera::Update(float dt){
 
 	horizontalAngle += beta;
 	verticalAngle   += alpha;
+	verticalAngle = verticalAngle - (int)verticalAngle%360;
 
 	glm::vec3 avatarPos = avatar->GetPosition();
-
-	mPosition = performTransformation(mPosition, beta, glm::vec3(0,1,0));
-	mPosition = performTransformation(mPosition, alpha, glm::vec3(1,0,0));
 		
 
-	avatar->SetRotation(glm::vec3(1,0,0), verticalAngle);
+	//avatar->SetRotation(glm::vec3(1,0,0), verticalAngle); //does nothing because it is a set before another set operation
 	avatar->SetRotation(glm::vec3(0,1,0), horizontalAngle);
 
 	glm::vec3 forward = (avatar->GetPosition() - mPosition);
 	glm::vec3 right = glm::vec3(glm::rotate(glm::mat4(1.0f),-90.0f,glm::vec3(0,1,0)) * glm::vec4(forward,0));
+
+
+	mPosition = performTransformation(mPosition, beta, glm::vec3(0,1,0));
+	mPosition = performTransformation(mPosition, alpha, right);
 	
 	// Move forward
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W ) == GLFW_PRESS){

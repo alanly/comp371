@@ -8,6 +8,7 @@
 
 /**
  * @author Alan Ly (per-model shaders, material coefficients)
+ * @author Tim Smith (collisions)
  */
 
 #pragma once
@@ -43,6 +44,10 @@ public:
 	float        GetRotationAngle()   const	{ return mRotationAngleInDegrees; }
 	unsigned int GetShaderProgramID() const { return mShaderProgramID; }
 	
+	//collisions
+	bool collides(Model* other);
+	void setCollisionBoxSize(glm::vec3 dimensions);//absolute width/height/depth of the box!
+
 	Model* rotaterX;
 	Model* rotaterY;
 	// Expressed as (ka, kd, ks, n)
@@ -55,6 +60,7 @@ protected:
 	glm::vec3    mScaling;
 	glm::vec3    mRotationAxis;
 	glm::vec4    mMaterialCoefficients;
+	glm::vec3    mCollisionBoxSize;
 	Model*	     mParent;
 	std::string  mName;
 	unsigned int mShaderProgramID;

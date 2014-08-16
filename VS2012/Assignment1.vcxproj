@@ -106,6 +106,7 @@
     <ClCompile Include="..\Source\ArcModel.cpp" />
     <ClCompile Include="..\Source\Avatar.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\Collidable.cpp" />
     <ClCompile Include="..\Source\DirectionalLight.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
     <ClCompile Include="..\Source\Light.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="..\Source\ArcModel.h" />
     <ClInclude Include="..\Source\Avatar.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\Collidable.h" />
     <ClInclude Include="..\Source\DirectionalLight.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
     <ClInclude Include="..\Source\Light.h" />

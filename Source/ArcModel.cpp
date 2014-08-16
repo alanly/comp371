@@ -1,3 +1,5 @@
+//Author: Tim Smith
+
 #include "ArcModel.h"
 #include "Renderer.h"
 
