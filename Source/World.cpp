@@ -17,6 +17,7 @@
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
 #include "FirstPersonCameraT.h"
+#include "PortalEntrance.h"
 
 #include "CubeModel.h"
 #include "ModelGroup.h"
@@ -64,10 +65,17 @@ World::World()
 	path.push_back(glm::vec3(70.0f,0.0f,1.0f));
 
 	Portal* p = new Portal(path, 1.0f, 12);
-	addModel(p);
+//	addModel(p);
 	myt->FollowPath(path);
 
-	mCurrentCamera = 1;
+	mCurrentCamera = 2;
+
+
+	///portal thing
+	PortalEntrance * PEntr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
+	addModel(PEntr);
+
+
 }
 
 World::~World()

@@ -100,7 +100,7 @@
     <ClCompile Include="..\Source\Avatar.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Collidable.cpp">
+    <ClCompile Include="..\Source\PortalEntrance.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -165,7 +165,7 @@
     <ClInclude Include="..\Source\Avatar.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Collidable.h">
+    <ClInclude Include="..\Source\PortalEntrance.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
