@@ -222,12 +222,11 @@ bool Renderer::LoadOBJ(	const char * path,
 		getchar();
 		return false;
 	}
-
 	while( 1 ){
 
 		char lineHeader[128];
 		// read the first word of the line
-		int res = fscanf_s(file, "%s", lineHeader);
+		int res = fscanf_s(file, "%s",lineHeader, sizeof(lineHeader));
 		if (res == EOF)
 			break; // EOF = End Of File. Quit the loop.
 

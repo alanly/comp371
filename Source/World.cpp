@@ -17,7 +17,7 @@
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
 #include "FirstPersonCameraT.h"
-
+#include "BlenderModel.h"
 #include "CubeModel.h"
 #include "ModelGroup.h"
 
@@ -79,6 +79,12 @@ World::World()
 	myt->FollowPath(path);
 
 	mCurrentCamera = 1;
+
+	BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
+	blender->SetPosition(glm::vec3(1,1,1));
+	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
+	addModel(blender);
+
 }
 
 World::~World()

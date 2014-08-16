@@ -105,6 +105,7 @@
   <ItemGroup>
     <ClCompile Include="..\Source\ArcModel.cpp" />
     <ClCompile Include="..\Source\Avatar.cpp" />
+    <ClCompile Include="..\Source\BlenderModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\DirectionalLight.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
@@ -121,12 +122,14 @@
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
+    <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\ArcModel.h" />
     <ClInclude Include="..\Source\Avatar.h" />
+    <ClInclude Include="..\Source\BlenderModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\DirectionalLight.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
@@ -143,6 +146,7 @@
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\ModelGroup.h" />
     <ClInclude Include="..\Source\Renderer.h" />
+    <ClInclude Include="..\Source\Texture.h" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>

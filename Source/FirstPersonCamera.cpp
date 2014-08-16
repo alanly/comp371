@@ -44,6 +44,15 @@ void FirstPersonCamera::Update(float dt)
 {
 	// Prevent from having the camera move only when the cursor is within the windows
 	EventManager::DisableMouseCursor();
+
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_T ) == GLFW_PRESS){
+		speed += 1;
+	}
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_Y ) == GLFW_PRESS){
+		if(speed > 1)
+			speed -= 1;
+	}
+
 	if(followPath) {
 		mPosition += (direction-mPosition) * dt * speed;
 		distanceToTravel = length(path[increment] - mPosition);
@@ -73,7 +82,7 @@ void FirstPersonCamera::Update(float dt)
 		look = direction;
 		prevDistance = distanceToTravel;
 	}else {
-		speed = 3.0f;
+		//speed = 3.0f;
 		// Get mouse position
 		float xpos, ypos;
 		xpos = -1 * EventManager::GetMouseMotionX();

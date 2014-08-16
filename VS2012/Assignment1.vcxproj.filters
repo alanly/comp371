@@ -81,7 +81,7 @@
     </ClCompile>
     <ClCompile Include="..\Source\PointLight.cpp">
       <Filter>Source Files\Light</Filter>
-      </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Source\Portal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,6 +99,12 @@
     </ClCompile>
     <ClCompile Include="..\Source\Avatar.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\BlenderModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Texture.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +167,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\Avatar.h">
       <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\BlenderModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Texture.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
