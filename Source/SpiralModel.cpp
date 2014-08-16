@@ -57,12 +57,13 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 		//m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
 
 		PlaneModel* pPlaneModel = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
-		pPlaneModel->SetPosition(p2);
+		pPlaneModel->SetPosition(p2+normalize(bridgeDirection)+glm::vec3(0.0f,1.0f,0.0f));
 		glm::vec3 oldNormal(0.0f,0.0f,1.0f);
 		glm::vec3 newNormal = normalize(-bridgeDirection);
 		glm::vec3 rotationAxis = cross(oldNormal,newNormal);
 		float rotationAngle = acos(dot(oldNormal, newNormal) / (length(oldNormal) * length(newNormal)));
 		pPlaneModel->SetRotation(rotationAxis,degrees(rotationAngle));
+		pPlaneModel->SetShader(Renderer::GetShaderProgramIDatIndex((SHADER_IMAGE)));
 		m_vDoodads.push_back(pPlaneModel);
 
 

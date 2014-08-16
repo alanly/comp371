@@ -20,6 +20,8 @@ struct GLFWwindow;
 
 enum ShaderType
 {
+	SHADER_PHONG,
+	SHADER_IMAGE,
 	SHADER_SOLID_COLOR,
 	SHADER_BLUE,
 	NUM_SHADERS
@@ -39,6 +41,7 @@ public:
 	static bool   LoadOBJ(const char * path, std::vector<glm::vec3> & out_vertices, std::vector<glm::vec2> & out_uvs, std::vector<glm::vec3> & out_normals );
 
 	static unsigned int GetShaderProgramID() { return sShaderProgramID[sCurrentShader]; }
+	static unsigned int GetShaderProgramIDatIndex(unsigned int index) { return sShaderProgramID[index]; }
 
 	static void SetShader(ShaderType type);
 

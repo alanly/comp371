@@ -82,10 +82,12 @@ World::World()
 
 	mCurrentCamera = 1;
 
+	/*
 	BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	blender->SetPosition(glm::vec3(1,1,1));
 	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
 	addModel(blender);
+	*/
 
 }
 
@@ -137,7 +139,7 @@ void World::Update(float dt)
 		}
 	}
 
-	// Spacebar to change the shader
+	// Num keys to change shader (don't do this, it doesn't work) -Louis
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0 ) == GLFW_PRESS)
 	{
 		Renderer::SetShader(SHADER_SOLID_COLOR);
@@ -145,6 +147,14 @@ void World::Update(float dt)
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9 ) == GLFW_PRESS)
 	{
 		Renderer::SetShader(SHADER_BLUE);
+	}
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_8 ) == GLFW_PRESS)
+	{
+		Renderer::SetShader(SHADER_PHONG);
+	}
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_7 ) == GLFW_PRESS)
+	{
+		Renderer::SetShader(SHADER_IMAGE);
 	}
 	
 	// Update current Camera

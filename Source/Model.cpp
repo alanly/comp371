@@ -80,3 +80,8 @@ void Model::SetMaterialCoefficients(glm::vec4 coefficients)
 {
 	mMaterialCoefficients = coefficients;
 }
+
+void Model::SetShader(unsigned int shaderID)
+{
+	mShaderProgramID = shaderID;
+}

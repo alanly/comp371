@@ -36,6 +36,7 @@ public:
 	void SetRotation(glm::vec3 axis, float angleDegrees);
 	void SetParent(Model* par);
 	void SetMaterialCoefficients(glm::vec4 coefficients);
+	void SetShader(unsigned int shaderID);
 
 	glm::vec3    GetPosition()        const	{ return mPosition; }
 	glm::vec3    GetScaling()         const	{ return mScaling; }

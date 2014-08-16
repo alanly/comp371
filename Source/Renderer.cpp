@@ -66,11 +66,12 @@ void Renderer::Initialize()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Loading Shaders
-    sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader" ));
-// 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
-// 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
 	sShaderProgramID.push_back(LoadShaders("../Source/Shaders/Phong.vertexshader", "../Source/Shaders/Phong.fragmentshader"));
-	sCurrentShader = 1;
+    sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader" ));	
+ 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
+ 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
+	
+	sCurrentShader = 0;
 }
 
 void Renderer::Shutdown()
