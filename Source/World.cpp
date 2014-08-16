@@ -44,7 +44,7 @@ World::World()
 
 	std::vector<glm::vec3> path;
 
-
+	/*
 	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
 	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
 	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
@@ -72,7 +72,15 @@ World::World()
 	path.push_back(glm::vec3(68.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));*/
+
+	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
+	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
+	path.push_back(glm::vec3(10.0f,3.0f,0.0f));
+	path.push_back(glm::vec3(15.0f,7.0f,1.0f));
+	path.push_back(glm::vec3(15.0f,12.0f,1.0f));
+	path.push_back(glm::vec3(15.0f,17.0f,1.0f));
+	path.push_back(glm::vec3(15.0f,22.0f,1.0f));
 
 	Portal* p = new Portal(path, 1.0f, 8);
 	addModel(p);
@@ -80,11 +88,11 @@ World::World()
 
 	mCurrentCamera = 1;
 
-	BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
+	/*BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	blender->SetPosition(glm::vec3(1,1,1));
 	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
 	addModel(blender);
-
+	*/
 }
 
 World::~World()
