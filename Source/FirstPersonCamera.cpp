@@ -5,7 +5,7 @@
 //
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
-
+//Written by Thomas Rahn
 #include "FirstPersonCamera.h"
 #include "EventManager.h"
 #include <GLM/glm.hpp>
@@ -31,7 +31,7 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	verticalAngle = 0.0f;
  
 	speed = 1.0f; // 3 units / second
-	mouseSpeed = 0.1f;
+	mouseSpeed = 0.05f;
 	mPosition = position;
 	prevDistance = -1;
 }
@@ -44,6 +44,15 @@ void FirstPersonCamera::Update(float dt)
 {
 	// Prevent from having the camera move only when the cursor is within the windows
 	EventManager::DisableMouseCursor();
+
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_T ) == GLFW_PRESS){
+		speed += 1;
+	}
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_Y ) == GLFW_PRESS){
+		if(speed > 1)
+			speed -= 1;
+	}
+
 	if(followPath) {
 		mPosition += (direction-mPosition) * dt * speed;
 		distanceToTravel = length(path[increment] - mPosition);
@@ -73,14 +82,17 @@ void FirstPersonCamera::Update(float dt)
 		look = direction;
 		prevDistance = distanceToTravel;
 	}else {
-		speed = 3.0f;
+		//speed = 3.0f;
 		// Get mouse position
 		float xpos, ypos;
 		xpos = -1 * EventManager::GetMouseMotionX();
 		ypos = -1 * EventManager::GetMouseMotionY();
 
-		horizontalAngle += mouseSpeed * dt * xpos;
-		verticalAngle   += mouseSpeed * dt * ypos;
+		float beta = mouseSpeed * dt * xpos;
+		float alpha = mouseSpeed * dt * ypos;
+
+		horizontalAngle += beta;
+		verticalAngle   += alpha;
 
 		direction = glm::vec3(
 			cos(verticalAngle) * sin(horizontalAngle),
@@ -94,7 +106,6 @@ void FirstPersonCamera::Update(float dt)
 			cos(horizontalAngle - 3.14f/2.0f)
 		);
 
-		
 		// Up vector : perpendicular to both direction and right
 		up = glm::cross( right, direction );
 		// Move forward
@@ -112,6 +123,13 @@ void FirstPersonCamera::Update(float dt)
 		// Strafe left
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A ) == GLFW_PRESS){
 			mPosition -= right * dt * speed;
+		}
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_SPACE ) == GLFW_PRESS){
+			mPosition += glm::vec3(0,1,0) * dt * speed;
+		}
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS){
+		
+			mPosition -= glm::vec3(0,1,0) * dt * speed;
 		}
 	}
 	look = mPosition + direction;

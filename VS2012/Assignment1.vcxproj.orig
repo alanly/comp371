@@ -60,11 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include;..\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>..\ThirdParty\SOIL\src;../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include</AdditionalIncludeDirectories>
->>>>>>> origin/Image
+      <AdditionalIncludeDirectories>..\ThirdParty\SOIL\src;../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include;..\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,29 +101,38 @@
     <None Include="..\Source\Shaders\Billboard.fragmentshader" />
     <None Include="..\Source\Shaders\Billboard.vertexshader" />
     <None Include="..\Source\Shaders\BlueColor.fragmentshader" />
+<<<<<<< HEAD
     <None Include="..\Source\Shaders\Image.fragmentshader" />
     <None Include="..\Source\Shaders\Image.vertexshader" />
+=======
+    <None Include="..\Source\Shaders\Phong.fragmentshader" />
+    <None Include="..\Source\Shaders\Phong.vertexshader" />
+>>>>>>> origin/blenderImport
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ArcModel.cpp" />
     <ClCompile Include="..\Source\Avatar.cpp" />
+    <ClCompile Include="..\Source\BlenderModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\DirectionalLight.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
 <<<<<<< HEAD
     <ClCompile Include="..\Source\Generator.cpp" />
     <ClCompile Include="..\Source\LSystemModel.cpp" />
+=======
+    <ClCompile Include="..\Source\Light.cpp" />
+    <ClCompile Include="..\Source\PointLight.cpp" />
+>>>>>>> origin/blenderImport
     <ClCompile Include="..\Source\ModelArray.cpp" />
     <ClCompile Include="..\Source\OGFirstPersonCamera.cpp" />
     <ClCompile Include="..\Source\Portal.cpp" />
     <ClCompile Include="..\Source\RectangleModel.cpp" />
-=======
-    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
-    <ClCompile Include="..\Source\PlaneModel.cpp" />
->>>>>>> origin/Image
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\SpiralModel.cpp" />
+    <ClCompile Include="..\Source\PlaneModel.cpp" />
+    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
@@ -135,30 +140,30 @@
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
-<<<<<<< HEAD
+    <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
-=======
-    <ClCompile Include="..\Source\UTFConvert.cpp" />
->>>>>>> origin/Image
     <ClCompile Include="..\Source\World.cpp" />
+    <ClCompile Include="..\Source\UTFConvert.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\ArcModel.h" />
     <ClInclude Include="..\Source\Avatar.h" />
+    <ClInclude Include="..\Source\BlenderModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\DirectionalLight.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
 <<<<<<< HEAD
     <ClInclude Include="..\Source\Generator.h" />
     <ClInclude Include="..\Source\LSystemModel.h" />
+=======
+    <ClInclude Include="..\Source\Light.h" />
+    <ClInclude Include="..\Source\ParsingHelper.h" />
+    <ClInclude Include="..\Source\PointLight.h" />
+>>>>>>> origin/blenderImport
     <ClInclude Include="..\Source\ModelArray.h" />
     <ClInclude Include="..\Source\OGFirstPersonCamera.h" />
     <ClInclude Include="..\Source\Portal.h" />
     <ClInclude Include="..\Source\RectangleModel.h" />
-=======
-    <ClInclude Include="..\Source\Particles\ParticleSystem.h" />
-    <ClInclude Include="..\Source\UTFConvert.h" />
-    <ClInclude Include="..\Source\PlaneModel.h" />
->>>>>>> origin/Image
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\SpiralModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
@@ -167,8 +172,12 @@
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\ModelGroup.h" />
     <ClInclude Include="..\Source\Renderer.h" />
+    <ClInclude Include="..\Source\Texture.h" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\World.h" />
+    <ClInclude Include="..\Source\Particles\ParticleSystem.h" />
+    <ClInclude Include="..\Source\UTFConvert.h" />
+    <ClInclude Include="..\Source\PlaneModel.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Source\Images\alphalogo_a4arial.png" />

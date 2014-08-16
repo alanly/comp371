@@ -6,6 +6,10 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 
+/**
+ * @author Alan Ly (multiple-lighting)
+ */
+
 #include "Renderer.h"
 
 
@@ -26,6 +30,7 @@ using namespace std;
 
 
 std::vector<unsigned int> Renderer::sShaderProgramID;
+
 unsigned int Renderer::sCurrentShader;
 
 GLFWwindow* Renderer::spWindow = NULL;
@@ -62,11 +67,10 @@ void Renderer::Initialize()
 
 	// Loading Shaders
     sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader" ));
-	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
-	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
-	//sCurrentShader = 0;
+// 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
+// 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
+	sShaderProgramID.push_back(LoadShaders("../Source/Shaders/Phong.vertexshader", "../Source/Shaders/Phong.fragmentshader"));
 	sCurrentShader = 1;
-
 }
 
 void Renderer::Shutdown()
@@ -224,12 +228,11 @@ bool Renderer::LoadOBJ(	const char * path,
 		getchar();
 		return false;
 	}
-
 	while( 1 ){
 
 		char lineHeader[128];
 		// read the first word of the line
-		int res = fscanf_s(file, "%s", lineHeader);
+		int res = fscanf_s(file, "%s",lineHeader, sizeof(lineHeader));
 		if (res == EOF)
 			break; // EOF = End Of File. Quit the loop.
 

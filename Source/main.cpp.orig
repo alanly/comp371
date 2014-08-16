@@ -12,6 +12,9 @@
 #include "CubeModel.h"
 #include "SphereModel.h"
 <<<<<<< HEAD
+#include "PlaneModel.h"
+#include "SOIL.h"
+#include "UTFConvert.h"
 #include "LSystemModel.h"
 #include "RectangleModel.h"
 #include "ArcModel.h"
@@ -19,11 +22,9 @@
 #include "Text2DModel.h"
 #include "SpiralModel.h"
 =======
-#include "PlaneModel.h"
-#include "SOIL.h"
-#include "UTFConvert.h"
+#include "PointLight.h"
 
->>>>>>> origin/Image
+>>>>>>> origin/blenderImport
 
 int main(int argc, char*argv[])
 {
@@ -88,12 +89,11 @@ int main(int argc, char*argv[])
 
 	world.addModel(spiral);
 	
+	PlaneModel* pPlaneModel = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+	world.addModel(pPlaneModel);
 
-=======
-	PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
-	world.addModel(p);
 
-    //====== Load texture
+   //====== Load texture
     GLuint tex;
     glGenTextures(1, &tex);
 
@@ -106,7 +106,15 @@ int main(int argc, char*argv[])
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
->>>>>>> origin/Image
+=======
+
+	// Create and add our lighting to the world
+	PointLight* light1 = new PointLight(glm::vec3(5.f, 0.f, 0.f));
+	world.addLight(light1);
+
+	PointLight* light2 = new PointLight(glm::vec3(5.f, -10.f, 0.f));
+	world.addLight(light2);
+>>>>>>> origin/blenderImport
 
 	// Main Loop
 	do

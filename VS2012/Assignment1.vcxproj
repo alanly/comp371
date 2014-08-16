@@ -101,16 +101,20 @@
     <None Include="..\Source\Shaders\Billboard.fragmentshader" />
     <None Include="..\Source\Shaders\Billboard.vertexshader" />
     <None Include="..\Source\Shaders\BlueColor.fragmentshader" />
-    <None Include="..\Source\Shaders\Image.fragmentshader" />
-    <None Include="..\Source\Shaders\Image.vertexshader" />
+    <None Include="..\Source\Shaders\Phong.fragmentshader" />
+    <None Include="..\Source\Shaders\Phong.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ArcModel.cpp" />
     <ClCompile Include="..\Source\Avatar.cpp" />
+    <ClCompile Include="..\Source\BlenderModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\DirectionalLight.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\Light.cpp" />
+    <ClCompile Include="..\Source\PointLight.cpp" />
     <ClCompile Include="..\Source\Generator.cpp" />
     <ClCompile Include="..\Source\LSystemModel.cpp" />
     <ClCompile Include="..\Source\ModelArray.cpp" />
@@ -128,6 +132,7 @@
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\ModelGroup.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
+    <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
     <ClCompile Include="..\Source\UTFConvert.cpp" />
@@ -135,8 +140,13 @@
   <ItemGroup>
     <ClInclude Include="..\Source\ArcModel.h" />
     <ClInclude Include="..\Source\Avatar.h" />
+    <ClInclude Include="..\Source\BlenderModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\DirectionalLight.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\Light.h" />
+    <ClInclude Include="..\Source\ParsingHelper.h" />
+    <ClInclude Include="..\Source\PointLight.h" />
     <ClInclude Include="..\Source\Generator.h" />
     <ClInclude Include="..\Source\LSystemModel.h" />
     <ClInclude Include="..\Source\ModelArray.h" />
@@ -151,6 +161,7 @@
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\ModelGroup.h" />
     <ClInclude Include="..\Source\Renderer.h" />
+    <ClInclude Include="..\Source\Texture.h" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\World.h" />
     <ClInclude Include="..\Source\Particles\ParticleSystem.h" />

@@ -17,8 +17,12 @@
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
 #include "FirstPersonCameraT.h"
+<<<<<<< HEAD
 #include "OGFirstPersonCamera.h"
+
+=======
 #include "BlenderModel.h"
+>>>>>>> origin/blenderImport
 #include "CubeModel.h"
 #include "ModelGroup.h"
 
@@ -49,6 +53,7 @@ World::World()
 
 	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
 	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
+	/*
 	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
 	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
 	path.push_back(glm::vec3(15.0f,3.0f,2.0f));
@@ -75,6 +80,7 @@ World::World()
 	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
+	*/
 
 	Portal* p = new Portal(path, 1.0f, 8);
 	addModel(p);

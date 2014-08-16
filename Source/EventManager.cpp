@@ -30,13 +30,13 @@ float  EventManager::sMouseDeltaY = 0.0f;
 // Window
 GLFWwindow* EventManager::spWindow = NULL;
 
+
 void EventManager::Initialize()
 {
 	// Initialise GLFW
 	if( !glfwInit() )
 	{
 		fprintf( stderr, "Failed to initialize GLFW\n" );
-		system("pause");
 		exit(-1);
 	}
 		
