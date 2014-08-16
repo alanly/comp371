@@ -34,7 +34,7 @@ bld/
 !packages/*/build/
 
 #ignore blender obj files.
-!Source/blender
+!Source/blender/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
