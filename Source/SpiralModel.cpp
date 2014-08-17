@@ -36,6 +36,11 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 
 	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
 
+	// Declare our images
+	std::vector<const char*>* images = new std::vector<const char*>();
+	images->push_back("gerlic.jpg");
+	images->push_back("entertained.jpg");
+
 	for (int k = 0; k <= numberOfEdges; k++)
 	{
 		angle = (radians(arcAngle) * k / numberOfEdges);
@@ -68,6 +73,7 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 			glm::vec3 rotationAxis = cross(oldNormal,newNormal);
 			float rotationAngle = acos(dot(oldNormal, newNormal) / (length(oldNormal) * length(newNormal)));
 			pPlaneModel->SetRotation(rotationAxis,degrees(rotationAngle));
+			pPlaneModel->SetImage(images->at(rand() % images->size()));
 			m_vDoodads.push_back(pPlaneModel);
 		}
 
