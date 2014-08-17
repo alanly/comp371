@@ -76,8 +76,6 @@ void FirstPersonCamera::Update(float dt)
 			}
 		}
 
-		
-		
 		glm::vec3 lookAtVector = direction - mPosition;
 
 		right = glm::vec3(glm::rotate(glm::mat4(1.0f),90.0f, glm::vec3(0,1,0)) * glm::vec4(lookAtVector,1));
@@ -149,6 +147,7 @@ glm::mat4 FirstPersonCamera::GetViewMatrix() const
 
 	return ViewMatrix;
 }
+
 void FirstPersonCamera::FollowPath(std::vector<glm::vec3> points) {
 	path = points;
 	up = glm::vec3(0,1,0); //inital up vector
@@ -158,6 +157,7 @@ void FirstPersonCamera::FollowPath(std::vector<glm::vec3> points) {
 	distanceToTravel = length(direction - mPosition);
 	prevDistance = distanceToTravel;
 }
+
 glm::vec3 FirstPersonCamera::performTransformation(glm::vec3 position, float angle,  glm::vec3 axis)
 {
 	glm::mat4 translateToPoint = glm::translate(glm::mat4(1.0f), avatar->GetPosition());
@@ -166,6 +166,7 @@ glm::vec3 FirstPersonCamera::performTransformation(glm::vec3 position, float ang
 	
 	return  glm::vec3((translateToPoint  * rotateAroundAxis  * reverseTranslation) * glm::vec4(position,1));
 }
+
 void FirstPersonCamera::displayVector(glm::vec3 v){ //DEBUG TOOL
 	std::cout << "x: " << v.x << " y: " << v.y << " z: " << v.z <<std::endl;
 }

@@ -87,6 +87,8 @@ void Model::SetShader(unsigned int shaderID)
 {
 	mShaderProgramID = shaderID;
 }
+
+
 bool Model::collides(Model* other){
 	glm::vec3 thisMax = mPosition+mCollisionBoxSize;
 	glm::vec3 thisMin = mPosition-mCollisionBoxSize;
