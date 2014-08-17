@@ -8,6 +8,7 @@
 
 /**
  * @author Alan Ly (per-model shaders, material coefficients)
+ * @author Tim Smith (collisions - aabb)
  */
 
 #include "Model.h"
