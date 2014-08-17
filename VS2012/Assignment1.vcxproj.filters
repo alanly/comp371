@@ -106,6 +106,12 @@
     <ClCompile Include="..\Source\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Particles\Particle.cpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -173,6 +179,15 @@
     </ClInclude>
     <ClInclude Include="..\Source\Texture.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\Particle.h">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\Random.h">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\ParticleSystem.h">
+      <Filter>Source Files\Particles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

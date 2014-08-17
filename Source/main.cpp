@@ -12,6 +12,7 @@
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "PlaneModel.h"
+#include "ParticleSystem.h"
 #include "SOIL.h"
 #include "UTFConvert.h"
 #include "LSystemModel.h"
@@ -44,6 +45,11 @@ int main(int argc, char*argv[])
 	world.addModel(spiral);
 	
 	//====== Load texture
+    PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+	//ParticleSystem* p = new ParticleSystem(30);
+	world.addModel(p);
+
+    //====== Load texture
     GLuint tex;
     glGenTextures(1, &tex);
 
