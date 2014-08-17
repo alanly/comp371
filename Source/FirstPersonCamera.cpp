@@ -29,9 +29,9 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	increment = 1;
 	horizontalAngle = 3.14f;
 	verticalAngle = 0.0f;
- 
-	speed = 1.0f; // 3 units / second
-	mouseSpeed = 0.05f;
+	followPath = false;
+	speed = 4.0f; // 3 units / second
+	mouseSpeed = 0.1f;
 	mPosition = position;
 	prevDistance = -1;
 }
@@ -68,6 +68,9 @@ void FirstPersonCamera::Update(float dt)
 			if(increment == path.size()-1) {
 				followPath = false;
 				increment = 0;
+				avatar->SetRotation(glm::vec3(0,1,0),90.f);
+				horizontalAngle = 1.5f;
+				verticalAngle = 0.5f;
 				path.clear();
 			}else {
 				increment++;
@@ -93,7 +96,7 @@ void FirstPersonCamera::Update(float dt)
 
 		horizontalAngle += beta;
 		verticalAngle   += alpha;
-
+		std::cout << horizontalAngle << " " << verticalAngle << std::endl;
 		direction = glm::vec3(
 			cos(verticalAngle) * sin(horizontalAngle),
 			sin(verticalAngle),

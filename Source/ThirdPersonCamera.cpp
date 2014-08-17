@@ -30,6 +30,13 @@ ThirdPersonCamera::~ThirdPersonCamera(void)
 {
 }
 void ThirdPersonCamera::Update(float dt){
+	int distance = glm::length(mPosition - avatar->GetPosition());
+	//This was added in to handle the change from FPC to TPC.
+	if(distance > 10)
+		mPosition = avatar->GetPosition() + glm::vec3(0,5,5);
+
+
+
 	// Prevent from having the camera move only when the cursor is within the windows
 	EventManager::DisableMouseCursor();
 

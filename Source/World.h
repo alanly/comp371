@@ -21,7 +21,11 @@ class Model;
 class Light;
 class Avatar;
 class CubeModel;
-
+class PortalEntrance;
+class FirstPersonCamera;
+class SpiralModel;
+class Portal;
+#include <GLM/glm.hpp>
 class World
 {
 public:
@@ -33,15 +37,19 @@ public:
 
 	void addModel(Model* nModel);
 	void addLight(Light* nLight);
+	void removeModel(Model* model);
 
 private:
 	std::vector<Model*> mModel;
 	GLuint tex;
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
-
+	FirstPersonCamera* fpc;
 	Avatar* colAv;
 	CubeModel* colCube;
-
+	PortalEntrance * entr;
 	std::vector<Light*> mLight;
+	SpiralModel* spiral;
+	Portal* portal;
+	std::vector<glm::vec3> path;
 };

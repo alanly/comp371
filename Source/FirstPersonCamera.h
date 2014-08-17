@@ -24,8 +24,8 @@ public:
 	void FollowPath(std::vector<glm::vec3> points);
 	virtual glm::vec3 performTransformation(glm::vec3 position,float angle, glm::vec3 axis);
 	virtual void displayVector(glm::vec3 v);
-private:
 	bool followPath;
+private:
 	Model* avatar;
 	glm::vec3 mPosition;	
 	float horizontalAngle;

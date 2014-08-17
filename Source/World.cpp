@@ -12,25 +12,22 @@
 
 //Written by Thomas Rahn, Tim Smith 
 #include "World.h"
+#include <GLFW/glfw3.h>
+
 #include "Renderer.h"
 #include "Avatar.h"
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
 #include "BlenderModel.h"
 #include "PortalEntrance.h"
-
 #include "CubeModel.h"
 #include "ModelGroup.h"
-
 #include "Light.h"
 #include "PointLight.h"
-
-#include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "ThirdPersonCamera.h"
 #include "Portal.h"
 #include "Model.h"
-#include "CubeModel.h"
 #include "SphereModel.h"
 #include "PlaneModel.h"
 #include "ParticleSystem.h"
@@ -39,7 +36,6 @@
 #include "LSystemModel.h"
 #include "RectangleModel.h"
 #include "ArcModel.h"
-#include "PointLight.h"
 #include "Text2DModel.h"
 #include "SpiralModel.h"
 
@@ -49,6 +45,7 @@ using namespace glm;
 World::World()
 {
 	Avatar * avatar = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
+	avatar->SetPosition(glm::vec3(5.0f,5.0f,5.0f));
 	avatar->setCollisionBoxSize(glm::vec3(1.0f,1.0f,1.0f));
 	addModel(avatar);
 	colAv = avatar;
@@ -61,15 +58,15 @@ World::World()
 	colCube = cm;
 
 
-	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),avatar);
+	fpc = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),avatar);
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
-	mCamera.push_back( myt);
+	mCamera.push_back( fpc);
 
 	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),avatar ) );
-  	SpiralModel* spiral = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
+  	spiral = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
 		     glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
-			 glm::vec3(0.0f,0.0f,0.0f), //Position
+			 glm::vec3(90.0f, 3.0f, 0.0f), //Position
 			 glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
 			 glm::vec3(0.0f,0.0f,1.0f), //Binormal
 			 2.0f, //Radius 1
@@ -78,7 +75,6 @@ World::World()
 			 500,		//arbitrary # edges
 			 15.0f);	//arbitrary height
 			 
-	addModel(spiral);
 	
 	//====== Load texture
     PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
@@ -105,23 +101,6 @@ World::World()
 	PointLight* light2 = new PointLight(glm::vec3(5.f, -10.f, 0.f));
 	addLight(light2);
 
-
-	/*
-	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
-	path.push_back(glm::vec3(10.0f,0.0f,0.0f));
-	path.push_back(glm::vec3(20.0f,0.0f,0.0f));
-	path.push_back(glm::vec3(30.0f,0.0f,1.0f));
-	path.push_back(glm::vec3(40.0f,0.0f,1.0f));
-	path.push_back(glm::vec3(50.0f,0.0f,1.0f));
-	path.push_back(glm::vec3(60.0f,0.0f,1.0f));
-	path.push_back(glm::vec3(70.0f,0.0f,1.0f));
-
-	Portal* p = new Portal(path, 1.0f, 12);
-//	addModel(p);*/
-
-
-
-	std::vector<glm::vec3> path;
 	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
 	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
 	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
@@ -150,20 +129,21 @@ World::World()
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
 
-	Portal* portal = new Portal(path, 1.0f, 12);
-	addModel(portal);
-	myt->FollowPath(path);
+	portal = new Portal(path, 1.0f, 12);
+	//addModel(portal);
+	//fpc->FollowPath(path);
 
-	mCurrentCamera = 2;
+	mCurrentCamera = 1;
 
 	/*BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	blender->SetPosition(glm::vec3(1,1,1));
 	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
 	addModel(blender);
 	*/
+
 	///portal thing
-	PortalEntrance * PEntr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
-	addModel(PEntr);
+	entr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
+	addModel(entr);
 	
 }
 
@@ -196,28 +176,36 @@ World::~World()
 void World::Update(float dt)
 {
 
-	if(colAv->collides(colCube))
-		std::cout<<"collide!";
+	if(colAv->collides(entr)) {
+		mModel.clear();
+		addModel(colAv);
+		fpc->FollowPath(path);
+		addModel(portal);
+		addModel(spiral);
+	}
 
-	// User Inputs
-	// 0 1 2 to change the Camera
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
-	{
-		mCurrentCamera = 0;
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 1)
+	if(!fpc->followPath){
+		// User Inputs
+		// 0 1 2 to change the Camera
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
 		{
-			mCurrentCamera = 1;
+			mCurrentCamera = 0;
 		}
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 2)
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2 ) == GLFW_PRESS)
 		{
-			mCurrentCamera = 2;
+			if (mCamera.size() > 1)
+			{
+				mCurrentCamera = 1;
+			}
 		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3 ) == GLFW_PRESS)
+		{
+			if (mCamera.size() > 2)
+			{
+				mCurrentCamera = 2;
+			}
+		}
+		removeModel(portal);
 	}
 
 	// Num keys to change shader (don't do this, it doesn't work) -Louis
@@ -248,6 +236,15 @@ void World::Update(float dt)
 	}
 }
 
+
+void World::removeModel(Model* model)
+{
+	for(int i = 0; i < mModel.size(); i++){
+		if(model == mModel[i]){
+			mModel.erase(mModel.begin()+i);
+		}
+	}
+}
 void World::addModel(Model* nModel)
 {
 	mModel.push_back(nModel);
