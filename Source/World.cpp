@@ -53,8 +53,6 @@ World::World()
 	CubeModel *cm = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
 	cm->SetPosition(glm::vec3(10.0f,0.0f,0.0f));
 	cm->setCollisionBoxSize(glm::vec3(1.0f));
-	addModel(cm);
-
 	colCube = cm;
 
 
@@ -76,14 +74,10 @@ World::World()
 			 15.0f);	//arbitrary height
 			 
 	
-	//====== Load texture
-    PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
-	addModel(p);
-
     //====== Load texture
     glGenTextures(1, &tex);
 
-  int width, height;
+	int width, height;
     unsigned char* image = SOIL_load_image(UTFConvert::GetImagePath("Scottish_Fold.jpg").c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
     SOIL_free_image_data(image);
@@ -130,16 +124,14 @@ World::World()
 	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
 
 	portal = new Portal(path, 1.0f, 12);
-	//addModel(portal);
-	//fpc->FollowPath(path);
 
 	mCurrentCamera = 1;
 
 	/*BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	blender->SetPosition(glm::vec3(1,1,1));
 	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
-	addModel(blender);
-	*/
+	addModel(blender);*/
+	
 
 	///portal thing
 	entr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
@@ -177,11 +169,14 @@ void World::Update(float dt)
 {
 
 	if(colAv->collides(entr)) {
+		mCurrentCamera = 1;
 		mModel.clear();
-		addModel(colAv);
 		fpc->FollowPath(path);
 		addModel(portal);
 		addModel(spiral);
+		entr->SetPosition(glm::vec3(90.0f,25.0f,0.0f));
+		entr->SetRotation(glm::vec3(0,1.0f,0),90.0f);
+		addModel(entr);	
 	}
 
 	if(!fpc->followPath){
@@ -190,12 +185,16 @@ void World::Update(float dt)
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
 		{
 			mCurrentCamera = 0;
+			if(!contains(colAv)){
+				addModel(colAv);
+			}
 		}
 		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2 ) == GLFW_PRESS)
 		{
 			if (mCamera.size() > 1)
 			{
 				mCurrentCamera = 1;
+				removeModel(colAv);
 			}
 		}
 		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3 ) == GLFW_PRESS)
@@ -203,6 +202,9 @@ void World::Update(float dt)
 			if (mCamera.size() > 2)
 			{
 				mCurrentCamera = 2;
+				if(!contains(colAv)){
+					addModel(colAv);
+				}
 			}
 		}
 		removeModel(portal);
@@ -237,6 +239,15 @@ void World::Update(float dt)
 }
 
 
+bool World::contains(Model* model)
+{
+	for(int i = 0; i < mModel.size(); i++){
+		if(model == mModel[i]){
+			return true;
+		}
+	}
+	return false;
+}
 void World::removeModel(Model* model)
 {
 	for(int i = 0; i < mModel.size(); i++){

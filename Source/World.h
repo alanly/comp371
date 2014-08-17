@@ -38,6 +38,7 @@ public:
 	void addModel(Model* nModel);
 	void addLight(Light* nLight);
 	void removeModel(Model* model);
+	bool contains(Model* model);
 
 private:
 	std::vector<Model*> mModel;
