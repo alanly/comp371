@@ -67,16 +67,12 @@ void Renderer::Initialize()
 
 	// Loading Shaders
 	sShaderProgramID.push_back(LoadShaders("../Source/Shaders/Phong.vertexshader", "../Source/Shaders/Phong.fragmentshader"));
-    sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader" ));	
- 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader" ));
- 	sShaderProgramID.push_back(LoadShaders( "../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/BlueColor.fragmentshader" ));
-	
 	sCurrentShader = 0;
 }
 
 void Renderer::Shutdown()
 {
-		// Shaders
+	// Shaders
 	for (vector<unsigned int>::iterator it = sShaderProgramID.begin(); it < sShaderProgramID.end(); ++it)
 	{
 		glDeleteProgram(*it);
