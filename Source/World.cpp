@@ -16,8 +16,6 @@
 #include "Avatar.h"
 #include "StaticCamera.h"
 #include "FirstPersonCamera.h"
-#include "FirstPersonCameraT.h"
-#include "OGFirstPersonCamera.h"
 #include "BlenderModel.h"
 #include "PortalEntrance.h"
 
@@ -31,14 +29,25 @@
 #include "EventManager.h"
 #include "ThirdPersonCamera.h"
 #include "Portal.h"
+#include "Model.h"
+#include "CubeModel.h"
+#include "SphereModel.h"
+#include "PlaneModel.h"
+#include "ParticleSystem.h"
+#include "SOIL.h"
+#include "UTFConvert.h"
+#include "LSystemModel.h"
+#include "RectangleModel.h"
+#include "ArcModel.h"
+#include "PointLight.h"
+#include "Text2DModel.h"
+#include "SpiralModel.h"
+
 using namespace std;
 using namespace glm;
 
 World::World()
 {
-	//Avatar * avatar = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
-	CubeModel * cubeycube = new CubeModel();
-	//addModel(cubeycube);
 	Avatar * avatar = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
 	avatar->setCollisionBoxSize(glm::vec3(1.0f,1.0f,1.0f));
 	addModel(avatar);
@@ -51,14 +60,51 @@ World::World()
 
 	colCube = cm;
 
-	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),cubeycube);
+
+	FirstPersonCamera * myt = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),avatar);
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
-	mCamera.push_back( new OGFirstPersonCamera(vec3(0.5f, 0.5f, 5.0f)));
+	mCamera.push_back( myt);
 
 	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),avatar ) );
+  	SpiralModel* spiral = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
+		     glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
+			 glm::vec3(0.0f,0.0f,0.0f), //Position
+			 glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
+			 glm::vec3(0.0f,0.0f,1.0f), //Binormal
+			 2.0f, //Radius 1
+			 4.0f, //Radius 2
+			 360.0f * 7.5f, //Arc Angle
+			 500,		//arbitrary # edges
+			 15.0f);	//arbitrary height
+			 
+	addModel(spiral);
+	
+	//====== Load texture
+    PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+	addModel(p);
 
-	std::vector<glm::vec3> path;
+    //====== Load texture
+    glGenTextures(1, &tex);
+
+  int width, height;
+    unsigned char* image = SOIL_load_image(UTFConvert::GetImagePath("Scottish_Fold.jpg").c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+    SOIL_free_image_data(image);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	
+
+	// Create and add our lighting to the world
+	PointLight* light1 = new PointLight(glm::vec3(5.f, 0.f, 0.f));
+	addLight(light1);
+
+	PointLight* light2 = new PointLight(glm::vec3(5.f, -10.f, 0.f));
+	addLight(light2);
+
 
 	/*
 	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
@@ -71,7 +117,11 @@ World::World()
 	path.push_back(glm::vec3(70.0f,0.0f,1.0f));
 
 	Portal* p = new Portal(path, 1.0f, 12);
-//	addModel(p);
+//	addModel(p);*/
+
+
+
+	std::vector<glm::vec3> path;
 	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
 	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
 	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
@@ -98,27 +148,28 @@ World::World()
 	path.push_back(glm::vec3(68.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
 	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));*/
+	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
+
+	Portal* portal = new Portal(path, 1.0f, 12);
+	addModel(portal);
 	myt->FollowPath(path);
 
-	mCurrentCamera = 1;
+	mCurrentCamera = 2;
 
 	/*BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	blender->SetPosition(glm::vec3(1,1,1));
 	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
 	addModel(blender);
 	*/
-
-	mCurrentCamera = 2;
-
-
 	///portal thing
 	PortalEntrance * PEntr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
 	addModel(PEntr);
+	
 }
 
 World::~World()
 {
+	glDeleteTextures(1, &tex); //remove texture from openGL
 	// Models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{

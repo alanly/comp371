@@ -12,6 +12,9 @@
 #pragma once
 
 #include <vector>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
 
 class Camera;
 class Model;
@@ -33,7 +36,7 @@ public:
 
 private:
 	std::vector<Model*> mModel;
-
+	GLuint tex;
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
 
