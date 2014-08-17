@@ -20,15 +20,16 @@ PlaneModel::PlaneModel(vec3 size)
 	// Create Vertex Buffer for all the verices of the Cube
 	vec3 halfSize = size * 0.5f;
     
-	Vertex vertexBuffer[] = {  //           position,                          normal,                  color                   texcoords
-								{ vec3(-halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f),  vec2(0.0f, 0.0f) },  // top left pt
-								{ vec3(-halfSize.x,-halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),  vec2(0.0f, 1.0f) },  // bottom left pt
-								{ vec3( halfSize.x,-halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 0.0f),  vec2(1.0f, 1.0f) },  // bottom right pt 
+	Vertex vertexBuffer[] = {  
+		//position,                                  normal,                  color                    texcoords
+		{ vec3(-halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f),  vec2(0.0f, 0.0f) },  // top left pt
+		{ vec3(-halfSize.x,-halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),  vec2(0.0f, 1.0f) },  // bottom left pt
+		{ vec3( halfSize.x,-halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 0.0f),  vec2(1.0f, 1.0f) },  // bottom right pt 
     
-								{ vec3( halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),  vec2(1.0f, 0.0f) },  // top right pt
-								{ vec3(-halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f),  vec2(0.0f, 0.0f) },  // top left pt
-								{ vec3( halfSize.x,-halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 0.0f),  vec2(1.0f, 1.0f) }  // bottom right pt
-						};
+		{ vec3( halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),  vec2(1.0f, 0.0f) },  // top right pt
+		{ vec3(-halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f),  vec2(0.0f, 0.0f) },  // top left pt
+		{ vec3( halfSize.x,-halfSize.y, halfSize.z), vec3( 0.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 0.0f),  vec2(1.0f, 1.0f) }  // bottom right pt
+	};
 
 	// Create a vertex array
 	glGenVertexArrays(1, &mVertexArrayID);
@@ -37,6 +38,11 @@ PlaneModel::PlaneModel(vec3 size)
 	glGenBuffers(1, &mVertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);
+
+	hasImage = false;
+
+	// Create a texture reference for this plane.
+	glGenTextures(1, &tex);
 }
 
 PlaneModel::~PlaneModel()
@@ -44,6 +50,12 @@ PlaneModel::~PlaneModel()
 	// Free the GPU from the Vertex Buffer
 	glDeleteBuffers(1, &mVertexBufferID);
 	glDeleteVertexArrays(1, &mVertexArrayID);
+	glDeleteTextures(1, &tex);
+
+	if (hasImage == true)
+	{
+		SOIL_free_image_data(pImage);
+	}
 }
 
 void PlaneModel::Update(float dt)
@@ -55,6 +67,18 @@ void PlaneModel::Update(float dt)
 
 void PlaneModel::Draw()
 {
+	
+	if (hasImage)
+	{
+		// Texturize our image.
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pImageWidth, pImageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, pImage);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	}
+
 	// Draw the Vertex Buffer
 	// Note this draws a unit Cube
 	// The Model View Projection transforms are computed in the Vertex Shader
@@ -116,4 +140,11 @@ void PlaneModel::Draw()
 	glDisableVertexAttribArray(2);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(0);
+}
+
+
+void PlaneModel::SetImage(const char* sImage)
+{
+	hasImage = true;
+	pImage = SOIL_load_image(UTFConvert::GetImagePath(sImage).c_str(), &pImageWidth, &pImageHeight, 0, SOIL_LOAD_RGBA);
 }

@@ -21,6 +21,8 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw();
 
+	void DrawImages(Camera* currentCamera, unsigned int numOfLights, GLfloat* lightPositions, GLfloat* lightColors, GLfloat* lightCoefficients);
+
 protected:
 
 private:

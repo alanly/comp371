@@ -1,21 +1,25 @@
 #pragma once
 
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
 #include "Model.h"
+#include <vector>
+#include <string>
+#include "SOIL.h"
+#include "UTFConvert.h"
 
 class PlaneModel : public Model
 {
 public:
-	// @TODO 4 - It could be a good idea to allow passing a parent model in the constructor
 	PlaneModel(glm::vec3 size = glm::vec3(1.0f, 1.0f, 1.0f));
 	virtual ~PlaneModel();
 
-	virtual void Update(float dt);
-	virtual void Draw();
+	void Update(float dt);
+	void Draw();
 
-protected:
+	void SetImage(const char* image);
 
 private:
-	// The vertex format could be different for different types of models
 	struct Vertex
 	{
 		glm::vec3 position;
@@ -26,4 +30,11 @@ private:
 
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
+
+	GLuint tex;
+	unsigned char* pImage;
+	int pImageWidth;
+	int pImageHeight;
+
+	bool hasImage;
 };

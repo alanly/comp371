@@ -34,7 +34,13 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	float bridgeLength = 2.0f; // ARBITRARY YAY
 	float bridgeWidth = 1.0f; // bridge is pencil dick
 
-	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
+	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Phong.vertexshader", "../Source/Shaders/Phong.fragmentshader");
+	GLuint imageShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
+
+	// Declare our images
+	std::vector<const char*>* images = new std::vector<const char*>();
+	images->push_back("gerlic.jpg");
+	images->push_back("entertained.jpg");
 
 	for (int k = 0; k <= numberOfEdges; k++)
 	{
@@ -68,6 +74,8 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 			glm::vec3 rotationAxis = cross(oldNormal,newNormal);
 			float rotationAngle = acos(dot(oldNormal, newNormal) / (length(oldNormal) * length(newNormal)));
 			pPlaneModel->SetRotation(rotationAxis,degrees(rotationAngle));
+			pPlaneModel->SetImage(images->at(rand() % images->size()));
+			pPlaneModel->SetShader(imageShaderProgramID);
 			m_vDoodads.push_back(pPlaneModel);
 		}
 
@@ -152,12 +160,13 @@ void SpiralModel::Draw()
 	glDisableVertexAttribArray(2);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(0);
+}
 
+void SpiralModel::DrawImages(Camera* currentCamera, unsigned int numOfLights, GLfloat* lightPositions, GLfloat* lightColors, GLfloat* lightCoefficients)
+{
 	for(int i = 0; i<m_vDoodads.size(); i++)
 	{
-		m_vDoodads[i]->SetShader(mShaderProgramID);
+		m_vDoodads[i]->PrepareDraw(currentCamera, numOfLights, lightPositions, lightColors, lightCoefficients);
 		m_vDoodads[i]->Draw();
 	}
 }
-
-
