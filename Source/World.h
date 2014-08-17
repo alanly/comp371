@@ -7,7 +7,7 @@
 //
 /**
  * @author Alan Ly (multiple scene-lighting, per-model shaders)
- * Written by Thomas Rahn, Tim Smith 
+ * @author Thomas Rahn
  */
 #pragma once
 

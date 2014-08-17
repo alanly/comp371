@@ -8,6 +8,7 @@
 
 /**
  * @author Alan Ly (multiple-lighting)
+ * @author Thomas (modified loadObj)
  */
 
 #include "Renderer.h"

@@ -8,9 +8,8 @@
 
 /**
  * @author Alan Ly (multiple scene-lighting, per-model shaders)
+ * @author Thomas Rahn (world update logic, camera/model initialization) 
  */
-
-//Written by Thomas Rahn, Tim Smith 
 #include "World.h"
 #include <GLFW/glfw3.h>
 
@@ -78,10 +77,10 @@ World::World()
 	////blender->SetShader(Renderer::LoadShaders( "../Source/Shaders/SimpleTransform.vertexshader", "../Source/Shaders/SingleColor.fragmentshader" ));
 	//addModel(blender);
 
-	BlenderModel* blender2 = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
-	blender2->SetPosition(glm::vec3(1,1,1));
-	blender2->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
-	addModel(blender2);
+	//BlenderModel* blender2 = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
+	//blender2->SetPosition(glm::vec3(1,1,1));
+	//blender2->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
+	//addModel(blender2);
 	
 }
 
