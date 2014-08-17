@@ -55,7 +55,8 @@ World::World()
 	// Setup Camera
 	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
 	mCamera.push_back( new OGFirstPersonCamera(vec3(0.5f, 0.5f, 5.0f)));
-	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),cubeycube ) );
+
+	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),avatar ) );
 
 	std::vector<glm::vec3> path;
 
