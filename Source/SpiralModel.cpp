@@ -33,8 +33,12 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	std::vector<Vertex> mesh;
 	float bridgeLength = 2.0f; // ARBITRARY YAY
 	float bridgeWidth = 1.0f; // bridge is pencil dick
-	for (int k = 0; k <= numberOfEdges; k++){
-		angle = (radians(arcAngle) *k/ numberOfEdges) ;
+
+	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
+
+	for (int k = 0; k <= numberOfEdges; k++)
+	{
+		angle = (radians(arcAngle) * k / numberOfEdges);
 		yComponent = glm::vec3(0.f,heightIncrement*k,0.f);
 		Vertex innerPoint(position + (upVector * cos(angle) + binormal * sin(angle)) * radius1 + yComponent, glm::vec3(0.0f, 1.0f, 0.0f), color1);
 		mesh.push_back(innerPoint);
@@ -42,39 +46,32 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 		mesh.push_back(outerPoint);
 
 		//We will assume always having 25 stories, and as such, more than 25 edges to our spiral (25 reddit/stories per page)
-		if(0==k%(numberOfEdges/25)){//ex. if numb. edges ==75, every 3 edges should have a bridge expanding out
+		if( 0 == k % (numberOfEdges/25) )
+		{//ex. if numb. edges ==75, every 3 edges should have a bridge expanding out
 			//RectangleModel * r = new RectangleModel()//this goes from the outer radius of the point we just made, along the (i think) binormal to a range of wtv length you want the bridge to be.
 													//If that doesnt work, try the normal.
 			//rectangle bridges and any other decals we add can be put into a vector of decals that on the spiral classes' draw function iterates through the vector calling their respective draw()
-		//At the end of the bridge, we'll construct an image from the CURL thing.
-		glm::vec3 p1 = outerPoint.position;
-		glm::vec3 bridgeDirection = outerPoint.position - innerPoint.position;
-		glm::vec3 p2 = p1 + (bridgeDirection * bridgeLength);
+			//At the end of the bridge, we'll construct an image from the CURL thing.
+			glm::vec3 p1 = outerPoint.position;
+			glm::vec3 bridgeDirection = outerPoint.position - innerPoint.position;
+			glm::vec3 p2 = p1 + (bridgeDirection * bridgeLength);
 
-		m_vDoodads.push_back(new RectangleModel(p1, p2, glm::vec3(0.0f,1.0f,0.0f), bridgeWidth,glm::vec3(0.0f,1.0f,0.0f)));
+			m_vDoodads.push_back(new RectangleModel(p1, p2, glm::vec3(0.0f,1.0f,0.0f), bridgeWidth,glm::vec3(0.0f,1.0f,0.0f)));
 
-		//Portal entrance placeholder
-		//m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
+			//Portal entrance placeholder
+			//m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
 
-		PlaneModel* pPlaneModel = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
-		pPlaneModel->SetPosition(p2+normalize(bridgeDirection)+glm::vec3(0.0f,1.0f,0.0f));
-		glm::vec3 oldNormal(0.0f,0.0f,1.0f);
-		glm::vec3 newNormal = normalize(-bridgeDirection);
-		glm::vec3 rotationAxis = cross(oldNormal,newNormal);
-		float rotationAngle = acos(dot(oldNormal, newNormal) / (length(oldNormal) * length(newNormal)));
-		pPlaneModel->SetRotation(rotationAxis,degrees(rotationAngle));
-		pPlaneModel->SetShader(Renderer::GetShaderProgramIDatIndex((SHADER_IMAGE)));
-		m_vDoodads.push_back(pPlaneModel);
-
-
+			PlaneModel* pPlaneModel = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+			pPlaneModel->SetPosition(p2+normalize(bridgeDirection)+glm::vec3(0.0f,1.0f,0.0f));
+			glm::vec3 oldNormal(0.0f,0.0f,1.0f);
+			glm::vec3 newNormal = normalize(-bridgeDirection);
+			glm::vec3 rotationAxis = cross(oldNormal,newNormal);
+			float rotationAngle = acos(dot(oldNormal, newNormal) / (length(oldNormal) * length(newNormal)));
+			pPlaneModel->SetRotation(rotationAxis,degrees(rotationAngle));
+			m_vDoodads.push_back(pPlaneModel);
 		}
 
 		//Make a bridge
-
-		
-
-
-
 	}
 
 	const int size = mesh.size();
