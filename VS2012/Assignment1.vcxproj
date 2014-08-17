@@ -98,13 +98,15 @@
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\Source\Shaders\Billboard.fragmentshader" />
-    <None Include="..\Source\Shaders\Billboard.vertexshader" />
     <None Include="..\Source\Shaders\BlueColor.fragmentshader" />
+    <None Include="..\Source\Shaders\Image.fragmentshader" />
+    <None Include="..\Source\Shaders\Image.vertexshader" />
     <None Include="..\Source\Shaders\Phong.fragmentshader" />
     <None Include="..\Source\Shaders\Phong.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
+    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader" />
+    <None Include="..\Source\Shaders\TextVertexShader.vertexshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ArcModel.cpp" />

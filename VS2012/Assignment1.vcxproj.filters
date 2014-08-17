@@ -21,6 +21,9 @@
     <Filter Include="Source Files\Light">
       <UniqueIdentifier>{9bab02bd-8081-4c24-b494-a4ffcd83921d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{039edfb5-79e8-496f-841f-eae08385d07f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\Shaders\SolidColor.vertexshader">
@@ -38,8 +41,18 @@
     <None Include="..\Source\Shaders\Phong.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\Source\Shaders\Billboard.fragmentshader" />
-    <None Include="..\Source\Shaders\Billboard.vertexshader" />
+    <None Include="..\Source\Shaders\Image.fragmentshader">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\Image.vertexshader">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\TextVertexShader.fragmentshader">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\TextVertexShader.vertexshader">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\EventManager.cpp">
