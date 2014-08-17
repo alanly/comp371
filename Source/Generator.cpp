@@ -7,7 +7,6 @@
 #include <sstream>
 #include <iostream>
 #include <stdio.h> 
-#include <curl/curl.h> 
 #include <rapidjson/document.h>
 #include <rapidjson/writer.h> 
 #include <rapidjson/stringbuffer.h> 
@@ -141,7 +140,7 @@ void initLSystem()
 
 std::string DownloadJSON(std::string URL)
 {   
-    CURL *curl;
+   /* CURL *curl;
     CURLcode res;
     struct curl_slist *headers=NULL; // init to NULL is important 
     std::ostringstream oss;
@@ -167,7 +166,8 @@ std::string DownloadJSON(std::string URL)
                 return *DownloadedResponse;
         }
     }
-
+	*/
+	return "";
 }
 
 static int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in)

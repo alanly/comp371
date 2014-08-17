@@ -38,6 +38,8 @@
     <None Include="..\Source\Shaders\Phong.vertexshader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Source\Shaders\Billboard.fragmentshader" />
+    <None Include="..\Source\Shaders\Billboard.vertexshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\EventManager.cpp">
@@ -106,11 +108,29 @@
     <ClCompile Include="..\Source\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\LSystemModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\OGFirstPersonCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\Particles\Particle.cpp">
-      <Filter>Source Files\Particles</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlaneModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SpiralModel.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Particles\ParticleSystem.cpp">
-      <Filter>Source Files\Particles</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\UTFConvert.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,14 +200,46 @@
     <ClInclude Include="..\Source\Texture.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Particles\Particle.h">
-      <Filter>Source Files\Particles</Filter>
+    <ClInclude Include="..\Source\Generator.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Particles\Random.h">
-      <Filter>Source Files\Particles</Filter>
+    <ClInclude Include="..\Source\LSystemModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\OGFirstPersonCamera.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\Particle.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Particles\ParticleSystem.h">
-      <Filter>Source Files\Particles</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\PlaneModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\Random.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\SpiralModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\UTFConvert.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Source\Images\alphalogo_a4arial.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Source\Images\dealwithit.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Source\Images\ohhellno.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Source\Images\Scottish_Fold.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

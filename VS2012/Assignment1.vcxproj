@@ -60,13 +60,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdParty\SOIL\src;../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\libcurl\include;..\ThirdParty\zlib\include;..\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdParty\SOIL\src;../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;..\ThirdParty\zlib\include;..\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\ThirdParty\SOIL\lib;../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110;..\ThirdParty\zlib\lib;..\ThirdParty\libcurl</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;zdll.lib;libcurl.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\ThirdParty\SOIL\lib;../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110;..\ThirdParty\zlib\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;zdll.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <BuildLog>
       <Path>
@@ -122,11 +122,9 @@
     <ClCompile Include="..\Source\Portal.cpp" />
     <ClCompile Include="..\Source\RectangleModel.cpp" />
     <ClCompile Include="..\Source\Particles\Particle.cpp" />
-    <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
     <ClCompile Include="..\Source\PlaneModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\SpiralModel.cpp" />
-    <ClCompile Include="..\Source\PlaneModel.cpp" />
     <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -159,7 +157,6 @@
     <ClInclude Include="..\Source\Particles\Particle.h" />
     <ClInclude Include="..\Source\Particles\ParticleSystem.h" />
     <ClInclude Include="..\Source\Particles\Random.h" />
-    <ClInclude Include="..\Source\UTFConvert.h" />
     <ClInclude Include="..\Source\PlaneModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\SpiralModel.h" />
@@ -172,9 +169,7 @@
     <ClInclude Include="..\Source\Texture.h" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\World.h" />
-    <ClInclude Include="..\Source\Particles\ParticleSystem.h" />
     <ClInclude Include="..\Source\UTFConvert.h" />
-    <ClInclude Include="..\Source\PlaneModel.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Source\Images\alphalogo_a4arial.png" />
