@@ -57,8 +57,8 @@ void FirstPersonCamera::Update(float dt)
 		mPosition += (direction-mPosition) * dt * speed;
 		distanceToTravel = length(path[increment] - mPosition);
 
-		if(distanceToTravel < 2.0f && increment < path.size()-1) {
-			float percentage = 1-(distanceToTravel/2.0f);
+		if(distanceToTravel < 3.0f && increment < path.size()-1) {
+			float percentage = 1-(distanceToTravel/3.0f);
 			float x = path[increment].x + ((path[increment+1].x - path[increment].x) * percentage);
 			float y = path[increment].y + ((path[increment+1].y - path[increment].y) * percentage);
 			float z = path[increment].z + ((path[increment+1].z - path[increment].z) * percentage);
@@ -67,6 +67,7 @@ void FirstPersonCamera::Update(float dt)
 		if(prevDistance < distanceToTravel || distanceToTravel < 0.1f) {
 			if(increment == path.size()-1) {
 				followPath = false;
+				increment = 0;
 				path.clear();
 			}else {
 				increment++;
@@ -75,14 +76,15 @@ void FirstPersonCamera::Update(float dt)
 			}
 		}
 
-		glm::vec3 lookAtVector = normalize(direction - mPosition);
+		
+		
+		glm::vec3 lookAtVector = direction - mPosition;
 
-		right = glm::vec3(glm::rotate(glm::mat4(1.0f),90.0f, glm::vec3(0,1,0)) * glm::vec4(lookAtVector,0));
-		up = glm::cross(lookAtVector,right);
-		look = direction;
+		right = glm::vec3(glm::rotate(glm::mat4(1.0f),90.0f, glm::vec3(0,1,0)) * glm::vec4(lookAtVector,1));
+		up = normalize(glm::cross(lookAtVector,right));
+
 		prevDistance = distanceToTravel;
 	}else {
-		//speed = 3.0f;
 		// Get mouse position
 		float xpos, ypos;
 		xpos = -1 * EventManager::GetMouseMotionX();
@@ -105,7 +107,8 @@ void FirstPersonCamera::Update(float dt)
 			0,
 			cos(horizontalAngle - 3.14f/2.0f)
 		);
-
+		avatar->SetPosition(performTransformation(avatar->GetPosition(), beta, glm::vec3(0,1,0)));
+		avatar->SetPosition(performTransformation(avatar->GetPosition(), alpha, glm::vec3(1,0,0)));
 		// Up vector : perpendicular to both direction and right
 		up = glm::cross( right, direction );
 		// Move forward
@@ -155,7 +158,14 @@ void FirstPersonCamera::FollowPath(std::vector<glm::vec3> points) {
 	distanceToTravel = length(direction - mPosition);
 	prevDistance = distanceToTravel;
 }
-
+glm::vec3 FirstPersonCamera::performTransformation(glm::vec3 position, float angle,  glm::vec3 axis)
+{
+	glm::mat4 translateToPoint = glm::translate(glm::mat4(1.0f), avatar->GetPosition());
+	glm::mat4 rotateAroundAxis = glm::rotate(glm::mat4(1.0f), angle, axis);
+	glm::mat4 reverseTranslation = glm::translate(glm::mat4(1.0f), -avatar->GetPosition());
+	
+	return  glm::vec3((translateToPoint  * rotateAroundAxis  * reverseTranslation) * glm::vec4(position,1));
+}
 void FirstPersonCamera::displayVector(glm::vec3 v){ //DEBUG TOOL
 	std::cout << "x: " << v.x << " y: " << v.y << " z: " << v.z <<std::endl;
 }

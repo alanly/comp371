@@ -32,7 +32,7 @@ ThirdPersonCamera::~ThirdPersonCamera(void)
 void ThirdPersonCamera::Update(float dt){
 	// Prevent from having the camera move only when the cursor is within the windows
 	EventManager::DisableMouseCursor();
-	
+
 	// Get mouse position
 	float xpos, ypos;
 	xpos = -1 * EventManager::GetMouseMotionX();
@@ -47,8 +47,6 @@ void ThirdPersonCamera::Update(float dt){
 
 	glm::vec3 avatarPos = avatar->GetPosition();
 		
-
-	//avatar->SetRotation(glm::vec3(1,0,0), verticalAngle); //does nothing because it is a set before another set operation
 	avatar->SetRotation(glm::vec3(0,1,0), horizontalAngle);
 
 	glm::vec3 forward = (avatar->GetPosition() - mPosition);
@@ -86,6 +84,13 @@ void ThirdPersonCamera::Update(float dt){
 		avatarPos -= glm::vec3(0,1,0) * dt * speed;
 		mPosition -= glm::vec3(0,1,0) * dt * speed;
 	}
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_T ) == GLFW_PRESS){
+		speed += 1;
+	}
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_Y ) == GLFW_PRESS){
+		if(speed > 1)
+			speed -= 1;
+	}
 	avatar->SetPosition(avatarPos);	
 }
 
@@ -104,11 +109,7 @@ glm::mat4 ThirdPersonCamera::GetViewMatrix() const
 
 glm::vec3 ThirdPersonCamera::performTransformation(glm::vec3 position, float angle,  glm::vec3 axis)
 {
-	//glm::vec3 alignVector = glm::cross(glm::normalize(position), glm::normalize(axis));
-	//float alignAngle = glm::acos(glm::dot(glm::normalize(axis),glm::normalize(position)));
-
 	glm::mat4 translateToPoint = glm::translate(glm::mat4(1.0f), avatar->GetPosition());
-	//glm::mat4 rotateToAlign = glm::rotate(glm::mat4(1.0f), alignAngle, alignVector);
 	glm::mat4 rotateAroundAxis = glm::rotate(glm::mat4(1.0f), angle, axis);
 	glm::mat4 reverseTranslation = glm::translate(glm::mat4(1.0f), -avatar->GetPosition());
 	

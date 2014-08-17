@@ -60,7 +60,7 @@ World::World()
 
 	std::vector<glm::vec3> path;
 
-
+	/*
 	path.push_back(glm::vec3(0.0f,0.0f,0.0f));
 	path.push_back(glm::vec3(10.0f,0.0f,0.0f));
 	path.push_back(glm::vec3(20.0f,0.0f,0.0f));
@@ -72,24 +72,49 @@ World::World()
 
 	Portal* p = new Portal(path, 1.0f, 12);
 //	addModel(p);
+	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
+	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
+	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
+	path.push_back(glm::vec3(15.0f,3.0f,2.0f));
+	path.push_back(glm::vec3(20.0f,1.0f,0.0f));
+	path.push_back(glm::vec3(24.0f,1.0f,2.0f));
+	path.push_back(glm::vec3(28.0f,1.0f,0.0f));
+	path.push_back(glm::vec3(30.0f, 2.0f, 0.0f));
+	path.push_back(glm::vec3(35.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(36.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(37.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(38.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(39.0f, 3.0f, 1.0f));
+	path.push_back(glm::vec3(43.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(50.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(60.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(61.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(62.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(63.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(64.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(65.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(66.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(67.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(68.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));*/
 	myt->FollowPath(path);
 
 	mCurrentCamera = 1;
 
-	/*
-	BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
+	/*BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	blender->SetPosition(glm::vec3(1,1,1));
 	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
 	addModel(blender);
 	*/
+
 	mCurrentCamera = 2;
 
 
 	///portal thing
 	PortalEntrance * PEntr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
 	addModel(PEntr);
-
-
 }
 
 World::~World()
