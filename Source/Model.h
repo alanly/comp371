@@ -17,6 +17,9 @@
 #include <vector>
 
 #include <GLM/glm.hpp>
+#include <GL\glew.h>
+
+#include "Camera.h"
 
 
 class Model
@@ -53,6 +56,8 @@ public:
 	Model* rotaterY;
 	// Expressed as (ka, kd, ks, n)
 	glm::vec4 GetMaterialCoefficients() const { return mMaterialCoefficients; }
+
+	void PrepareDraw(Camera* currentCamera, unsigned int numOfLights, GLfloat* lightPositions, GLfloat* lightColors, GLfloat* lightCoefficients);
 
 protected:
 

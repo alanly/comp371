@@ -67,6 +67,7 @@ void PlaneModel::Update(float dt)
 
 void PlaneModel::Draw()
 {
+	
 	if (hasImage)
 	{
 		// Texturize our image.

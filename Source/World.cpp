@@ -316,6 +316,12 @@ void World::Draw()
 		
 		// Draw model
 		model->Draw();
+
+		SpiralModel* spM = dynamic_cast<SpiralModel*>(model);
+		if(spM != 0) {
+			// old was safely casted to NewType
+			spM->DrawImages(mCamera[mCurrentCamera], mLightSize, lightPositions, lightColors, lightCoefficients);
+		}
 	}
 
 	Renderer::EndFrame();

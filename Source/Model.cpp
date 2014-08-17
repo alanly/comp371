@@ -106,3 +106,45 @@ bool Model::collides(Model* other){
 void Model::setCollisionBoxSize(glm::vec3 dimensions){
 	mCollisionBoxSize = dimensions/2.0f;
 }
+
+
+void Model::PrepareDraw(Camera* currentCamera, unsigned int numOfLights, GLfloat* lightPositions, GLfloat* lightColors, GLfloat* lightCoefficients)
+{
+	// Use the appropriate model shader program.
+	glUseProgram(mShaderProgramID);
+
+	// Create the uniforms containing our transformation matrices
+	GLuint VPMatrixLocation       = glGetUniformLocation(mShaderProgramID, "ViewProjectonTransform");
+	GLuint ViewTransformUniformID = glGetUniformLocation(mShaderProgramID, "ViewTransform");
+	GLuint ProjTransformUniformID = glGetUniformLocation(mShaderProgramID, "ProjectonTransform");
+
+	// Create the uniform IDs for a material attribute and our light attributes
+	GLuint sMaterialUniformID		   = glGetUniformLocation(mShaderProgramID, "materialCoefficients");
+	GLuint sNumLightsUniformID		   = glGetUniformLocation(mShaderProgramID, "NumLights");
+	GLuint sLightPositionsUniformID	   = glGetUniformLocation(mShaderProgramID, "LightPositions");
+	GLuint sLightColorsUniformID	   = glGetUniformLocation(mShaderProgramID, "LightColors");
+	GLuint sLightCoefficientsUniformID = glGetUniformLocation(mShaderProgramID, "LightAttenuations");
+
+	// Send the view projection constants to the shader
+	glm::mat4 VP = currentCamera->GetViewProjectionMatrix();
+	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
+	glUniformMatrix4fv(ViewTransformUniformID, 1, GL_FALSE, &currentCamera->GetViewMatrix()[0][0]);
+	glUniformMatrix4fv(ProjTransformUniformID, 1, GL_FALSE, &currentCamera->GetProjectionMatrix()[0][0]);
+
+	// Send the model material coefficients to the shader,
+	glUniform4f(
+		sMaterialUniformID,
+		GetMaterialCoefficients().x,
+		GetMaterialCoefficients().y,
+		GetMaterialCoefficients().z,
+		GetMaterialCoefficients().w
+		);
+
+	// Send the number of lights we have to the shader,
+	glUniform1i(sNumLightsUniformID, numOfLights);
+
+	// Send our arrays of light properties to the shader,
+	glUniform4fv(sLightPositionsUniformID, numOfLights, lightPositions);
+	glUniform3fv(sLightColorsUniformID, numOfLights, lightColors);
+	glUniform3fv(sLightCoefficientsUniformID, numOfLights, lightCoefficients);
+}
