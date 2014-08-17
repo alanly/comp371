@@ -124,16 +124,10 @@
     <ClCompile Include="..\Source\LSystemModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\OGFirstPersonCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\Particles\Particle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\PlaneModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\SpiralModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Particles\ParticleSystem.cpp">
@@ -143,6 +137,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\PortalEntrance.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SpiralModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -222,9 +219,6 @@
     <ClInclude Include="..\Source\LSystemModel.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\OGFirstPersonCamera.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\Particles\Particle.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -237,11 +231,11 @@
     <ClInclude Include="..\Source\Particles\Random.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\SpiralModel.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\UTFConvert.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\SpiralModel.h">
+      <Filter>Source Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

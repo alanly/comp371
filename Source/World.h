@@ -38,6 +38,7 @@ public:
 	void addModel(Model* nModel);
 	void addLight(Light* nLight);
 	void removeModel(Model* model);
+	bool contains(Model* model);
 
 private:
 	std::vector<Model*> mModel;
@@ -46,10 +47,11 @@ private:
 	unsigned int mCurrentCamera;
 	FirstPersonCamera* fpc;
 	Avatar* colAv;
-	CubeModel* colCube;
 	PortalEntrance * entr;
 	std::vector<Light*> mLight;
 	SpiralModel* spiral;
 	Portal* portal;
 	std::vector<glm::vec3> path;
+	void createPortalAndEntrance();
+	void setUpCameras();
 };

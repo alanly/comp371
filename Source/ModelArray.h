@@ -24,7 +24,6 @@ public:
 			glm::vec3 offset);
 
 private:
-	// @TODO 5 - You may want a container for all the parts of your vehicle
 	std::vector<Model*> container;
 
 };

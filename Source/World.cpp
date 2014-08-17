@@ -44,26 +44,13 @@ using namespace glm;
 
 World::World()
 {
-	Avatar * avatar = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
-	avatar->SetPosition(glm::vec3(5.0f,5.0f,5.0f));
-	avatar->setCollisionBoxSize(glm::vec3(1.0f,1.0f,1.0f));
-	addModel(avatar);
-	colAv = avatar;
+	colAv = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
+	colAv->SetPosition(glm::vec3(5.0f,5.0f,5.0f));
+	colAv->setCollisionBoxSize(glm::vec3(1.0f,1.0f,1.0f));
+	addModel(colAv);
 
-	CubeModel *cm = new CubeModel(glm::vec3(1.0f,1.0f,1.0f));
-	cm->SetPosition(glm::vec3(10.0f,0.0f,0.0f));
-	cm->setCollisionBoxSize(glm::vec3(1.0f));
-	addModel(cm);
+	setUpCameras();
 
-	colCube = cm;
-
-
-	fpc = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),avatar);
-	// Setup Camera
-	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
-	mCamera.push_back( fpc);
-
-	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),avatar ) );
   	spiral = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
 		     glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
 			 glm::vec3(90.0f, 3.0f, 0.0f), //Position
@@ -76,8 +63,6 @@ World::World()
 			 15.0f);	//arbitrary height
 			 
 	
-	
-
     //====== Load texture
 //     glGenTextures(1, &tex);
 // 
@@ -103,49 +88,13 @@ World::World()
 	PointLight* light2 = new PointLight(glm::vec3(5.f, -10.f, 0.f));
 	addLight(light2);
 
-	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
-	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
-	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
-	path.push_back(glm::vec3(15.0f,3.0f,2.0f));
-	path.push_back(glm::vec3(20.0f,1.0f,0.0f));
-	path.push_back(glm::vec3(24.0f,1.0f,2.0f));
-	path.push_back(glm::vec3(28.0f,1.0f,0.0f));
-	path.push_back(glm::vec3(30.0f, 2.0f, 0.0f));
-	path.push_back(glm::vec3(35.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(36.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(37.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(38.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(39.0f, 3.0f, 1.0f));
-	path.push_back(glm::vec3(43.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(50.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(60.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(61.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(62.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(63.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(64.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(65.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(66.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(67.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(68.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
-	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
+	createPortalAndEntrance();
 
-	portal = new Portal(path, 1.0f, 12);
-	//addModel(portal);
-	//fpc->FollowPath(path);
-
-	mCurrentCamera = 1;
-
+	
 	/*BlenderModel* blender = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	blender->SetPosition(glm::vec3(1,1,1));
 	blender->SetScaling(glm::vec3(0.01f,0.01f,0.01f));
-	addModel(blender);
-	*/
-
-	///portal thing
-	entr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
-	addModel(entr);
+	addModel(blender);*/
 	
 }
 
@@ -179,11 +128,14 @@ void World::Update(float dt)
 {
 
 	if(colAv->collides(entr)) {
+		mCurrentCamera = 1;
 		mModel.clear();
-		addModel(colAv);
 		fpc->FollowPath(path);
 		addModel(portal);
 		addModel(spiral);
+		entr->SetPosition(glm::vec3(90.0f,25.0f,0.0f));
+		entr->SetRotation(glm::vec3(0,1.0f,0),90.0f);
+		addModel(entr);	
 	}
 
 	if(!fpc->followPath){
@@ -192,12 +144,16 @@ void World::Update(float dt)
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
 		{
 			mCurrentCamera = 0;
+			if(!contains(colAv)){
+				addModel(colAv);
+			}
 		}
 		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2 ) == GLFW_PRESS)
 		{
 			if (mCamera.size() > 1)
 			{
 				mCurrentCamera = 1;
+				removeModel(colAv);
 			}
 		}
 		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3 ) == GLFW_PRESS)
@@ -205,6 +161,9 @@ void World::Update(float dt)
 			if (mCamera.size() > 2)
 			{
 				mCurrentCamera = 2;
+				if(!contains(colAv)){
+					addModel(colAv);
+				}
 			}
 		}
 		removeModel(portal);
@@ -239,6 +198,15 @@ void World::Update(float dt)
 }
 
 
+bool World::contains(Model* model)
+{
+	for(int i = 0; i < mModel.size(); i++){
+		if(model == mModel[i]){
+			return true;
+		}
+	}
+	return false;
+}
 void World::removeModel(Model* model)
 {
 	for(int i = 0; i < mModel.size(); i++){
@@ -356,4 +324,53 @@ void World::Draw()
 	delete lightPositions;
 	delete lightColors;
 	delete lightCoefficients;
+}
+
+void World::createPortalAndEntrance(){
+
+	//set up path
+	path.push_back(glm::vec3(5.0f,2.0f,0.0f));
+	path.push_back(glm::vec3(7.0f,3.0f,0.0f));
+	path.push_back(glm::vec3(12.0f,3.0f,2.0f));
+	path.push_back(glm::vec3(15.0f,3.0f,2.0f));
+	path.push_back(glm::vec3(20.0f,1.0f,0.0f));
+	path.push_back(glm::vec3(24.0f,1.0f,2.0f));
+	path.push_back(glm::vec3(28.0f,1.0f,0.0f));
+	path.push_back(glm::vec3(30.0f, 2.0f, 0.0f));
+	path.push_back(glm::vec3(35.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(36.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(37.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(38.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(39.0f, 3.0f, 1.0f));
+	path.push_back(glm::vec3(43.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(50.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(60.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(61.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(62.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(63.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(64.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(65.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(66.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(67.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(68.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(69.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(75.0f, 3.0f, 0.0f));
+	path.push_back(glm::vec3(76.0f, 3.0f, 0.0f));
+
+	//create portal tube
+	portal = new Portal(path, 1.0f, 12);
+
+	///portal thing
+	entr = new PortalEntrance(glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f),glm::vec3(1.0f,0.0f,0.0f),10);
+	addModel(entr);
+}
+
+void World::setUpCameras(){
+	fpc = new FirstPersonCamera(vec3(0.5f, 0.5f, 5.0f),colAv);
+	mCamera.push_back( new StaticCamera( vec3(3.0f, 4.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f) ) );
+	mCamera.push_back( fpc);
+
+	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),colAv ) );
+
+	mCurrentCamera = 1;
 }

@@ -25,7 +25,7 @@ PortalEntrance::PortalEntrance(glm::vec3 Position,glm::vec3 Normal, glm::vec3 Bi
 			innerRad, outerRad, angle, 8);
 
 		arc->SetRotation(posOffset,(360.0f/numParts)*i);
-		
+		arc->SetParent(this);
 		collection.push_back(arc);
 	}
 

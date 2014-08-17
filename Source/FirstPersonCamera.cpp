@@ -34,6 +34,7 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	mouseSpeed = 0.1f;
 	mPosition = position;
 	prevDistance = -1;
+	look = mPosition;
 }
 
 FirstPersonCamera::~FirstPersonCamera()
@@ -136,6 +137,7 @@ void FirstPersonCamera::Update(float dt)
 		}
 	}
 	look = mPosition + direction;
+	displayVector(mPosition);
 	avatar->SetPosition(mPosition);
 }
 
