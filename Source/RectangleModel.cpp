@@ -1,3 +1,6 @@
+//
+//Author: Tim Smith
+
 #include "RectangleModel.h"
 
 #include "Renderer.h"

@@ -100,7 +100,7 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 			binormal,
 			normal,
 			radius*1.1,
-			radius*0.89f,
+			radius*0.8f,
 			360.0f,
 			edgeCount);
 		decals.push_back(am);
@@ -111,10 +111,7 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 		for (int k = 0; k < edgeCount; k++) {// on each point, generate the ring
 			angle = 2 * PI * k / edgeCount;
 			tunnelPoint.push_back( inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * radius );
-			color = glm::vec3(1.0f);
-			color.x = ((float)rand()/(float)(RAND_MAX)) * a;
-			color.y = ((float)rand()/(float)(RAND_MAX)) * a;
-			color.z = ((float)rand()/(float)(RAND_MAX)) * a;
+			color = glm::vec3(0.95f,0.94f,0.64f);
 
 			if(j!=inputPoints.size()-1){
 
@@ -146,7 +143,7 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 			glm::vec3 nextNormal = glm::cross(upVector, nextTangent);
 			glm::vec3 nextBinormal = glm::cross(nextTangent, nextNormal);
 
-			float decalRadius = radius*0.99f;
+			float decalRadius = radius*0.93f;
 			glm::vec3 currentPoint(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * decalRadius);
 
 			glm::vec3 dotPoint(inputPoints[j] + (normal * cos(angle) + binormal * sin(angle)) * decalRadius*0.99f);
@@ -159,38 +156,40 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 
 			glm::vec3 stretchNormal = currentPoint-inputPoints[j];
 
-			RectangleModel * r = new RectangleModel(currentPoint, nextPoint, stretchNormal*0.09f, 0.1f, glm::vec3(1.0f, 0.0f, 0.0f));
+			RectangleModel * r = new RectangleModel(currentPoint, nextPoint, stretchNormal*0.09f, 0.1f, glm::vec3(0.98f, 0.45f, 0.91f));
 			
 			glm::vec3 edgeNormal = normalize(inputPoints[j] - dotPoint);
-// 				currentPoint.y - inputPoints[j].y,
-// 				currentPoint.z - inputPoints[j].z);
 			
-			//	edgeNormal = glm::vec3(0.0f, 1.0f, 0.0f);
-				ArcModel * arc = new ArcModel(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
-					glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+			glm::vec4 arcCol;
+			arcCol.x = ((float)rand()/(float)(RAND_MAX)) * a;
+			arcCol.y = ((float)rand()/(float)(RAND_MAX)) * a;
+			arcCol.z = ((float)rand()/(float)(RAND_MAX)) * a;
+				ArcModel * arc = new ArcModel(arcCol,
+					arcCol,
 					dotPoint,
 					tangent,
 					glm::cross(edgeNormal, tangent),
 					0.0f, 0.04f, 360, 4);
 
-				std::vector<Model*> arcVector;
+				arc->SetMaterialCoefficients(glm::vec4(0.65f,0.01f,0.2f,0.05f));
 
-				int total = length(nextPoint - currentPoint) / 0.4f;
+
+				std::vector<Model*> arcVector;
+				float density = 0.5f;
+				int total = length(nextPoint - currentPoint) / density;
 				total++;
-			//	total = 1;//for debug
+
 				for (int number = 0; number < total; number++){
 					ArcModel * tmp = new ArcModel(*arc);
 					arcVector.push_back(tmp);
 				}
 
 				ModelArray * mArr = new ModelArray();
-				mArr->addModel(arcVector, normalize(direction)*0.38f);
+				mArr->addModel(arcVector, normalize(direction)*density);
 
 				decals.push_back(mArr);
 
 				//end new stretch
-		//		decals.push_back(arc);
-			
 
 			decals.push_back(r);
 			}
@@ -227,7 +226,7 @@ Portal::Portal(std::vector<glm::vec3> inputPoints, float radius, int edgeCount)
 
 		}
 	
-
+	SetMaterialCoefficients(glm::vec4(0.65f,0.001f,0.002f,0.05f));
 
 	// Create a vertex array
 	glGenVertexArrays(1, &mVertexArrayID);

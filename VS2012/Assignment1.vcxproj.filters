@@ -132,6 +132,9 @@
     <ClCompile Include="..\Source\UTFConvert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\PortalEntrance.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -192,6 +195,9 @@
       <Filter>Source Files\Camera</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Avatar.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\PortalEntrance.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\BlenderModel.h">
