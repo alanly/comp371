@@ -45,7 +45,7 @@
     <IntDir>$(SolutionDir)/../Build/$(Configuration)/</IntDir>
     <TargetName>$(ProjectName)-$(Configuration)</TargetName>
     <LibraryPath>..\ThirdParty\SOIL;$(LibraryPath)</LibraryPath>
-    <IncludePath>..\Source;$(IncludePath)</IncludePath>
+    <IncludePath>..\Source\Particles;..\Source;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -107,6 +107,7 @@
   <ItemGroup>
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\Particles\Particle.cpp" />
     <ClCompile Include="..\Source\Particles\ParticleSystem.cpp" />
     <ClCompile Include="..\Source\PlaneModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
@@ -123,7 +124,9 @@
   <ItemGroup>
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\Particles\Particle.h" />
     <ClInclude Include="..\Source\Particles\ParticleSystem.h" />
+    <ClInclude Include="..\Source\Particles\Random.h" />
     <ClInclude Include="..\Source\UTFConvert.h" />
     <ClInclude Include="..\Source\PlaneModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />

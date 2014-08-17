@@ -82,6 +82,9 @@
     <ClCompile Include="..\Source\UTFConvert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Particles\Particle.cpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\Particles\ParticleSystem.cpp">
       <Filter>Source Files\Particles</Filter>
     </ClCompile>
@@ -122,6 +125,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\UTFConvert.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\Particle.h">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Particles\Random.h">
+      <Filter>Source Files\Particles</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Particles\ParticleSystem.h">
       <Filter>Source Files\Particles</Filter>

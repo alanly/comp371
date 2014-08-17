@@ -11,6 +11,7 @@
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "PlaneModel.h"
+#include "ParticleSystem.h"
 #include "SOIL.h"
 #include "UTFConvert.h"
 
@@ -21,7 +22,8 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
-	PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+    PlaneModel* p = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
+	//ParticleSystem* p = new ParticleSystem(30);
 	world.addModel(p);
 
     //====== Load texture
