@@ -112,7 +112,7 @@ void SpiralModel::Draw()
 	// The Model View Projection transforms are computed in the Vertex Shader
 	glBindVertexArray(mVertexArrayID);
 
-	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
+	GLuint WorldMatrixLocation = glGetUniformLocation(mShaderProgramID, "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
 	// 1st attribute buffer : vertex Positions
@@ -158,6 +158,7 @@ void SpiralModel::Draw()
 
 	for(int i = 0; i<m_vDoodads.size(); i++)
 	{
+		m_vDoodads[i]->SetShader(mShaderProgramID);
 		m_vDoodads[i]->Draw();
 	}
 }
