@@ -39,10 +39,10 @@ PlaneModel::PlaneModel(vec3 size)
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);
 
-	hasImage = false;
-
 	// Create a texture reference for this plane.
 	glGenTextures(1, &tex);
+
+	image = nullptr;
 }
 
 PlaneModel::~PlaneModel()
@@ -51,11 +51,6 @@ PlaneModel::~PlaneModel()
 	glDeleteBuffers(1, &mVertexBufferID);
 	glDeleteVertexArrays(1, &mVertexArrayID);
 	glDeleteTextures(1, &tex);
-
-	if (hasImage == true)
-	{
-		SOIL_free_image_data(pImage);
-	}
 }
 
 void PlaneModel::Update(float dt)
@@ -68,10 +63,10 @@ void PlaneModel::Update(float dt)
 void PlaneModel::Draw()
 {
 	
-	if (hasImage)
+	if (image != nullptr)
 	{
 		// Texturize our image.
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pImageWidth, pImageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, pImage);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->GetWidth(), image->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image->GetImage());
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
@@ -143,8 +138,7 @@ void PlaneModel::Draw()
 }
 
 
-void PlaneModel::SetImage(const char* sImage)
+void PlaneModel::SetImage(Image* sImage)
 {
-	hasImage = true;
-	pImage = SOIL_load_image(UTFConvert::GetImagePath(sImage).c_str(), &pImageWidth, &pImageHeight, 0, SOIL_LOAD_RGBA);
+	image = sImage;
 }

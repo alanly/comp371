@@ -38,9 +38,33 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	GLuint imageShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
 
 	// Declare our images
-	std::vector<const char*>* images = new std::vector<const char*>();
-	images->push_back("gerlic.jpg");
-	images->push_back("entertained.jpg");
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/Scottish_Fold.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/advanced-stupidity.jpg"), new Image("../Assets/ImageCaptions/advanced-stupidity.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/alphalogo_a4arial.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/astrosloth.jpg"), new Image("../Assets/ImageCaptions/astrosloth.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/bankruptcy.png") ));
+//	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/cattie.jpg"), new Image("../Assets/ImageCaptions/cattie.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/diabetes.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/entertained.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/gerlic.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/grumpy.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/haha-business.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/heavy-breathing.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/impressed.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/jimmies.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/mayor.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/not_bad_cheers.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/now_kith.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-shit-its-op.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-you-dog.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh_stop.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/rainbow.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/realisation_dog.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/science-bitch.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/shit-itself.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/squids.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/tied.jpg") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/what-is-cat.jpg") ));
 
 	for (int k = 0; k <= numberOfEdges; k++)
 	{
@@ -67,16 +91,49 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 			//Portal entrance placeholder
 			//m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
 
-			PlaneModel* pPlaneModel = new PlaneModel(glm::vec3(1.0f,1.0f,1.0f));
-			pPlaneModel->SetPosition(p2+normalize(bridgeDirection)+glm::vec3(0.0f,1.0f,0.0f));
+			/************************************************************************/
+			/* Create the image plane.                                              */
+			/************************************************************************/
+
+			// Calculate the rotation.
 			glm::vec3 oldNormal(0.0f,0.0f,1.0f);
 			glm::vec3 newNormal = normalize(-bridgeDirection);
 			glm::vec3 rotationAxis = cross(oldNormal,newNormal);
 			float rotationAngle = acos(dot(oldNormal, newNormal) / (length(oldNormal) * length(newNormal)));
-			pPlaneModel->SetRotation(rotationAxis,degrees(rotationAngle));
-			pPlaneModel->SetImage(images->at(rand() % images->size()));
-			pPlaneModel->SetShader(imageShaderProgramID);
-			m_vDoodads.push_back(pPlaneModel);
+
+			// Create the main image plane instance.
+			PlaneModel* imagePlane = new PlaneModel(glm::vec3(1.f, 1.f, 1.f));
+			
+			// Set the image plane attributes,
+			imagePlane->SetPosition(p2 + normalize(bridgeDirection) + glm::vec3(0.f, 1.f, 0.f));
+			imagePlane->SetRotation(rotationAxis, degrees(rotationAngle));
+			imagePlane->SetShader(imageShaderProgramID);
+
+			// Choose an image,
+			CaptionImageSet* img = mImages.at(rand() % mImages.size());
+			imagePlane->SetImage(img->GetSubject());
+
+			// Add the plane to the list,
+			m_vDoodads.push_back(imagePlane);
+
+			// Check if there's an associated caption,
+			if (img->HasCaption())
+			{
+				// Create the caption image plane instance.
+				PlaneModel* captionPlane = new PlaneModel(glm::vec3(1.f, 1.f, 1.f));
+
+				// Set the image plane attributes,
+				// We'll set the y += 2.f, to sit on top of our image.
+				captionPlane->SetPosition(p2 + normalize(bridgeDirection) + glm::vec3(0.f, 2.f, 0.f));
+				captionPlane->SetRotation(rotationAxis, degrees(rotationAngle));
+				captionPlane->SetShader(imageShaderProgramID);
+
+				// Get the caption image instance,
+				captionPlane->SetImage(img->GetCaption());
+
+				// Add the plane to the list,
+				m_vDoodads.push_back(captionPlane);
+			}
 		}
 
 		//Make a bridge

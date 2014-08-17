@@ -113,8 +113,10 @@
     <ClCompile Include="..\Source\Avatar.cpp" />
     <ClCompile Include="..\Source\BlenderModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\CaptionImageSet.cpp" />
     <ClCompile Include="..\Source\DirectionalLight.cpp" />
     <ClCompile Include="..\Source\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Source\Image.cpp" />
     <ClCompile Include="..\Source\Light.cpp" />
     <ClCompile Include="..\Source\PointLight.cpp" />
     <ClCompile Include="..\Source\Generator.cpp" />
@@ -145,8 +147,10 @@
     <ClInclude Include="..\Source\Avatar.h" />
     <ClInclude Include="..\Source\BlenderModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\CaptionImageSet.h" />
     <ClInclude Include="..\Source\DirectionalLight.h" />
     <ClInclude Include="..\Source\FirstPersonCamera.h" />
+    <ClInclude Include="..\Source\Image.h" />
     <ClInclude Include="..\Source\Light.h" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
     <ClInclude Include="..\Source\PointLight.h" />

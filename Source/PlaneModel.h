@@ -5,8 +5,8 @@
 #include "Model.h"
 #include <vector>
 #include <string>
-#include "SOIL.h"
 #include "UTFConvert.h"
+#include "Image.h"
 
 class PlaneModel : public Model
 {
@@ -17,7 +17,7 @@ public:
 	void Update(float dt);
 	void Draw();
 
-	void SetImage(const char* image);
+	void SetImage(Image* image);
 
 private:
 	struct Vertex
@@ -32,9 +32,5 @@ private:
 	unsigned int mVertexBufferID;
 
 	GLuint tex;
-	unsigned char* pImage;
-	int pImageWidth;
-	int pImageHeight;
-
-	bool hasImage;
+	Image* image;
 };
