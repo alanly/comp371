@@ -1,3 +1,8 @@
+/**
+ * @author Louis McLean
+ * @author Alan Ly (Images)
+ */
+
 #pragma once
 
 #include "SpiralModel.h"
@@ -38,9 +43,7 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	GLuint imageShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
 
 	// Declare our images
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/Scottish_Fold.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/advanced-stupidity.jpg"), new Image("../Assets/ImageCaptions/advanced-stupidity.png") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/alphalogo_a4arial.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/Scottish_Fold.jpg"), new Image("../Assets/ImageCaptions/scottish-fold.png") ));
 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/astrosloth.jpg"), new Image("../Assets/ImageCaptions/astrosloth.png") ));
 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/bankruptcy.png") ));
 //	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/cattie.jpg"), new Image("../Assets/ImageCaptions/cattie.png") ));
@@ -54,8 +57,8 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/jimmies.jpg") ));
 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/mayor.jpg") ));
 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/not_bad_cheers.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/now_kith.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-shit-its-op.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/now_kith.jpg"), new Image("../Assets/ImageCaptions/now-kith.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-shit-its-op.jpg"), new Image("../Assets/ImageCaptions/op.png") ));
 // 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-you-dog.jpg") ));
 // 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh_stop.png") ));
 // 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/rainbow.jpg") ));

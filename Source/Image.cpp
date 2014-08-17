@@ -1,3 +1,7 @@
+/**
+ * @author Alan Ly
+ */
+
 #include "Image.h"
 
 

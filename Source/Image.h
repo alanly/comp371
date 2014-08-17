@@ -1,3 +1,7 @@
+/**
+ * @author Alan Ly
+ */
+
 #pragma once
 
 #include "SOIL.h"

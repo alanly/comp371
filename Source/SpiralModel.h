@@ -1,3 +1,8 @@
+/**
+ * @author Louis McLean
+ * @author Alan Ly (Images)
+ */
+
 #pragma once
 #include "Model.h"
 #include "CaptionImageSet.h"
