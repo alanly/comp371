@@ -103,6 +103,8 @@
     <None Include="..\Source\Shaders\Image.vertexshader" />
     <None Include="..\Source\Shaders\Phong.fragmentshader" />
     <None Include="..\Source\Shaders\Phong.vertexshader" />
+    <None Include="..\Source\Shaders\SimpleTransform.vertexshader" />
+    <None Include="..\Source\Shaders\SingleColor.fragmentshader" />
     <None Include="..\Source\Shaders\SolidColor.vertexshader" />
     <None Include="..\Source\Shaders\SolidColor.fragmentshader" />
     <None Include="..\Source\Shaders\TextVertexShader.fragmentshader" />

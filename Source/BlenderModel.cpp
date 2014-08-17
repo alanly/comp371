@@ -1,10 +1,4 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-//
-// Copyright (c) 2014 Concordia University. All rights reserved.
-//
+//Written by Thomas Rahn
 
 #include "BlenderModel.h"
 #include "Renderer.h"
@@ -15,18 +9,23 @@
 #include <GL/glew.h>
 
 using namespace glm;
+
+	// Material Coefficients
 	static const float ka = 0.1f;
-	static const float kd = 0.9f;
-	static const float ks = 0.5f;
-	static const float n = 450.0f;
+	static const float kd = 0.05f;
+	static const float ks = 0.0f;
+	static const float n = 400.0f;
+
+	static const float tr = 1.0f;
+	static const float noShading = 0.0f;
 BlenderModel::BlenderModel(	const char * path, const char * texturePath)
 {
-	
-	texture = Texture::loadDDS(texturePath);
+	if(texturePath != ""){	
+		texture = Texture::loadDDS(texturePath);
 
-	// Get a handle for our texture uniform
-	textureID = glGetUniformLocation(Renderer::GetShaderProgramID(), "mTexture");
-
+		// Get a handle for our texture uniform
+		textureID = glGetUniformLocation(Renderer::GetShaderProgramID(), "mTexture");
+	}
 
 	// Read our .obj file
 	std::vector<glm::vec3> vertices;
@@ -38,7 +37,7 @@ BlenderModel::BlenderModel(	const char * path, const char * texturePath)
 
 	// Create a vertex array
 	glGenVertexArrays(1, &mVertexArrayID);
-
+	glBindVertexArray(mVertexArrayID);
 	// Load it into a VBO
 	glGenBuffers(1, &mVertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
@@ -51,7 +50,7 @@ BlenderModel::BlenderModel(	const char * path, const char * texturePath)
 
 	glGenBuffers(1, &mUVBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, mUVBufferID);
-	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec3), &uvs[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 }
 
 BlenderModel::~BlenderModel()
@@ -76,17 +75,18 @@ void BlenderModel::Draw()
 	GLuint MaterialID = glGetUniformLocation(Renderer::GetShaderProgramID(), "materialCoefficients");
 	glUniform4f(MaterialID, ka, kd, ks, n);
 
-	/* GLuint ModelTransparencyID = glGetUniformLocation(Renderer::GetShaderProgramID(), "modelTransparency");
+	
+	GLuint ModelTransparencyID = glGetUniformLocation(Renderer::GetShaderProgramID(), "modelTransparency");
 	glUniform1f(ModelTransparencyID, tr);
 
 	GLuint NoShadingID = glGetUniformLocation(Renderer::GetShaderProgramID(), "noShading");
-	glUniform1f(NoShadingID, noShading);*/
+	glUniform1f(NoShadingID, noShading);
 
 	// Bind our texture in Texture Unit 0
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glUniform1i(textureID, 0);
-	
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
@@ -97,7 +97,8 @@ void BlenderModel::Draw()
 		GL_FALSE,           // normalized?
 		0,                  // stride
 		(void*)0            // array buffer offset
-		);
+	);
+
 
 	// 2nd attribute buffer : vertex normal
 	glEnableVertexAttribArray(1);
@@ -112,16 +113,17 @@ void BlenderModel::Draw()
 		);
 
 	// 2nd attribute buffer : UVs
-	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, mUVBufferID);
 	glVertexAttribPointer(
 		2,                                // attribute. No particular reason for 1, but must match the layout in the shader.
-		3,                                // size : U+V => 2
+		2,                                // size : U+V => 2
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
 		(void*)0                          // array buffer offset
-		);
+	);
+
 
 	// Draw the triangle !
 	glDrawArrays(GL_TRIANGLES, 0, numVertices); // 3 indices starting at 0 -> 1 triangle
@@ -129,4 +131,5 @@ void BlenderModel::Draw()
 	glDisableVertexAttribArray(2);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(0);
+
 }

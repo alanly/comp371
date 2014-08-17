@@ -50,6 +50,12 @@
     <None Include="..\Source\Shaders\TextVertexShader.vertexshader">
       <Filter>Source Files\Shaders</Filter>
     </None>
+    <None Include="..\Source\Shaders\SimpleTransform.vertexshader">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="..\Source\Shaders\SingleColor.fragmentshader">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\EventManager.cpp">

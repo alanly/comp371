@@ -1,3 +1,6 @@
+//Written by Thomas Rahn
+
+
 #pragma once
 
 #include "Model.h"
@@ -23,12 +26,13 @@ private:
 		glm::vec3 normal;
 		glm::vec3 color;
 	};
+	unsigned int numVertices;
+	GLuint texture;
+	GLuint textureID;
 
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
 	unsigned int mNormalBufferID;
 	unsigned int mUVBufferID;
-	int numVertices;
-	GLuint textureID;
-	GLuint texture;
+
 };
