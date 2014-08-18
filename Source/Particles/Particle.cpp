@@ -12,11 +12,14 @@ Particle::Particle(glm::vec3 position, float minLife, float maxLife)
     float pY = ((float)rand()/(float)(RAND_MAX)) - 0.5f;
     float pZ = ((float)rand()/(float)(RAND_MAX)) - 0.5f;
 
+    //Set random rotation
+    SetRotation(glm::vec3(RandRange(0,1), RandRange(0,1),RandRange(0,1)), 45.0f);
+
     // Set Velocity, Age, Lifetime
     p_Velocity = glm::vec3(pX, pY, pZ);
-    p_Velocity = glm::normalize(p_Velocity) * 0.1f; //to go further
+    p_Velocity = glm::normalize(p_Velocity) * 0.5f; //to go further
     p_Age = 0;
-    p_Lifetime = RandRange(minLife, maxLife); 
+    p_Lifetime = RandRange(minLife, maxLife);
 }
 
 void Particle::Update(float dt)
@@ -24,7 +27,7 @@ void Particle::Update(float dt)
     p_Age += dt;
 
     // Direction vector
-    SetPosition(GetPosition()+p_Velocity);
+    SetPosition(GetPosition() + p_Velocity);
 }
 
 void Particle::ResetAge()

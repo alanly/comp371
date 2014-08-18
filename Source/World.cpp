@@ -55,14 +55,14 @@ World::World()
 			 glm::vec3(90.0f, 3.0f, 0.0f), //Position
 			 glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
 			 glm::vec3(0.0f,0.0f,1.0f), //Binormal
-			 2.0f, //Radius 1
+			 3.4f, //Radius 1
 			 4.0f, //Radius 2
 			 360.0f * 7.5f, //Arc Angle
 			 500,		//arbitrary # edges
 			 15.0f);	//arbitrary height	
 
-    particleSystem = new ParticleSystem(5, new Image("../Assets/Images/Scottish_Fold.jpg"),glm::vec3(90.0f,10.5f,0.0f));
-    //TODO find out how many particles can be handled
+    particleSystem = new ParticleSystem(5, new Image("../Assets/Images/dogeparticle.png"),glm::vec3(90.0f,10.5f,0.0f));
+    //@TODO Set number of particles!
 
 	// Create and add our lighting to the world
 	PointLight* light1 = new PointLight(glm::vec3(5.f, 0.f, 0.f));
