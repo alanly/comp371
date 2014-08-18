@@ -1,3 +1,6 @@
+/*
+ * @author Tiffany Ip
+ */
 #pragma once
 #include "glm/glm.hpp"
 #include "Random.h"
@@ -11,9 +14,6 @@ public:
     // Take randRange to set starting position
 
     virtual void Update(float dt);
-    // increase age by each frame, increase size? if a thing
-    virtual void Draw();
-
     void ResetAge();
 
     glm::vec3 p_Velocity; //Particle's speed

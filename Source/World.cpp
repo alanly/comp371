@@ -9,6 +9,7 @@
 /**
  * @author Alan Ly (multiple scene-lighting, per-model shaders)
  * @author Thomas Rahn (world update logic, camera/model initialization) 
+ * @author Tiffany Ip (particle system)
  */
 #include "World.h"
 #include <GLFW/glfw3.h>
@@ -60,6 +61,8 @@ World::World()
 			 500,		//arbitrary # edges
 			 15.0f);	//arbitrary height	
 
+    particleSystem = new ParticleSystem(5, new Image("../Assets/Images/Scottish_Fold.jpg"),glm::vec3(90.0f,10.5f,0.0f));
+    //TODO find out how many particles can be handled
 
 	// Create and add our lighting to the world
 	PointLight* light1 = new PointLight(glm::vec3(5.f, 0.f, 0.f));
@@ -119,6 +122,7 @@ void World::Update(float dt)
 		fpc->FollowPath(path);
 		addModel(portal);
 		addModel(spiral);
+        addModel(particleSystem);
 		entr->SetPosition(glm::vec3(90.0f,25.0f,0.0f));
 		entr->SetRotation(glm::vec3(0,1.0f,0),90.0f);
 		addModel(entr);	
