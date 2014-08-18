@@ -49,7 +49,9 @@ World::World()
 
 	setUpCameras();
 
-  	spiral = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
+	setupImageSets();
+
+  	spiral_1 = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
 		     glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
 			 glm::vec3(90.0f, 3.0f, 0.0f), //Position
 			 glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
@@ -58,7 +60,20 @@ World::World()
 			 4.0f, //Radius 2
 			 360.0f * 7.5f, //Arc Angle
 			 500,		//arbitrary # edges
-			 15.0f);	//arbitrary height	
+			 15.0f, 	//arbitrary height	
+			 wImageSets.at(0));
+
+	spiral_2 = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
+		glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
+		glm::vec3(90.0f, 3.0f, 0.0f), //Position
+		glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
+		glm::vec3(0.0f,0.0f,1.0f), //Binormal
+		2.0f, //Radius 1
+		4.0f, //Radius 2
+		360.0f * 7.5f, //Arc Angle
+		500,		//arbitrary # edges
+		15.0f, 	//arbitrary height	
+		wImageSets.at(1));
 
 
 	// Create and add our lighting to the world
@@ -118,7 +133,7 @@ void World::Update(float dt)
 		mModel.clear();
 		fpc->FollowPath(path);
 		addModel(portal);
-		addModel(spiral);
+		addModel(spiral_1);
 		entr->SetPosition(glm::vec3(90.0f,25.0f,0.0f));
 		entr->SetRotation(glm::vec3(0,1.0f,0),90.0f);
 		addModel(entr);	
@@ -365,4 +380,81 @@ void World::setUpCameras(){
 	mCamera.push_back( new ThirdPersonCamera( vec3(3.0f, 4.0f, 5.0f),colAv ) );
 
 	mCurrentCamera = 1;
+}
+
+
+void World::setupImageSets()
+{
+	printf("Loading image sets... ");
+	/**
+	 * Create the image set representing SUBREDDIT_1
+	 */
+	std::vector<CaptionImageSet*> subreddit_1;
+
+	// Assign images for first subreddit
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/Scottish_Fold.jpg"), new Image("../Assets/ImageCaptions/scottish-fold.png") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/astrosloth.jpg"), new Image("../Assets/ImageCaptions/astrosloth.png") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/ball_catch.png") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/bankruptcy.png") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/born.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/buddy-cates.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/buddy-maus.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/bunneh.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/bunnehs.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/cate.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/cattie.jpg"), new Image("../Assets/ImageCaptions/cattie.png") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/creepy-cate.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/diabetes.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/doge-babeh.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/elefant.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/entertained.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/exit_butt.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/gerlic.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/grumpy.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/haha-business.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/harry-potter.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/heavy-breathing.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/herp-cate.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/hungry-cate.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/ice-cream.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/impressed.jpg") ));
+	subreddit_1.push_back(new CaptionImageSet( new Image("../Assets/Images/jimmies.jpg") ));
+
+	/**
+	 * Create the image set representing SUBREDDIT_2
+	 */
+	std::vector<CaptionImageSet*> subreddit_2;
+
+	// Assign images for second subreddit
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/king-cate.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/lab.png") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/littler-cate.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/mayor.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/not_bad_cheers.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/now_kith.jpg"), new Image("../Assets/ImageCaptions/now-kith.png") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-shit-its-op.jpg"), new Image("../Assets/ImageCaptions/op.png") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-you-dog.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/oh_stop.png") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/parents.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/poor-dan.png") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/priorities.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/rainbow.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/realisation_dog.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/science-bitch.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/seal.png") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/shit-itself.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/siblings.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/skwurl.png") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/soon.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/squids.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/steak-doge.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/tell-you-whut.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/tied.jpg") ));
+	subreddit_2.push_back(new CaptionImageSet( new Image("../Assets/Images/what-is-cat.jpg") ));
+
+	// Push the image sets
+	wImageSets.push_back(subreddit_1);
+	wImageSets.push_back(subreddit_2);
+
+	printf("Loaded.\n");
 }

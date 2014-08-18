@@ -1,6 +1,7 @@
 /**
  * @author Louis McLean
- * @author Alan Ly (Images)
+ * @author Tiffany Ip (images)
+ * @author Alan Ly (image sets and multiple-shader rendering)
  */
 
 #pragma once
@@ -21,11 +22,14 @@ public:
 			 float radius2,
 			 float arcAngle,
 			 int numberOfEdges,
-			 float height);
+			 float height,
+			 std::vector<CaptionImageSet*> images);
 	~SpiralModel();
 
 	virtual void Update(float dt);
 	virtual void Draw();
+
+	void SetImages(std::vector<CaptionImageSet*> images) { mImages = images; }
 
 	void DrawImages(Camera* currentCamera, unsigned int numOfLights, GLfloat* lightPositions, GLfloat* lightColors, GLfloat* lightCoefficients);
 

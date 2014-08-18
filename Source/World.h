@@ -14,6 +14,7 @@
 #include <vector>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "CaptionImageSet.h"
 
 
 class Camera;
@@ -49,9 +50,13 @@ private:
 	Avatar* colAv;
 	PortalEntrance * entr;
 	std::vector<Light*> mLight;
-	SpiralModel* spiral;
+	SpiralModel* spiral_1;
+	SpiralModel* spiral_2;
 	Portal* portal;
 	std::vector<glm::vec3> path;
+	std::vector<std::vector<CaptionImageSet*>> wImageSets;
+
 	void createPortalAndEntrance();
 	void setUpCameras();
+	void setupImageSets();
 };

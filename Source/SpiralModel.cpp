@@ -1,6 +1,7 @@
 /**
  * @author Louis McLean
- * @author Alan Ly (Images)
+ * @author Tiffany Ip (images)
+ * @author Alan Ly (image sets and multiple-shader rendering)
  */
 
 #pragma once
@@ -28,7 +29,10 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 			 float radius2,
 			 float arcAngle,
 			 int numberOfEdges,
-			 float height)
+			 float height,
+			 std::vector<CaptionImageSet*> images
+			 )
+			 : mImages(images)
 {
 	float angle;// = arcAngle / numberOfEdges;
 	nEdges = numberOfEdges;
@@ -41,33 +45,6 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 
 	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Phong.vertexshader", "../Source/Shaders/Phong.fragmentshader");
 	GLuint imageShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
-
-	// Declare our images
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/Scottish_Fold.jpg"), new Image("../Assets/ImageCaptions/scottish-fold.png") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/astrosloth.jpg"), new Image("../Assets/ImageCaptions/astrosloth.png") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/bankruptcy.png") ));
-//	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/cattie.jpg"), new Image("../Assets/ImageCaptions/cattie.png") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/diabetes.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/entertained.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/gerlic.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/grumpy.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/haha-business.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/heavy-breathing.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/impressed.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/jimmies.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/mayor.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/not_bad_cheers.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/now_kith.jpg"), new Image("../Assets/ImageCaptions/now-kith.png") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-shit-its-op.jpg"), new Image("../Assets/ImageCaptions/op.png") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-you-dog.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh_stop.png") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/rainbow.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/realisation_dog.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/science-bitch.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/shit-itself.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/squids.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/tied.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/what-is-cat.jpg") ));
 
 	for (int k = 0; k <= numberOfEdges; k++)
 	{
