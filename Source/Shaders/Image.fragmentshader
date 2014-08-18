@@ -1,5 +1,7 @@
 #version 330 core
 
+// Author Tiffany Ip
+
 in vec3 Color;
 in vec2 Texcoord;
 

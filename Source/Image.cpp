@@ -1,5 +1,6 @@
 /**
- * @author Alan Ly
+ * @author Alan Ly - Class structuring
+ * @author Tiffany Ip - SOIL use & research
  */
 
 #include "Image.h"

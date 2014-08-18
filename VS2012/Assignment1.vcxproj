@@ -146,7 +146,6 @@
     <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
-    <ClCompile Include="..\Source\UTFConvert.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\ArcModel.h" />
@@ -185,7 +184,6 @@
     <ClInclude Include="..\Source\Texture.h" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\World.h" />
-    <ClInclude Include="..\Source\UTFConvert.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Source\Images\alphalogo_a4arial.png" />

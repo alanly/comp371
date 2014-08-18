@@ -133,9 +133,6 @@
     <ClCompile Include="..\Source\Particles\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\UTFConvert.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\PortalEntrance.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -247,9 +244,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Particles\Random.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\UTFConvert.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\SpiralModel.h">
