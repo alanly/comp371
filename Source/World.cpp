@@ -7,7 +7,7 @@
 //
 
 /**
- * @author Alan Ly (multiple scene-lighting, per-model shaders)
+ * @author Alan Ly (multiple scene-lighting, per-model shaders, multiple subreddits)
  * @author Thomas Rahn (world update logic, camera/model initialization) 
  * @author Tiffany Ip (particle system)
  */

@@ -6,7 +6,7 @@
 // Copyright (c) 2014 Concordia University. All rights reserved.
 //
 /**
- * @author Alan Ly (multiple scene-lighting, per-model shaders)
+ * @author Alan Ly (multiple scene-lighting, per-model shaders, multiple subreddits)
  * @author Thomas Rahn
  * @author Tiffany Ip (added particle system)
  */
