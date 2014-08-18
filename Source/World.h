@@ -50,9 +50,9 @@ private:
 	Avatar* colAv;
 	PortalEntrance * entr;
 	std::vector<Light*> mLight;
-	SpiralModel* spiral_1;
-	SpiralModel* spiral_2;
 	Portal* portal;
+	std::vector<SpiralModel*> wSpirals;
+	unsigned int wCurrentSpiral;
 	std::vector<glm::vec3> path;
 	std::vector<std::vector<CaptionImageSet*>> wImageSets;
 

@@ -51,7 +51,7 @@ World::World()
 
 	setupImageSets();
 
-  	spiral_1 = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
+  	wSpirals.push_back(new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
 		     glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
 			 glm::vec3(90.0f, 3.0f, 0.0f), //Position
 			 glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
@@ -61,9 +61,10 @@ World::World()
 			 360.0f * 7.5f, //Arc Angle
 			 500,		//arbitrary # edges
 			 15.0f, 	//arbitrary height	
-			 wImageSets.at(0));
+			 wImageSets.at(0))
+	);
 
-	spiral_2 = new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
+	wSpirals.push_back(new SpiralModel(glm::vec4(1.0f,0.0f,0.0f,1.0f) , //color
 		glm::vec4(0.0f,0.0f,1.0f,1.0f), //color2
 		glm::vec3(90.0f, 3.0f, 0.0f), //Position
 		glm::vec3(1.0f,0.0f,0.0f), //Normal (up vector)
@@ -73,7 +74,10 @@ World::World()
 		360.0f * 7.5f, //Arc Angle
 		500,		//arbitrary # edges
 		15.0f, 	//arbitrary height	
-		wImageSets.at(1));
+		wImageSets.at(1))
+	);
+
+	wCurrentSpiral = 1;
 
 
 	// Create and add our lighting to the world
@@ -131,9 +135,13 @@ void World::Update(float dt)
 	if(colAv->collides(entr)) {
 		mCurrentCamera = 1;
 		mModel.clear();
+
 		fpc->FollowPath(path);
 		addModel(portal);
-		addModel(spiral_1);
+		
+		wCurrentSpiral = (wCurrentSpiral == 0) ? 1 : 0;
+		addModel(wSpirals.at(wCurrentSpiral));
+
 		entr->SetPosition(glm::vec3(90.0f,25.0f,0.0f));
 		entr->SetRotation(glm::vec3(0,1.0f,0),90.0f);
 		addModel(entr);	
