@@ -1,16 +1,27 @@
+/*
+ * @author Tiffany Ip
+ */
 #include "ParticleSystem.h"
 
-ParticleSystem::ParticleSystem(unsigned int number)
+ParticleSystem::ParticleSystem(unsigned int number, Image* image, glm::vec3 position)
 {
+    mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
     numOfParticles = number;
+    if (position != glm::vec3(1.0f)){
+    SetPosition(position); //Set the position of the particle system if given
+    }
+
     for (unsigned int i = 0; i < number; i++)
     {
         float pX = ((float)rand()/(float)(RAND_MAX)) * 0.5;
         float pY = ((float)rand()/(float)(RAND_MAX)) * 0.5;
         float pZ = ((float)rand()/(float)(RAND_MAX)) * 0.5;
-        float minLife = ((float)rand()/(float)(RAND_MAX)) * 0.6;
-        float maxLife = ((float)rand()/(float)(RAND_MAX)) * 1.5;
-        pParticles.push_back(new Particle(GetPosition()+glm::vec3(pX, pY, pZ), minLife, maxLife));
+        float minLife = 1.0f;//((float)rand()/(float)(RAND_MAX)) * 0.1;
+        float maxLife = 10.0f;//((float)rand()/(float)(RAND_MAX)) * 2;
+        Particle* newParticle = new Particle(GetPosition()+glm::vec3(pX, pY, pZ), minLife, maxLife);
+        newParticle->SetShader(mShaderProgramID);
+        newParticle->SetImage(image);
+        pParticles.push_back(newParticle);
     }
 }
 

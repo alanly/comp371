@@ -8,6 +8,7 @@
 /**
  * @author Alan Ly (multiple scene-lighting, per-model shaders)
  * @author Thomas Rahn
+ * @author Tiffany Ip (added particle system)
  */
 #pragma once
 
@@ -26,6 +27,7 @@ class PortalEntrance;
 class FirstPersonCamera;
 class SpiralModel;
 class Portal;
+class ParticleSystem;
 #include <GLM/glm.hpp>
 class World
 {
@@ -53,6 +55,7 @@ private:
 	Portal* portal;
 	std::vector<SpiralModel*> wSpirals;
 	unsigned int wCurrentSpiral;
+    ParticleSystem* particleSystem;
 	std::vector<glm::vec3> path;
 	std::vector<std::vector<CaptionImageSet*>> wImageSets;
 
