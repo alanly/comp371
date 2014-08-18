@@ -16,9 +16,9 @@ ParticleSystem::ParticleSystem(unsigned int number, Image* image, glm::vec3 posi
         float pX = ((float)rand()/(float)(RAND_MAX)) * 0.5;
         float pY = ((float)rand()/(float)(RAND_MAX)) * 0.5;
         float pZ = ((float)rand()/(float)(RAND_MAX)) * 0.5;
-        float minLife = 1.0f;//((float)rand()/(float)(RAND_MAX)) * 0.1;
-        float maxLife = 10.0f;//((float)rand()/(float)(RAND_MAX)) * 2;
-        Particle* newParticle = new Particle(GetPosition()+glm::vec3(pX, pY, pZ), minLife, maxLife);
+        float minLife = 1.0f;   //((float)rand()/(float)(RAND_MAX)) * 0.1;
+        float maxLife = 10.0f;  //((float)rand()/(float)(RAND_MAX)) * 2;
+        Particle* newParticle = new Particle(GetPosition() + glm::vec3(pX, pY, pZ), minLife, maxLife);
         newParticle->SetShader(mShaderProgramID);
         newParticle->SetImage(image);
         pParticles.push_back(newParticle);
@@ -40,7 +40,7 @@ void ParticleSystem::Update(float dt)
             float pX = ((float)rand()/(float)(RAND_MAX)) * 0.5;
             float pY = ((float)rand()/(float)(RAND_MAX)) * 0.5;
             float pZ = ((float)rand()/(float)(RAND_MAX)) * 0.5;
-            pParticles[i]->SetPosition(GetPosition()+glm::vec3(pX, pY, pZ));
+            pParticles[i]->SetPosition(GetPosition() + glm::vec3(pX, pY, pZ));
             pParticles[i]->ResetAge();
         }
         pParticles[i]->Update(dt);

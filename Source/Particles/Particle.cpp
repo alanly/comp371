@@ -17,7 +17,7 @@ Particle::Particle(glm::vec3 position, float minLife, float maxLife)
 
     // Set Velocity, Age, Lifetime
     p_Velocity = glm::vec3(pX, pY, pZ);
-    p_Velocity = glm::normalize(p_Velocity) * 0.5f; //to go further
+    p_Velocity = glm::normalize(p_Velocity) * 0.5f; //to go further, use bigger numbers, otherwise small distance 0.01f
     p_Age = 0;
     p_Lifetime = RandRange(minLife, maxLife);
 }
