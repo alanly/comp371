@@ -9,7 +9,6 @@
 #include "Model.h"
 #include <vector>
 #include <string>
-#include "UTFConvert.h"
 #include "Image.h"
 
 class PlaneModel : public Model

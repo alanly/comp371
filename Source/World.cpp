@@ -31,7 +31,6 @@
 #include "PlaneModel.h"
 #include "ParticleSystem.h"
 #include "SOIL.h"
-#include "UTFConvert.h"
 #include "LSystemModel.h"
 #include "RectangleModel.h"
 #include "ArcModel.h"
