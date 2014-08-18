@@ -43,31 +43,31 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	GLuint imageShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
 
 	// Declare our images
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/Scottish_Fold.jpg"), new Image("../Assets/ImageCaptions/scottish-fold.png") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/astrosloth.jpg"), new Image("../Assets/ImageCaptions/astrosloth.png") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/bankruptcy.png") ));
-//	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/cattie.jpg"), new Image("../Assets/ImageCaptions/cattie.png") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/diabetes.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/entertained.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/gerlic.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/grumpy.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/haha-business.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/heavy-breathing.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/impressed.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/jimmies.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/mayor.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/not_bad_cheers.jpg") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/now_kith.jpg"), new Image("../Assets/ImageCaptions/now-kith.png") ));
-	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-shit-its-op.jpg"), new Image("../Assets/ImageCaptions/op.png") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-you-dog.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh_stop.png") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/rainbow.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/realisation_dog.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/science-bitch.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/shit-itself.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/squids.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/tied.jpg") ));
-// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/what-is-cat.jpg") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/Scottish_Fold.jpg"), new Image("../Assets/ImageCaptions/scottish_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/astrosloth.jpg"), new Image("../Assets/ImageCaptions/astro_sloth_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/bankruptcy.png"), new Image("../Assets/ImageCaptions/banks_text.png") ));
+//	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/cattie.jpg"), new Image("../Assets/ImageCaptions/cattie_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/diabetes.jpg"), new Image("../Assets/ImageCaptions/diabetes_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/entertained.jpg"), new Image("../Assets/ImageCaptions/entertained_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/gerlic.jpg") , new Image("../Assets/ImageCaptions/gerlic_text.png")));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/grumpy.jpg"), new Image("../Assets/ImageCaptions/grumpy_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/haha-business.jpg"), new Image("../Assets/ImageCaptions/business_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/heavy-breathing.jpg"), new Image("../Assets/ImageCaptions/breathing_cat_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/impressed.jpg"), new Image("../Assets/ImageCaptions/impressed_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/jimmies.jpg"), new Image("../Assets/ImageCaptions/jimmies_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/mayor.jpg"), new Image("../Assets/ImageCaptions/mayor_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/not_bad_cheers.jpg"), new Image("../Assets/ImageCaptions/not_bad_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/now_kith.jpg"), new Image("../Assets/ImageCaptions/kith_text.png") ));
+	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-shit-its-op.jpg"), new Image("../Assets/ImageCaptions/its_op_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh-you-dog.jpg"), new Image("../Assets/ImageCaptions/oh_you_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/oh_stop.png"), new Image("../Assets/ImageCaptions/stawp_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/rainbow.jpg"), new Image("../Assets/ImageCaptions/rainbow_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/realisation_dog.jpg"), new Image("../Assets/ImageCaptions/realisation_dog_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/science-bitch.jpg"), new Image("../Assets/ImageCaptions/science_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/shit-itself.jpg"), new Image("../Assets/ImageCaptions/shit_itself_text.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/squids.jpg"), new Image("../Assets/ImageCaptions/squids.png") ));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/tied.jpg") , new Image("../Assets/ImageCaptions/tied_text.png")));
+// 	mImages.push_back(new CaptionImageSet( new Image("../Assets/Images/what-is-cat.jpg"), new Image("../Assets/ImageCaptions/whatiscat_text.png") ));
 
 	for (int k = 0; k <= numberOfEdges; k++)
 	{
