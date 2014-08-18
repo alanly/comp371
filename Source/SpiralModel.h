@@ -1,5 +1,11 @@
+/**
+ * @author Louis McLean
+ * @author Alan Ly (Images)
+ */
+
 #pragma once
 #include "Model.h"
+#include "CaptionImageSet.h"
 #include <vector>
 
 class SpiralModel :
@@ -45,6 +51,8 @@ private:
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
 	std::vector<Model *> m_vDoodads;
+
+	std::vector<CaptionImageSet*> mImages;
 
 };
 

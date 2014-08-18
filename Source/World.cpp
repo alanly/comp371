@@ -61,6 +61,7 @@ World::World()
 			 500,		//arbitrary # edges
 			 15.0f);	//arbitrary height	
 
+
 	// Create and add our lighting to the world
 	PointLight* light1 = new PointLight(glm::vec3(5.f, 0.f, 0.f));
 	addLight(light1);
