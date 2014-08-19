@@ -1,5 +1,5 @@
 /**
- * @author Louis McLean
+ * @author Louis McLean (spiral, bridge and image plane geometry)
  * @author Tiffany Ip (images)
  * @author Alan Ly (image sets and multiple-shader rendering)
  */

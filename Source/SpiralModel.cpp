@@ -1,5 +1,5 @@
 /**
- * @author Louis McLean
+ * @author Louis McLean (spiral, bridge and image plane geometry)
  * @author Tiffany Ip (images)
  * @author Alan Ly (image sets and multiple-shader rendering)
  */
@@ -37,11 +37,11 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	float angle;// = arcAngle / numberOfEdges;
 	nEdges = numberOfEdges;
 	
-	float heightIncrement = (float)height/numberOfEdges; // yo this is the height
+	float heightIncrement = (float)height/numberOfEdges; 
 	glm::vec3 yComponent;
 	std::vector<Vertex> mesh;
-	float bridgeLength = 2.0f; // ARBITRARY YAY
-	float bridgeWidth = 1.0f; // bridge is pencil dick
+	float bridgeLength = 2.0f;
+	float bridgeWidth = 1.0f; 
 
 	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader");
 	GLuint imageShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
@@ -56,21 +56,20 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 		mesh.push_back(outerPoint);
 
 		//We will assume always having 25 stories, and as such, more than 25 edges to our spiral (25 reddit/stories per page)
+		//ex. if numb. edges ==75, every 3 edges should have a bridge expanding out
 		if( 0 == k % (numberOfEdges/25) )
-		{//ex. if numb. edges ==75, every 3 edges should have a bridge expanding out
-			//RectangleModel * r = new RectangleModel()//this goes from the outer radius of the point we just made, along the (i think) binormal to a range of wtv length you want the bridge to be.
-													//If that doesnt work, try the normal.
+		{
+			//this goes from the outer radius of the point we just made, along the (i think) binormal to a range of wtv length you want the bridge to be.
 			//rectangle bridges and any other decals we add can be put into a vector of decals that on the spiral classes' draw function iterates through the vector calling their respective draw()
 			//At the end of the bridge, we'll construct an image from the CURL thing.
 			glm::vec3 p1 = outerPoint.position;
 			glm::vec3 bridgeDirection = outerPoint.position - innerPoint.position;
 			glm::vec3 p2 = p1 + (bridgeDirection * bridgeLength);
 
+			//Make a bridge
 			m_vDoodads.push_back(new RectangleModel(p1, p2, glm::vec3(0.0f,1.0f,0.0f), bridgeWidth,glm::vec3(0.0f,1.0f,0.0f)));
 
-			//Portal entrance placeholder
-			//m_vDoodads.push_back(new ArcModel(glm::vec4(0.0f,1.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,0.0f,1.0f),p2+glm::vec3(0.0f,1.0f,0.0f), cross(normalize(bridgeDirection),glm::vec3(0.0f,1.0f,0.0f)),glm::vec3(0.0f,1.0f,0.0f),0.0f,1.0f,360.0f,100));
-
+			
 			/************************************************************************/
 			/* Create the image plane.                                              */
 			/************************************************************************/
@@ -116,7 +115,7 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 			}
 		}
 
-		//Make a bridge
+		
 	}
 
 	const int size = mesh.size();
@@ -140,11 +139,6 @@ SpiralModel::~SpiralModel(void)
 
 void SpiralModel::Update(float dt)
 {
-	// If you are curious, un-comment this line to have spinning cubes!
-	// That will only work if your world transform is correct...
-	// mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
-//	mRotationAxis = glm::vec3(0.0f, 0.0f, 1.0f);
-	//mRotationAngleInDegrees += 5.0f*dt;
 }
 
 void SpiralModel::Draw()

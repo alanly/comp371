@@ -13,7 +13,7 @@ using namespace glm;
 
 PlaneModel::PlaneModel(vec3 size)
 {
-	// Create Vertex Buffer for all the verices of the Cube
+	// Create Vertex Buffer
 	vec3 halfSize = size * 0.5f;
     
 	Vertex vertexBuffer[] = {  
@@ -51,9 +51,7 @@ PlaneModel::~PlaneModel()
 
 void PlaneModel::Update(float dt)
 {
-	// If you are curious, un-comment this line to have spinning cubes!
-	// That will only work if your world transform is correct...
-	// mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
+    // to be overriden
 }
 
 void PlaneModel::Draw()
@@ -71,20 +69,19 @@ void PlaneModel::Draw()
 	}
 
 	// Draw the Vertex Buffer
-	// Note this draws a unit Cube
 	// The Model View Projection transforms are computed in the Vertex Shader
 	glBindVertexArray(mVertexArrayID);
 
 	GLuint WorldMatrixLocation = glGetUniformLocation(mShaderProgramID, "WorldTransform"); 
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 	
-	// 1st attribute buffer : vertex Positions
+	// 1st attribute buffer : vertex positions
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
 	glVertexAttribPointer(	0,				// attribute. No particular reason for 0, but must match the layout in the shader.
 							3,				// size
 							GL_FLOAT,		// type
-							GL_FALSE,		// normalized?
+							GL_FALSE,		// normalized
 							sizeof(Vertex), // stride
 							(void*)0        // array buffer offset
 						);
@@ -125,7 +122,7 @@ void PlaneModel::Draw()
 
 
 	// Draw the triangles !
-	glDrawArrays(GL_TRIANGLES, 0, 6); // 36 vertices: 3 * 2 * 6 (3 per triangle, 2 triangles per face, 6 faces)
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
     glDisableVertexAttribArray(3);
 	glDisableVertexAttribArray(2);
