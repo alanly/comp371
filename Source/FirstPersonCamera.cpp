@@ -24,11 +24,12 @@ FirstPersonCamera::FirstPersonCamera(glm::vec3 position, Model* avatar): mPositi
 	horizontalAngle = 3.14f;
 	verticalAngle = 0.0f;
 	followPath = false;
-	speed = 4.0f; // 3 units / second
+	speed = 3.5f; // 3 units / second
 	mouseSpeed = 0.05f;
 	mPosition = position;
 	prevDistance = -1;
 	look = mPosition;
+	direction = glm::vec3(0,0,0);
 }
 
 FirstPersonCamera::~FirstPersonCamera()

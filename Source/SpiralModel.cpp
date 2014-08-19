@@ -43,7 +43,7 @@ SpiralModel::SpiralModel(glm::vec4 color1,
 	float bridgeLength = 2.0f; // ARBITRARY YAY
 	float bridgeWidth = 1.0f; // bridge is pencil dick
 
-	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Phong.vertexshader", "../Source/Shaders/Phong.fragmentshader");
+	mShaderProgramID = Renderer::LoadShaders("../Source/Shaders/SolidColor.vertexshader", "../Source/Shaders/SolidColor.fragmentshader");
 	GLuint imageShaderProgramID = Renderer::LoadShaders("../Source/Shaders/Image.vertexshader", "../Source/Shaders/Image.fragmentshader");
 
 	for (int k = 0; k <= numberOfEdges; k++)

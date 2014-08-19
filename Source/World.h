@@ -49,7 +49,7 @@ private:
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
 	FirstPersonCamera* fpc;
-	Avatar* colAv;
+	Model* colAv;
 	PortalEntrance * entr;
 	std::vector<Light*> mLight;
 	Portal* portal;
@@ -58,7 +58,7 @@ private:
     ParticleSystem* particleSystem;
 	std::vector<glm::vec3> path;
 	std::vector<std::vector<CaptionImageSet*>> wImageSets;
-
+	unsigned int wCurrentImageSet;
 	void createPortalAndEntrance();
 	void setUpCameras();
 	void setupImageSets();

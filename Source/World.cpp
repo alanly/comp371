@@ -43,10 +43,17 @@ using namespace glm;
 
 World::World()
 {
-	colAv = new Avatar(glm::vec3(0.0f,1.0f,1.0f));
+	BlenderModel* blender = new BlenderModel("../Source/blender/snoo.obj","../Source/blender/snoo.dds");
+	blender->SetPosition(glm::vec3(1,0,1));
+	blender->SetScaling(glm::vec3(0.1f,0.1f,0.1f));
+	blender->SetRotation(glm::vec3(0,1,0),90.f);
+	//blender->SetShader(Renderer::LoadShaders( "../Source/Shaders/SimpleTransform.vertexshader", "../Source/Shaders/SingleColor.fragmentshader" ));
+	//addModel(blender);
+
+	colAv = blender;//new Avatar(glm::vec3(0.0f,1.0f,1.0f));
 	colAv->SetPosition(glm::vec3(5.0f,5.0f,5.0f));
 	colAv->setCollisionBoxSize(glm::vec3(1.0f,1.0f,1.0f));
-	addModel(colAv);
+	//addModel(colAv);
 
 	setUpCameras();
 
@@ -80,9 +87,8 @@ World::World()
 
 	wCurrentSpiral = 1;
 
-    particleSystem = new ParticleSystem(5, new Image("../Assets/Images/dogeparticle.png"),glm::vec3(90.0f,10.5f,0.0f));
-    //@TODO Set number of particles!
-
+    particleSystem = new ParticleSystem(500, new Image("../Assets/Images/dogeparticle.png"),glm::vec3(90.0f,10.5f,0.0f));
+    
 	// Create and add our lighting to the world
 	PointLight* light1 = new PointLight(glm::vec3(5.f, 0.f, 0.f));
 	addLight(light1);
@@ -93,11 +99,7 @@ World::World()
 	createPortalAndEntrance();
 
 	
-	//BlenderModel* blender = new BlenderModel("../Source/blender/snoo.obj","../Source/blender/snoo.dds");
-	//blender->SetPosition(glm::vec3(1,0,1));
-	//blender->SetScaling(glm::vec3(0.1f,0.1f,0.1f));
-	////blender->SetShader(Renderer::LoadShaders( "../Source/Shaders/SimpleTransform.vertexshader", "../Source/Shaders/SingleColor.fragmentshader" ));
-	//addModel(blender);
+
 
 	//BlenderModel* blender2 = new BlenderModel("../Source/blender/sofa.obj","../Source/blender/sofa.dds");
 	//blender2->SetPosition(glm::vec3(1,1,1));
@@ -143,7 +145,7 @@ void World::Update(float dt)
 		addModel(portal);
 		
 		wCurrentSpiral = (wCurrentSpiral == 0) ? 1 : 0;
-		addModel(wSpirals.at(wCurrentSpiral));
+		addModel(wSpirals[wCurrentSpiral]);
 
         addModel(particleSystem);
 		entr->SetPosition(glm::vec3(90.0f,25.0f,0.0f));
@@ -470,3 +472,4 @@ void World::setupImageSets()
 
 	printf("Loaded.\n");
 }
+
